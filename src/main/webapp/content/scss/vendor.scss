@@ -14,3 +14,19 @@ eg $input-color: red;
 @import 'src/main/webapp/content/scss/rtl.scss';
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+@import 'custom/functions';
+@import 'custom/variables';
+@import 'custom/mixins';
+
+// FDM utilities and components
+
+@import 'custom/reboot';
+@import 'custom/utilities';
+@import 'custom/components';
+
+// Vendor (Plugins)
+
+@import 'custom/vendors';
+
+// My own classes
+@import 'global.scss';
