@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "departement"
+        },
+        {
+            "relationshipName": "enseignant",
+            "otherEntityName": "enseignant",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "departement"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20200702183741",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "departement",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

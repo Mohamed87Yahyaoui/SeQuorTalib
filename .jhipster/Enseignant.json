@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "historiqueEnseignantModule",
+            "otherEntityName": "historiqueEnseignantModule",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [],
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipName": "historiqueEnseignantFiliere",
+            "otherEntityName": "historiqueEnseignantFiliere",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipName": "departement",
+            "otherEntityName": "departement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nom",
+            "otherEntityRelationshipName": "enseignant"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tel",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "datenaissance",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "cin",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "grade",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20200703222740",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "enseignant",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

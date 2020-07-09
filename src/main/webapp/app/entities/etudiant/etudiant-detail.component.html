@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="etudiant">
+            <h2><span jhiTranslate="sequortalibApp.etudiant.detail.title">Etudiant</span> {{ etudiant.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sequortalibApp.etudiant.tel">Tel</span></dt>
+                <dd>
+                    <span>{{ etudiant.tel }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.cin">Cin</span></dt>
+                <dd>
+                    <span>{{ etudiant.cin }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.semsetre">Semsetre</span></dt>
+                <dd>
+                    <span>{{ etudiant.semsetre }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.section">Section</span></dt>
+                <dd>
+                    <span>{{ etudiant.section }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.etat">Etat</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sequortalibApp.Status.' + etudiant.etat }}">{{ etudiant.etat }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.datenaissance">Datenaissance</span></dt>
+                <dd>
+                    <span>{{ etudiant.datenaissance }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantFiliere">Historique Etudiant Filiere</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.historiqueEtudiantFiliere">
+                        <a [routerLink]="['/historique-etudiant-filiere', etudiant.historiqueEtudiantFiliere?.id, 'view']">{{ etudiant.historiqueEtudiantFiliere?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.etablissement">
+                        <a [routerLink]="['/etablissement', etudiant.etablissement?.id, 'view']">{{ etudiant.etablissement?.nom }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantModule">Historique Etudiant Module</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.historiqueEtudiantModule">
+                        <a [routerLink]="['/historique-etudiant-module', etudiant.historiqueEtudiantModule?.id, 'view']">{{ etudiant.historiqueEtudiantModule?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/etudiant', etudiant.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

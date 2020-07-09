@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEnseignantModule": {
+      "home": {
+        "title": "HistoriqueEnseignantModules",
+        "createLabel": "Créer un nouveau Historique Enseignant Module",
+        "createOrEditLabel": "Créer ou éditer un Historique Enseignant Module",
+        "notFound": "Aucun Historique Enseignant Module trouvé"
+      },
+      "created": "Un nouveau Historique Enseignant Module a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Historique Enseignant Module avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Historique Enseignant Module avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Historique Enseignant Module {{ id }} ?"
+      },
+      "detail": {
+        "title": "Historique Enseignant Module"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "module": "Module",
+      "enseignant": "Enseignant"
+    }
+  }
+}

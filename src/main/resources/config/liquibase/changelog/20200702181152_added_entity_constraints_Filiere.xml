@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Filiere.
+    -->
+    <changeSet id="20200702181152-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="filiere_id"
+                                 baseTableName="filiere_module"
+                                 constraintName="fk_filiere_module_filiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="filiere"/>
+
+        <addForeignKeyConstraint baseColumnNames="module_id"
+                                 baseTableName="filiere_module"
+                                 constraintName="fk_filiere_module_module_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        
+        <addForeignKeyConstraint baseColumnNames="departement_id"
+                                 baseTableName="filiere"
+                                 constraintName="fk_filiere_departement_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="departement"/>
+
+        <addForeignKeyConstraint baseColumnNames="historique_enseignant_filiere_id"
+                                 baseTableName="filiere"
+                                 constraintName="fk_filiere_historique_enseignant_filiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="historique_enseignant_filiere"/>
+
+        <addForeignKeyConstraint baseColumnNames="historique_etudiant_filiere_id"
+                                 baseTableName="filiere"
+                                 constraintName="fk_filiere_historique_etudiant_filiere_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="historique_etudiant_filiere"/>
+
+    </changeSet>
+</databaseChangeLog>

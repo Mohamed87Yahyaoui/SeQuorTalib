@@ -1,0 +1,26 @@
+{
+  "sequortalibApp": {
+    "module": {
+      "home": {
+        "title": "Modules",
+        "createLabel": "创建新 Module",
+        "createOrEditLabel": "创建或编辑 Module",
+        "notFound": "No Modules found"
+      },
+      "created": "Module {{ param }} 创建成功",
+      "updated": "Module {{ param }} 更新成功",
+      "deleted": "Module {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Module {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Module"
+      },
+      "nom": "Nom",
+      "semester": "Semester",
+      "filiere": "Filiere",
+      "historiqueEnseignantModule": "Historique Enseignant Module",
+      "historiqueEtudiantModule": "Historique Etudiant Module"
+    }
+  }
+}

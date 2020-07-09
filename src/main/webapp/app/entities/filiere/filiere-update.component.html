@@ -1,0 +1,69 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-filiere-heading" jhiTranslate="sequortalibApp.filiere.home.createOrEditLabel">Create or edit a Filiere</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="sequortalibApp.filiere.module" for="field_modules">Module</label>
+                    <select class="form-control" id="field_modules" multiple name="modules" formControlName="modules">
+                        <option [ngValue]="getSelected(editForm.get('modules')!.value, moduleOption)" *ngFor="let moduleOption of modules; trackBy: trackById">{{ moduleOption.nom }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.departement" for="field_departement">Departement</label>
+                    <select class="form-control" id="field_departement" name="departement" formControlName="departement">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="departementOption.id === editForm.get('departement')!.value?.id ? editForm.get('departement')!.value : departementOption" *ngFor="let departementOption of departements; trackBy: trackById">{{ departementOption.nom }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.historiqueEnseignantFiliere" for="field_historiqueEnseignantFiliere">Historique Enseignant Filiere</label>
+                    <select class="form-control" id="field_historiqueEnseignantFiliere" name="historiqueEnseignantFiliere" formControlName="historiqueEnseignantFiliere">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEnseignantFiliereOption.id === editForm.get('historiqueEnseignantFiliere')!.value?.id ? editForm.get('historiqueEnseignantFiliere')!.value : historiqueEnseignantFiliereOption" *ngFor="let historiqueEnseignantFiliereOption of historiqueenseignantfilieres; trackBy: trackById">{{ historiqueEnseignantFiliereOption.datedebut }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.historiqueEtudiantFiliere" for="field_historiqueEtudiantFiliere">Historique Etudiant Filiere</label>
+                    <select class="form-control" id="field_historiqueEtudiantFiliere" name="historiqueEtudiantFiliere" formControlName="historiqueEtudiantFiliere">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEtudiantFiliereOption.id === editForm.get('historiqueEtudiantFiliere')!.value?.id ? editForm.get('historiqueEtudiantFiliere')!.value : historiqueEtudiantFiliereOption" *ngFor="let historiqueEtudiantFiliereOption of historiqueetudiantfilieres; trackBy: trackById">{{ historiqueEtudiantFiliereOption.datedebut }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

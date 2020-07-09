@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEtudiantModule": {
+      "home": {
+        "title": "Historique Etudiant Modules",
+        "createLabel": "创建新 Historique Etudiant Module",
+        "createOrEditLabel": "创建或编辑 Historique Etudiant Module",
+        "notFound": "No Historique Etudiant Modules found"
+      },
+      "created": "Historique Etudiant Module {{ param }} 创建成功",
+      "updated": "Historique Etudiant Module {{ param }} 更新成功",
+      "deleted": "Historique Etudiant Module {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Historique Etudiant Module {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Historique Etudiant Module"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "module": "Module",
+      "etudiant": "Etudiant"
+    }
+  }
+}

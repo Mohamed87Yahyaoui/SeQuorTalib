@@ -1,0 +1,9 @@
+{
+  "sequortalibApp": {
+    "Status": {
+      "null": "",
+      "DIPLOME": "DIPLOME",
+      "NONDIPLOME": "NONDIPLOME"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEnseignantFiliere": {
+      "home": {
+        "title": "HistoriqueEnseignantFilieres",
+        "createLabel": "Créer un nouveau Historique Enseignant Filiere",
+        "createOrEditLabel": "Créer ou éditer un Historique Enseignant Filiere",
+        "notFound": "Aucun Historique Enseignant Filiere trouvé"
+      },
+      "created": "Un nouveau Historique Enseignant Filiere a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Historique Enseignant Filiere avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Historique Enseignant Filiere avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Historique Enseignant Filiere {{ id }} ?"
+      },
+      "detail": {
+        "title": "Historique Enseignant Filiere"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "filiere": "Filiere",
+      "enseignant": "Enseignant"
+    }
+  }
+}

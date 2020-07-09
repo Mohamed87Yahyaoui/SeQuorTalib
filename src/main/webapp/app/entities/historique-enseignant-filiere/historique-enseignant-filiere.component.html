@@ -1,0 +1,63 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="sequortalibApp.historiqueEnseignantFiliere.home.title">Historique Enseignant Filieres</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-historique-enseignant-filiere" [routerLink]="['/historique-enseignant-filiere/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="sequortalibApp.historiqueEnseignantFiliere.home.createLabel">
+            Create a new Historique Enseignant Filiere
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="historiqueEnseignantFilieres?.length === 0">
+        <span jhiTranslate="sequortalibApp.historiqueEnseignantFiliere.home.notFound">No historiqueEnseignantFilieres found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="historiqueEnseignantFilieres?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datedebut"><span jhiTranslate="sequortalibApp.historiqueEnseignantFiliere.datedebut">Datedebut</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="datefin"><span jhiTranslate="sequortalibApp.historiqueEnseignantFiliere.datefin">Datefin</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let historiqueEnseignantFiliere of historiqueEnseignantFilieres ;trackBy: trackId">
+                    <td><a [routerLink]="['/historique-enseignant-filiere', historiqueEnseignantFiliere.id, 'view']">{{ historiqueEnseignantFiliere.id }}</a></td>
+                    <td>{{ historiqueEnseignantFiliere.datedebut | date:'mediumDate' }}</td>
+                    <td>{{ historiqueEnseignantFiliere.datefin | date:'mediumDate' }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/historique-enseignant-filiere', historiqueEnseignantFiliere.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/historique-enseignant-filiere', historiqueEnseignantFiliere.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(historiqueEnseignantFiliere)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

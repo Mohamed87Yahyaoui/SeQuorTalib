@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "etablissement": {
+      "home": {
+        "title": "Etablissements",
+        "createLabel": "Créer un nouveau Etablissement",
+        "createOrEditLabel": "Créer ou éditer un Etablissement",
+        "notFound": "Aucun Etablissement trouvé"
+      },
+      "created": "Un nouveau Etablissement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Etablissement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Etablissement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Etablissement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Etablissement"
+      },
+      "nom": "Nom",
+      "filiere": "Filiere",
+      "cycle": "Cycle",
+      "etudiant": "Etudiant"
+    }
+  }
+}

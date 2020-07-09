@@ -1,0 +1,28 @@
+{
+  "sequortalibApp": {
+    "enseignant": {
+      "home": {
+        "title": "Enseignants",
+        "createLabel": "创建新 Enseignant",
+        "createOrEditLabel": "创建或编辑 Enseignant",
+        "notFound": "No Enseignants found"
+      },
+      "created": "Enseignant {{ param }} 创建成功",
+      "updated": "Enseignant {{ param }} 更新成功",
+      "deleted": "Enseignant {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Enseignant {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Enseignant"
+      },
+      "tel": "Tel",
+      "datenaissance": "Datenaissance",
+      "cin": "Cin",
+      "grade": "Grade",
+      "historiqueEnseignantModule": "Historique Enseignant Module",
+      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
+      "departement": "Departement"
+    }
+  }
+}

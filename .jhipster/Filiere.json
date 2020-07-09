@@ -1,0 +1,53 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nom",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "filiere"
+        },
+        {
+            "relationshipName": "departement",
+            "otherEntityName": "departement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nom",
+            "otherEntityRelationshipName": "filiere"
+        },
+        {
+            "relationshipName": "historiqueEnseignantFiliere",
+            "otherEntityName": "historiqueEnseignantFiliere",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "datedebut",
+            "otherEntityRelationshipName": "filiere"
+        },
+        {
+            "relationshipName": "historiqueEtudiantFiliere",
+            "otherEntityName": "historiqueEtudiantFiliere",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "datedebut",
+            "otherEntityRelationshipName": "filiere"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20200702181152",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "filiere",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

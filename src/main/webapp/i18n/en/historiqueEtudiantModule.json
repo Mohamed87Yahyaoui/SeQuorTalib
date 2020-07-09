@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEtudiantModule": {
+      "home": {
+        "title": "Historique Etudiant Modules",
+        "createLabel": "Create a new Historique Etudiant Module",
+        "createOrEditLabel": "Create or edit a Historique Etudiant Module",
+        "notFound": "No Historique Etudiant Modules found"
+      },
+      "created": "A new Historique Etudiant Module is created with identifier {{ param }}",
+      "updated": "A Historique Etudiant Module is updated with identifier {{ param }}",
+      "deleted": "A Historique Etudiant Module is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historique Etudiant Module {{ id }}?"
+      },
+      "detail": {
+        "title": "Historique Etudiant Module"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "module": "Module",
+      "etudiant": "Etudiant"
+    }
+  }
+}

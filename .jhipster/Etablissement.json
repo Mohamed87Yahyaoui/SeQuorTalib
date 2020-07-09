@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "etablissement"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "filiere",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cycle",
+            "fieldType": "Typecycle",
+            "fieldValues": "MASTER,INGENIERIE"
+        }
+    ],
+    "changelogDate": "20200702195622",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "etablissement",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

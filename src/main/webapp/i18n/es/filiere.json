@@ -1,0 +1,26 @@
+{
+  "sequortalibApp": {
+    "filiere": {
+      "home": {
+        "title": "Filieres",
+        "createLabel": "Crear nuevo Filiere",
+        "createOrEditLabel": "Crear o editar Filiere",
+        "notFound": "Ningún Filieres encontrado"
+      },
+      "created": "Un nuevo Filiere ha sido creado con el identificador {{ param }}",
+      "updated": "Un Filiere ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Filiere ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Filiere {{ id }}?"
+      },
+      "detail": {
+        "title": "Filiere"
+      },
+      "nom": "Nom",
+      "module": "Module",
+      "departement": "Departement",
+      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
+      "historiqueEtudiantFiliere": "Historique Etudiant Filiere"
+    }
+  }
+}

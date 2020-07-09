@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "etablissement": {
+      "home": {
+        "title": "Etablissements",
+        "createLabel": "创建新 Etablissement",
+        "createOrEditLabel": "创建或编辑 Etablissement",
+        "notFound": "No Etablissements found"
+      },
+      "created": "Etablissement {{ param }} 创建成功",
+      "updated": "Etablissement {{ param }} 更新成功",
+      "deleted": "Etablissement {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Etablissement {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Etablissement"
+      },
+      "nom": "Nom",
+      "filiere": "Filiere",
+      "cycle": "Cycle",
+      "etudiant": "Etudiant"
+    }
+  }
+}

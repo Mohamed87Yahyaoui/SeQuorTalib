@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "historiqueEnseignantFiliere"
+        },
+        {
+            "relationshipName": "enseignant",
+            "otherEntityName": "enseignant",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "historiqueEnseignantFiliere"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "datedebut",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datefin",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20200702192130",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "historique_enseignant_filiere",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

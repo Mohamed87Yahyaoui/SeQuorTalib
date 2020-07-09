@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-module-heading" jhiTranslate="sequortalibApp.module.home.createOrEditLabel">Create or edit a Module</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.module.nom" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                           formControlName="nom"/>
+                    <div *ngIf="editForm.get('nom')!.invalid && (editForm.get('nom')!.dirty || editForm.get('nom')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nom')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.module.semester" for="field_semester">Semester</label>
+                    <input type="number" class="form-control" name="semester" id="field_semester"
+                           formControlName="semester"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.module.historiqueEnseignantModule" for="field_historiqueEnseignantModule">Historique Enseignant Module</label>
+                    <select class="form-control" id="field_historiqueEnseignantModule" name="historiqueEnseignantModule" formControlName="historiqueEnseignantModule">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEnseignantModuleOption.id === editForm.get('historiqueEnseignantModule')!.value?.id ? editForm.get('historiqueEnseignantModule')!.value : historiqueEnseignantModuleOption" *ngFor="let historiqueEnseignantModuleOption of historiqueenseignantmodules; trackBy: trackById">{{ historiqueEnseignantModuleOption.datedebut }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.module.historiqueEtudiantModule" for="field_historiqueEtudiantModule">Historique Etudiant Module</label>
+                    <select class="form-control" id="field_historiqueEtudiantModule" name="historiqueEtudiantModule" formControlName="historiqueEtudiantModule">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEtudiantModuleOption.id === editForm.get('historiqueEtudiantModule')!.value?.id ? editForm.get('historiqueEtudiantModule')!.value : historiqueEtudiantModuleOption" *ngFor="let historiqueEtudiantModuleOption of historiqueetudiantmodules; trackBy: trackById">{{ historiqueEtudiantModuleOption.datedebut }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

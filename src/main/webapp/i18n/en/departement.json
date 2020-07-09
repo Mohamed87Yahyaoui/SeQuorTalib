@@ -1,0 +1,24 @@
+{
+  "sequortalibApp": {
+    "departement": {
+      "home": {
+        "title": "Departements",
+        "createLabel": "Create a new Departement",
+        "createOrEditLabel": "Create or edit a Departement",
+        "notFound": "No Departements found"
+      },
+      "created": "A new Departement is created with identifier {{ param }}",
+      "updated": "A Departement is updated with identifier {{ param }}",
+      "deleted": "A Departement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Departement {{ id }}?"
+      },
+      "detail": {
+        "title": "Departement"
+      },
+      "nom": "Nom",
+      "filiere": "Filiere",
+      "enseignant": "Enseignant"
+    }
+  }
+}

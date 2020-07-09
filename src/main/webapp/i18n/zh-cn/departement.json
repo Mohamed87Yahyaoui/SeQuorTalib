@@ -1,0 +1,24 @@
+{
+  "sequortalibApp": {
+    "departement": {
+      "home": {
+        "title": "Departements",
+        "createLabel": "创建新 Departement",
+        "createOrEditLabel": "创建或编辑 Departement",
+        "notFound": "No Departements found"
+      },
+      "created": "Departement {{ param }} 创建成功",
+      "updated": "Departement {{ param }} 更新成功",
+      "deleted": "Departement {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Departement {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Departement"
+      },
+      "nom": "Nom",
+      "filiere": "Filiere",
+      "enseignant": "Enseignant"
+    }
+  }
+}

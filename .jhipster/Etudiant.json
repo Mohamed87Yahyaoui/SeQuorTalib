@@ -1,0 +1,75 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "historiqueEtudiantFiliere",
+            "otherEntityName": "historiqueEtudiantFiliere",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "etablissement",
+            "otherEntityName": "etablissement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nom",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "historiqueEtudiantModule",
+            "otherEntityName": "historiqueEtudiantModule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "etudiant"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tel",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "cin",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semsetre",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "section",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Status",
+            "fieldValues": "DIPLOME,NONDIPLOME",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "datenaissance",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20200703222207",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "etudiant",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

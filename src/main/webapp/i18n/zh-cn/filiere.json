@@ -1,0 +1,26 @@
+{
+  "sequortalibApp": {
+    "filiere": {
+      "home": {
+        "title": "Filieres",
+        "createLabel": "创建新 Filiere",
+        "createOrEditLabel": "创建或编辑 Filiere",
+        "notFound": "No Filieres found"
+      },
+      "created": "Filiere {{ param }} 创建成功",
+      "updated": "Filiere {{ param }} 更新成功",
+      "deleted": "Filiere {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Filiere {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Filiere"
+      },
+      "nom": "Nom",
+      "module": "Module",
+      "departement": "Departement",
+      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
+      "historiqueEtudiantFiliere": "Historique Etudiant Filiere"
+    }
+  }
+}

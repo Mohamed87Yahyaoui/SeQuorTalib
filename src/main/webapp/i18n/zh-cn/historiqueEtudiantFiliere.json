@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEtudiantFiliere": {
+      "home": {
+        "title": "Historique Etudiant Filieres",
+        "createLabel": "创建新 Historique Etudiant Filiere",
+        "createOrEditLabel": "创建或编辑 Historique Etudiant Filiere",
+        "notFound": "No Historique Etudiant Filieres found"
+      },
+      "created": "Historique Etudiant Filiere {{ param }} 创建成功",
+      "updated": "Historique Etudiant Filiere {{ param }} 更新成功",
+      "deleted": "Historique Etudiant Filiere {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Historique Etudiant Filiere {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Historique Etudiant Filiere"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "filiere": "Filiere",
+      "etudiant": "Etudiant"
+    }
+  }
+}

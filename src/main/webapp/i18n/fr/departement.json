@@ -1,0 +1,24 @@
+{
+  "sequortalibApp": {
+    "departement": {
+      "home": {
+        "title": "Departements",
+        "createLabel": "Créer un nouveau Departement",
+        "createOrEditLabel": "Créer ou éditer un Departement",
+        "notFound": "Aucun Departement trouvé"
+      },
+      "created": "Un nouveau Departement a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Departement avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Departement avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Departement {{ id }} ?"
+      },
+      "detail": {
+        "title": "Departement"
+      },
+      "nom": "Nom",
+      "filiere": "Filiere",
+      "enseignant": "Enseignant"
+    }
+  }
+}

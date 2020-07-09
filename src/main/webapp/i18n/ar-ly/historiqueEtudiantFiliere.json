@@ -1,0 +1,25 @@
+{
+  "sequortalibApp": {
+    "historiqueEtudiantFiliere": {
+      "home": {
+        "title": "Historique Etudiant Filieres",
+        "createLabel": "Create a new Historique Etudiant Filiere",
+        "createOrEditLabel": "Create or edit a Historique Etudiant Filiere",
+        "notFound": "No Historique Etudiant Filieres found"
+      },
+      "created": "A new Historique Etudiant Filiere is created with identifier {{ param }}",
+      "updated": "A Historique Etudiant Filiere is updated with identifier {{ param }}",
+      "deleted": "A Historique Etudiant Filiere is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Historique Etudiant Filiere {{ id }}?"
+      },
+      "detail": {
+        "title": "Historique Etudiant Filiere"
+      },
+      "datedebut": "Datedebut",
+      "datefin": "Datefin",
+      "filiere": "Filiere",
+      "etudiant": "Etudiant"
+    }
+  }
+}

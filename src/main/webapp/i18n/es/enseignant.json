@@ -1,0 +1,28 @@
+{
+  "sequortalibApp": {
+    "enseignant": {
+      "home": {
+        "title": "Enseignants",
+        "createLabel": "Crear nuevo Enseignant",
+        "createOrEditLabel": "Crear o editar Enseignant",
+        "notFound": "Ningún Enseignants encontrado"
+      },
+      "created": "Un nuevo Enseignant ha sido creado con el identificador {{ param }}",
+      "updated": "Un Enseignant ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Enseignant ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Enseignant {{ id }}?"
+      },
+      "detail": {
+        "title": "Enseignant"
+      },
+      "tel": "Tel",
+      "datenaissance": "Datenaissance",
+      "cin": "Cin",
+      "grade": "Grade",
+      "historiqueEnseignantModule": "Historique Enseignant Module",
+      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
+      "departement": "Departement"
+    }
+  }
+}

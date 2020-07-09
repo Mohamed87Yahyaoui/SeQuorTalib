@@ -1,0 +1,49 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [
+        {
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "module"
+        },
+        {
+            "relationshipName": "historiqueEnseignantModule",
+            "otherEntityName": "historiqueEnseignantModule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "datedebut",
+            "otherEntityRelationshipName": "module"
+        },
+        {
+            "relationshipName": "historiqueEtudiantModule",
+            "otherEntityName": "historiqueEtudiantModule",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "datedebut",
+            "otherEntityRelationshipName": "module"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "semester",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20200702180224",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceImpl",
+    "entityTableName": "module",
+    "databaseType": "sql",
+    "readOnly": false,
+    "jpaMetamodelFiltering": false,
+    "pagination": "infinite-scroll"
+}

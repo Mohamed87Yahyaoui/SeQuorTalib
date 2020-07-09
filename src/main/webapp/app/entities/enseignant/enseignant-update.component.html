@@ -1,0 +1,84 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-enseignant-heading" jhiTranslate="sequortalibApp.enseignant.home.createOrEditLabel">Create or edit a Enseignant</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.tel" for="field_tel">Tel</label>
+                    <input type="number" class="form-control" name="tel" id="field_tel"
+                           formControlName="tel"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.datenaissance" for="field_datenaissance">Datenaissance</label>
+                    <div class="input-group">
+                        <input id="field_datenaissance" type="text" class="form-control" name="datenaissance" ngbDatepicker #datenaissanceDp="ngbDatepicker" formControlName="datenaissance"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.cin" for="field_cin">Cin</label>
+                    <input type="text" class="form-control" name="cin" id="field_cin"
+                           formControlName="cin"/>
+                    <div *ngIf="editForm.get('cin')!.invalid && (editForm.get('cin')!.dirty || editForm.get('cin')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('cin')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.grade" for="field_grade">Grade</label>
+                    <input type="text" class="form-control" name="grade" id="field_grade"
+                           formControlName="grade"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule" for="field_historiqueEnseignantModule">Historique Enseignant Module</label>
+                    <select class="form-control" id="field_historiqueEnseignantModule" name="historiqueEnseignantModule" formControlName="historiqueEnseignantModule">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEnseignantModuleOption.id === editForm.get('historiqueEnseignantModule')!.value?.id ? editForm.get('historiqueEnseignantModule')!.value : historiqueEnseignantModuleOption" *ngFor="let historiqueEnseignantModuleOption of historiqueenseignantmodules; trackBy: trackById">{{ historiqueEnseignantModuleOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantFiliere" for="field_historiqueEnseignantFiliere">Historique Enseignant Filiere</label>
+                    <select class="form-control" id="field_historiqueEnseignantFiliere" name="historiqueEnseignantFiliere" formControlName="historiqueEnseignantFiliere">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="historiqueEnseignantFiliereOption.id === editForm.get('historiqueEnseignantFiliere')!.value?.id ? editForm.get('historiqueEnseignantFiliere')!.value : historiqueEnseignantFiliereOption" *ngFor="let historiqueEnseignantFiliereOption of historiqueenseignantfilieres; trackBy: trackById">{{ historiqueEnseignantFiliereOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.departement" for="field_departement">Departement</label>
+                    <select class="form-control" id="field_departement" name="departement" formControlName="departement">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="departementOption.id === editForm.get('departement')!.value?.id ? editForm.get('departement')!.value : departementOption" *ngFor="let departementOption of departements; trackBy: trackById">{{ departementOption.nom }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

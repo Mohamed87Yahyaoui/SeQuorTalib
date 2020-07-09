@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="filiere">
+            <h2><span jhiTranslate="sequortalibApp.filiere.detail.title">Filiere</span> {{ filiere.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="sequortalibApp.filiere.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ filiere.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.filiere.module">Module</span></dt>
+                <dd>
+                    <span *ngFor="let module of filiere.modules; let last = last">
+                        <a [routerLink]="['/module', module?.id, 'view']">{{ module.nom }}</a>{{ last ? '' : ', ' }}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.filiere.departement">Departement</span></dt>
+                <dd>
+                    <div *ngIf="filiere.departement">
+                        <a [routerLink]="['/departement', filiere.departement?.id, 'view']">{{ filiere.departement?.nom }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.filiere.historiqueEnseignantFiliere">Historique Enseignant Filiere</span></dt>
+                <dd>
+                    <div *ngIf="filiere.historiqueEnseignantFiliere">
+                        <a [routerLink]="['/historique-enseignant-filiere', filiere.historiqueEnseignantFiliere?.id, 'view']">{{ filiere.historiqueEnseignantFiliere?.datedebut }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.filiere.historiqueEtudiantFiliere">Historique Etudiant Filiere</span></dt>
+                <dd>
+                    <div *ngIf="filiere.historiqueEtudiantFiliere">
+                        <a [routerLink]="['/historique-etudiant-filiere', filiere.historiqueEtudiantFiliere?.id, 'view']">{{ filiere.historiqueEtudiantFiliere?.datedebut }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/filiere', filiere.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

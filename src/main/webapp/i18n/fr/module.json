@@ -1,0 +1,26 @@
+{
+  "sequortalibApp": {
+    "module": {
+      "home": {
+        "title": "Modules",
+        "createLabel": "Créer un nouveau Module",
+        "createOrEditLabel": "Créer ou éditer un Module",
+        "notFound": "Aucun Module trouvé"
+      },
+      "created": "Un nouveau Module a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Module avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Module avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Module {{ id }} ?"
+      },
+      "detail": {
+        "title": "Module"
+      },
+      "nom": "Nom",
+      "semester": "Semester",
+      "filiere": "Filiere",
+      "historiqueEnseignantModule": "Historique Enseignant Module",
+      "historiqueEtudiantModule": "Historique Etudiant Module"
+    }
+  }
+}
