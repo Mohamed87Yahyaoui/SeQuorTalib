@@ -7,6 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "الكيانات",
+        "module": "Module",
+        "filiere": "Filiere",
+        "departement": "Departement",
+        "historiqueEnseignantModule": "Historique Enseignant Module",
+        "historiqueEtudiantModule": "Historique Etudiant Module",
+        "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
+        "historiqueEtudiantFiliere": "Historique Etudiant Filiere",
+        "etablissement": "Etablissement",
+        "etudiant": "Etudiant",
+        "enseignant": "Enseignant",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
