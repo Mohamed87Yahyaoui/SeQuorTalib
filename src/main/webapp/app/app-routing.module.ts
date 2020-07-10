@@ -15,7 +15,7 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     RouterModule.forRoot(
       [
         {
-          path: '/notes',
+          path: 'notesTEST',
           component: NoteExComponent
         },
         {
