@@ -90,6 +90,56 @@
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </ul>
             </li>
+
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Notes
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <li *ngIf="account.login === 'mohamed000' || account.login === 'sassy.meryem' || account.login === 'rachid'">
+                        <a class="dropdown-item" routerLink="notes"  >
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Semestre 1</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'mohamed000' || account.login === 'sassy.meryem' || account.login === 'rachid'">
+                        <a class="dropdown-item" routerLink="notes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>Semestre 2</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'mohamed000' || account.login === 'sassy.meryem'">
+                        <a class="dropdown-item" routerLink="notes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Semestre 3</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'mohamed000' || account.login === 'sassy.meryem'">
+                        <a class="dropdown-item" routerLink="notes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Semestre 4</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'sassy.meryem'">
+                        <a class="dropdown-item" routerLink="notes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Semestre 5</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'sassy.meryem'">
+                        <a class="dropdown-item" routerLink="notes" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >Semestre 6</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

@@ -6,6 +6,7 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
+import { NoteExComponent } from 'app/note-ex/note-ex.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -13,6 +14,10 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: '/notes',
+          component: NoteExComponent
+        },
         {
           path: 'admin',
           data: {

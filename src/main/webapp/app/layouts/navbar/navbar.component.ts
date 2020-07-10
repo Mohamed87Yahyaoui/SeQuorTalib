@@ -9,6 +9,8 @@ import { AccountService } from 'app/core/auth/account.service';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { LoginService } from 'app/core/login/login.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { Account } from 'app/core/user/account.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'jhi-navbar',
@@ -16,6 +18,10 @@ import { ProfileService } from 'app/layouts/profiles/profile.service';
   styleUrls: ['navbar.scss']
 })
 export class NavbarComponent implements OnInit {
+  // account variables
+  account!: Account;
+  authSubscription?: Subscription;
+
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -35,6 +41,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));
     this.profileService.getProfileInfo().subscribe(profileInfo => {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
