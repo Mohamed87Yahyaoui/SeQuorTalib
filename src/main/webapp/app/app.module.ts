@@ -15,6 +15,9 @@ import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
 import { NoteExComponent } from './note-ex/note-ex.component';
+import { Semestre1Component } from './semestres/semestre1/semestre1.component';
+import { Semestre2Component } from './semestres/semestre2/semestre2.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -24,7 +27,8 @@ import { NoteExComponent } from './note-ex/note-ex.component';
     SequortalibHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     SequortalibEntityModule,
-    SequortalibAppRoutingModule
+    SequortalibAppRoutingModule,
+    ChartsModule
   ],
   declarations: [
     MainComponent,
@@ -33,8 +37,11 @@ import { NoteExComponent } from './note-ex/note-ex.component';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    NoteExComponent
+    NoteExComponent,
+    Semestre1Component,
+    Semestre2Component
   ],
-  bootstrap: [MainComponent]
+  bootstrap: [MainComponent],
+  providers: [NoteExComponent, NavbarComponent]
 })
 export class SequortalibAppModule {}

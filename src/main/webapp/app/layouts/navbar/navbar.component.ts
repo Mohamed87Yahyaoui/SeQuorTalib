@@ -22,6 +22,8 @@ export class NavbarComponent implements OnInit {
   account!: Account;
   authSubscription?: Subscription;
 
+  public MeryemSemestre1 = false;
+
   inProduction?: boolean;
   isNavbarCollapsed = true;
   languages = LANGUAGES;
@@ -78,4 +80,35 @@ export class NavbarComponent implements OnInit {
   getImageUrl(): string {
     return this.isAuthenticated() ? this.accountService.getImageUrl() : '';
   }
+
+  showSimoS1(): void {
+    // this.Simosemestre1 = true;
+    // this.router.navigateByUrl("/notesTEST")
+  }
+
+  showMeryem2(): void {
+    this.MeryemSemestre1 = true;
+
+    this.router.navigateByUrl('/notes');
+  }
+
+  showRachidS1(): void {}
+
+  showRachidS2(): void {}
+
+  showSimoS2(): void {}
+
+  showMeryemS2(): void {}
+
+  showMeryemS3(): void {}
+
+  showSimoS3(): void {}
+
+  showSimoS4(): void {}
+
+  showMeryemS4(): void {}
+
+  showMeryemS5(): void {}
+
+  showMeryemS6(): void {}
 }

@@ -7,6 +7,8 @@ import { Authority } from 'app/shared/constants/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { NoteExComponent } from 'app/note-ex/note-ex.component';
+import { Semestre1Component } from 'app/semestres/semestre1/semestre1.component';
+import { Semestre2Component } from 'app/semestres/semestre2/semestre2.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -15,7 +17,15 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
     RouterModule.forRoot(
       [
         {
-          path: 'notesTEST',
+          path: 'notesS1',
+          component: Semestre1Component
+        },
+        {
+          path: 'notesS2',
+          component: Semestre2Component
+        },
+        {
+          path: 'notes',
           component: NoteExComponent
         },
         {
