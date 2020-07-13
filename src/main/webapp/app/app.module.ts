@@ -14,10 +14,12 @@ import { FooterComponent } from './layouts/footer/footer.component';
 import { PageRibbonComponent } from './layouts/profiles/page-ribbon.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 import { ErrorComponent } from './layouts/error/error.component';
-import { NoteExComponent } from './note-ex/note-ex.component';
 import { Semestre1Component } from './semestres/semestre1/semestre1.component';
 import { Semestre2Component } from './semestres/semestre2/semestre2.component';
 import { ChartsModule } from 'ng2-charts';
+import { Semsetre3Component } from './semsetre3/semsetre3.component';
+import { Semsetre4Component } from './semsetre4/semsetre4.component';
+import { Semsetre5Component } from './semsetre5/semsetre5.component';
 
 @NgModule({
   imports: [
@@ -37,11 +39,13 @@ import { ChartsModule } from 'ng2-charts';
     PageRibbonComponent,
     ActiveMenuDirective,
     FooterComponent,
-    NoteExComponent,
     Semestre1Component,
-    Semestre2Component
+    Semestre2Component,
+    Semsetre3Component,
+    Semsetre4Component,
+    Semsetre5Component
   ],
   bootstrap: [MainComponent],
-  providers: [NoteExComponent, NavbarComponent]
+  providers: [NavbarComponent]
 })
 export class SequortalibAppModule {}

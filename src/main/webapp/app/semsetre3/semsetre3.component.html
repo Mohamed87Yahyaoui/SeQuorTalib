@@ -1,0 +1,288 @@
+<!-- Notes semestre 1 de Simo -->
+
+<div class="container-fluid mt-2" *ngIf="account.login === 'mohamed000'">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0 text-center">Semestre 3 : Mohamed</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">VLD</th>
+                            <th scope="col">Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                Programmation I
+                            </th>
+                            <td>
+                                16.62
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Algorithme II
+                            </th>
+                            <td>
+                                19
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Probabilité et Statistique
+                            </th>
+                            <td>
+                                14
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Technologie du Web
+                            </th>
+                            <td>
+                                9.89
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Electronique
+                            </th>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Systeme d'Exploitation
+                            </th>
+                            <td>
+                                18.62
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card bg-gradient-default shadow">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Note semestre</h6>
+                            <h2 class="text-white mb-0">14.35</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Chart -->
+                    <div >
+                        <!-- Chart wrapper -->
+                        <canvas baseChart
+                                [chartType]="'bar'"
+                                [datasets]="chartData3mohamed"
+                                [labels]="chartLabels3mohamed"
+                                [options]="chartOptions3mohamed"
+                                [legend]="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notes semestre 3 de Meryem -->
+
+<div class="container-fluid mt-2" *ngIf="account.login === 'meryem'">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0 text-center">Semestre 3 : Meryem</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">VLD</th>
+                            <th scope="col">Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                Mécanique du solide
+                            </th>
+                            <td>
+                                20
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Thermodynamique II
+                            </th>
+                            <td>
+                                7
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Electromagnétique dans le Vide
+                            </th>
+                            <td>
+                                12
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Chimie Organique Générale
+                            </th>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Analyse 3
+                            </th>
+                            <td>
+                                7.5
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Analyse Numérique et Algorithme
+                            </th>
+                            <td>
+                                15
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card bg-gradient-default shadow">
+                <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Note semestre:</h6>
+                            <h2 class="text-white mb-0">11.60</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- Chart -->
+                    <div >
+                        <!-- Chart wrapper -->
+                        <canvas baseChart
+                                [chartType]="'bar'"
+                                [datasets]="chartData3meryem"
+                                [labels]="chartLabels3meryem"
+                                [options]="chartOptions3meryem"
+                                [legend]="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

@@ -6,9 +6,11 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { Authority } from 'app/shared/constants/authority.constants';
 
 import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
-import { NoteExComponent } from 'app/note-ex/note-ex.component';
 import { Semestre1Component } from 'app/semestres/semestre1/semestre1.component';
 import { Semestre2Component } from 'app/semestres/semestre2/semestre2.component';
+import { Semsetre3Component } from 'app/semsetre3/semsetre3.component';
+import { Semsetre4Component } from 'app/semsetre4/semsetre4.component';
+import { Semsetre5Component } from 'app/semsetre5/semsetre5.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -25,8 +27,16 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
           component: Semestre2Component
         },
         {
-          path: 'notes',
-          component: NoteExComponent
+          path: 'notesS3',
+          component: Semsetre3Component
+        },
+        {
+          path: 'notesS4',
+          component: Semsetre4Component
+        },
+        {
+          path: 'notesS5',
+          component: Semsetre5Component
         },
         {
           path: 'admin',

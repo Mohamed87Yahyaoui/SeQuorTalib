@@ -4,16 +4,16 @@ import { Subscription } from 'rxjs';
 import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
-  selector: 'jhi-semestre1',
-  templateUrl: './semestre1.component.html',
-  styleUrls: ['./semestre1.component.scss']
+  selector: 'jhi-semsetre3',
+  templateUrl: './semsetre3.component.html',
+  styleUrls: ['./semsetre3.component.scss']
 })
-export class Semestre1Component implements OnInit {
+export class Semsetre3Component implements OnInit {
   // account variables
   account!: Account;
   authSubscription?: Subscription;
 
-  chartOptions1mohamed = {
+  chartOptions3mohamed = {
     responsive: true,
     scales: {
       yAxes: [
@@ -27,10 +27,10 @@ export class Semestre1Component implements OnInit {
       ]
     }
   };
-  chartData1mohamed = [{ data: [6, 10.5, 10.25, 7.5, 12, 13.5, 13] }];
-  chartLabels1mohamed = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
+  chartData3mohamed = [{ data: [16.62, 19, 14, 9.89, 8, 18.62] }];
+  chartLabels3mohamed = ['M15', 'M16', 'M17', 'M18', 'M19', 'M20'];
 
-  chartOptions1meryem = {
+  chartOptions3meryem = {
     responsive: true,
     scales: {
       yAxes: [
@@ -44,25 +44,8 @@ export class Semestre1Component implements OnInit {
       ]
     }
   };
-  chartData1meryem = [{ data: [12.5, 9.5, 15.25, 7.5, 17, 11, 10] }];
-  chartLabels1meryem = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
-
-  chartOptions1rachid = {
-    responsive: true,
-    scales: {
-      yAxes: [
-        {
-          display: true,
-          ticks: {
-            max: 20,
-            beginAtZero: true
-          }
-        }
-      ]
-    }
-  };
-  chartData1rachid = [{ data: [16, 12, 6.75, 13, 9, 16, 16] }];
-  chartLabels1rachid = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
+  chartData3meryem = [{ data: [20, 7, 12, 8, 7.5, 15] }];
+  chartLabels3meryem = ['M15', 'M16', 'M17', 'M18', 'M19', 'M20'];
 
   constructor(private accountService: AccountService) {}
 

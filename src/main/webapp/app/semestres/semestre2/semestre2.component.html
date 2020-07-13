@@ -1,4 +1,4 @@
-<!-- Notes Semestre 2 de Simo -->
+<!-- Notes semestre 1 de Simo -->
 
 <div class="container-fluid mt-2" *ngIf="account.login === 'mohamed000'">
     <div class="row">
@@ -7,10 +7,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">Semestre 2 : Mohamed</h3>
-                        </div>
-                        <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            <h3 class="mb-0 text-center">Semestre 2 : Mohamed</h3>
                         </div>
                     </div>
                 </div>
@@ -28,24 +25,10 @@
                         <tbody>
                         <tr>
                             <th scope="row">
-                                Analyse 1 : Suites numériques et fonctions
+                                Analyse 2 : Intégration
                             </th>
                             <td>
-                                06.00
-                            </td>
-                            <td>
-                                <span class="badge badge-danger">Non Validé</span>
-                            </td>
-                            <td>
-                                V.C.S
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Algèbre 1 :Généralités et arithmétique dans Z
-                            </th>
-                            <td>
-                                10.50
+                                17
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -56,38 +39,10 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Algèbre 2 : Structures, polynômes et fractions rationnelles
+                                Analyse 3 : Développement limité
                             </th>
                             <td>
-                                10.25
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Validé</span>
-                            </td>
-                            <td>
-                                V.AP
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Mécanique 1
-                            </th>
-                            <td>
-                                07.50
-                            </td>
-                            <td>
-                                <span class="badge badge-danger">Non Validé</span>
-                            </td>
-                            <td>
-                                V.C.S
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Thermodynamique
-                            </th>
-                            <td>
-                                12.00
+                                16
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -98,10 +53,10 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Introduction à l’informatique
+                                Algèbre 3 : Espaces vectoriels, Matrices et déterminants
                             </th>
                             <td>
-                                13.50
+                                14
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -112,10 +67,52 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Langue et terminologie I
+                                Electrostatique et Electrocinétique
                             </th>
                             <td>
-                                13.00
+                                14.62
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Optique géométrique
+                            </th>
+                            <td>
+                                11.25
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Algorithmique I
+                            </th>
+                            <td>
+                                14
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Langue et terminologie II
+                            </th>
+                            <td>
+                                16.38
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -136,54 +133,29 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                            <h2 class="text-white mb-0">Sales value</h2>
-                        </div>
-                        <div class="col">
-                            <ul class="nav nav-pills justify-content-end">
-                                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales">
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Month</span>
-                                        <span class="d-md-none">M</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" data-toggle="chart" data-target="#chart-sales" >
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Week</span>
-                                        <span class="d-md-none">W</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Note semestre</h6>
+                            <h2 class="text-white mb-0">14.45</h2>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Chart -->
-                    <div class="chart">
+                    <div >
                         <!-- Chart wrapper -->
-                        <canvas id="chart-sales" class="chart-canvas"></canvas>
+                        <canvas baseChart
+                                [chartType]="'bar'"
+                                [datasets]="chartData2mohamed"
+                                [labels]="chartLabels2mohamed"
+                                [options]="chartOptions2mohamed"
+                                [legend]="true"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Notes Semestre 2 de Meryem -->
+<!-- Notes semestre 1 de Simo -->
 
 <div class="container-fluid mt-2" *ngIf="account.login === 'meryem'">
     <div class="row">
@@ -192,10 +164,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">Semestre 2 : Meryem</h3>
-                        </div>
-                        <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            <h3 class="mb-0 text-center">Semestre 2 : Meryem</h3>
                         </div>
                     </div>
                 </div>
@@ -213,38 +182,10 @@
                         <tbody>
                         <tr>
                             <th scope="row">
-                                Analyse 1 : Suites numériques et fonctions
+                                Electrostatique et Electronique
                             </th>
                             <td>
-                                06.00
-                            </td>
-                            <td>
-                                <span class="badge badge-danger">Non Validé</span>
-                            </td>
-                            <td>
-                                V.C.S
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Algèbre 1 :Généralités et arithmétique dans Z
-                            </th>
-                            <td>
-                                10.50
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Validé</span>
-                            </td>
-                            <td>
-                                V.AV
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Algèbre 2 : Structures, polynômes et fractions rationnelles
-                            </th>
-                            <td>
-                                10.25
+                                18
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -255,24 +196,10 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Mécanique 1
+                                Optique 1
                             </th>
                             <td>
-                                07.50
-                            </td>
-                            <td>
-                                <span class="badge badge-danger">Non Validé</span>
-                            </td>
-                            <td>
-                                V.C.S
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Thermodynamique
-                            </th>
-                            <td>
-                                12.00
+                                11
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -283,10 +210,38 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Introduction à l’informatique
+                                Liaisons chimiques
                             </th>
                             <td>
-                                13.50
+                                8.5
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Chimie des solutions
+                            </th>
+                            <td>
+                                19
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Analyse 2
+                            </th>
+                            <td>
+                                10
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -297,10 +252,24 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Langue et terminologie I
+                                Algebre 2
                             </th>
                             <td>
-                                13.00
+                                16.5
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Langue et terminologie II
+                            </th>
+                            <td>
+                                17
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -321,32 +290,21 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                            <h2 class="text-white mb-0">Sales value</h2>
-                        </div>
-                        <div class="col">
-                            <ul class="nav nav-pills justify-content-end">
-                                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales">
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Month</span>
-                                        <span class="d-md-none">M</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" data-toggle="chart" data-target="#chart-sales" >
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Week</span>
-                                        <span class="d-md-none">W</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Note semestre:</h6>
+                            <h2 class="text-white mb-0">14.30</h2>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Chart -->
-                    <div class="chart">
+                    <div >
                         <!-- Chart wrapper -->
-                        <canvas id="chart-sales" class="chart-canvas"></canvas>
+                        <canvas baseChart
+                                [chartType]="'bar'"
+                                [datasets]="chartData2meryem"
+                                [labels]="chartLabels2meryem"
+                                [options]="chartOptions2meryem"
+                                [legend]="true"></canvas>
                     </div>
                 </div>
             </div>
@@ -357,10 +315,6 @@
 
 
 
-
-
-<!-- Notes Semestre 2 de Simo -->
-
 <div class="container-fluid mt-2" *ngIf="account.login === 'rachid'">
     <div class="row">
         <div class="col-xl-12 mb-5 mb-xl-0">
@@ -368,10 +322,7 @@
                 <div class="card-header border-0">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h3 class="mb-0">Semestre 2: Rachid</h3>
-                        </div>
-                        <div class="col text-right">
-                            <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                            <h3 class="mb-0 text-center">Semestre 2 : Rachid</h3>
                         </div>
                     </div>
                 </div>
@@ -389,10 +340,10 @@
                         <tbody>
                         <tr>
                             <th scope="row">
-                                Analyse 1 : Suites numériques et fonctions
+                                Bilogie des organismes animaux
                             </th>
                             <td>
-                                06.00
+                                8
                             </td>
                             <td>
                                 <span class="badge badge-danger">Non Validé</span>
@@ -403,10 +354,24 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Algèbre 1 :Généralités et arithmétique dans Z
+                                Biologie des organismes vegetaux
                             </th>
                             <td>
-                                10.50
+                                18
+                            </td>
+                            <td>
+                                <span class="badge badge-success">validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Geodynamique externe
+                            </th>
+                            <td>
+                                11
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -417,10 +382,24 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Algèbre 2 : Structures, polynômes et fractions rationnelles
+                                Geodynamique interne
                             </th>
                             <td>
-                                10.25
+                                18
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AR
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                Mecanique-Electricité
+                            </th>
+                            <td>
+                                14.66
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -431,38 +410,10 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Mécanique 1
+                                Chimie organique
                             </th>
                             <td>
-                                07.50
-                            </td>
-                            <td>
-                                <span class="badge badge-danger">Non Validé</span>
-                            </td>
-                            <td>
-                                V.C.S
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Thermodynamique
-                            </th>
-                            <td>
-                                12.00
-                            </td>
-                            <td>
-                                <span class="badge badge-success">Validé</span>
-                            </td>
-                            <td>
-                                V.AV
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Introduction à l’informatique
-                            </th>
-                            <td>
-                                13.50
+                                19
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -473,10 +424,10 @@
                         </tr>
                         <tr>
                             <th scope="row">
-                                Langue et terminologie I
+                                Langue et terminologie II
                             </th>
                             <td>
-                                13.00
+                                16
                             </td>
                             <td>
                                 <span class="badge badge-success">Validé</span>
@@ -497,32 +448,21 @@
                 <div class="card-header bg-transparent">
                     <div class="row align-items-center">
                         <div class="col">
-                            <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                            <h2 class="text-white mb-0">Sales value</h2>
-                        </div>
-                        <div class="col">
-                            <ul class="nav nav-pills justify-content-end">
-                                <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales">
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Month</span>
-                                        <span class="d-md-none">M</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item" data-toggle="chart" data-target="#chart-sales" >
-                                    <a href="javascript:void(0)" class="nav-link py-2 px-3"  data-toggle="tab" >
-                                        <span class="d-none d-md-block">Week</span>
-                                        <span class="d-md-none">W</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <h6 class="text-uppercase text-light ls-1 mb-1">Note semestre:</h6>
+                            <h2 class="text-white mb-0">14.95</h2>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <!-- Chart -->
-                    <div class="chart">
+                    <div >
                         <!-- Chart wrapper -->
-                        <canvas id="chart-sales" class="chart-canvas"></canvas>
+                        <canvas baseChart
+                                [chartType]="'bar'"
+                                [datasets]="chartData2rachid"
+                                [labels]="chartLabels2rachid"
+                                [options]="chartOptions2rachid"
+                                [legend]="true"></canvas>
                     </div>
                 </div>
             </div>
