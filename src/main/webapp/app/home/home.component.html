@@ -25,102 +25,92 @@
 
 
         <div class="row" *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
-            <p class="col-md-12 display-8 text-center">Les Masters</p>
-            <div class="col-md-6">
+            <br>
+            <p class="col-md-12 display-8 text-center"  *ngIf="account.login === 'mohamed000'">Les Masters</p>
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
                 <canvas
                     baseChart
                     [chartType]="'bar'"
-                    [datasets]="chartData1"
-                    [labels]="chartLabels1"
-                    [options]="chartOptions1"
+                    [datasets]="chartDatamohamed1"
+                    [labels]="chartLabelsmohamed1"
+                    [options]="chartOptionsmohamed1"
                     [legend]="true">
                 </canvas>
+                </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
                 <canvas
                     baseChart
                     [chartType]="'bar'"
-                    [datasets]="chartData2"
-                    [labels]="chartLabels2"
-                    [options]="chartOptions2"
+                    [datasets]="chartDatamohamed2"
+                    [labels]="chartLabelsmohamed2"
+                    [options]="chartOptionsmohamed2"
                     [legend]="true">
                 </canvas>
+                </div>
+            </div>
+
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
+                    <canvas
+                        baseChart
+                        [chartType]="'bar'"
+                        [datasets]="chartDatamohamed3"
+                        [labels]="chartLabelsmohamed3"
+                        [options]="chartOptionsmohamed3"
+                        [legend]="true">
+                    </canvas>
+                </div>
             </div>
         </div>
+
          <br><br>
         <div class="row" *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
-            <p class="col-md-12 display-8 text-center">Les Ecoles d'Ingenieries</p>
-            <div class="col-md-6">
+            <p class="col-md-12 display-8 text-center"  *ngIf="account.login === 'mohamed000'">Les Ecoles d'Ingenieries</p>
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
                 <p class="col-md-6 display-8 text-center">ENSIAS</p>
                 <canvas
                     baseChart
                     [chartType]="'bar'"
-                    [datasets]="chartData3"
-                    [labels]="chartLabels3"
-                    [options]="chartOptions3"
+                    [datasets]="chartDatamohamed4"
+                    [labels]="chartLabelsmohamed4"
+                    [options]="chartOptionsmohamed4"
                     [legend]="true">
                 </canvas>
+                </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
                 <p class="col-md-6 display-8 text-center">INSEA</p>
                 <canvas
                     baseChart
                     [chartType]="'bar'"
-                    [datasets]="chartData4"
-                    [labels]="chartLabels4"
-                    [options]="chartOptions4"
+                    [datasets]="chartDatamohamed5"
+                    [labels]="chartLabelsmohamed5"
+                    [options]="chartOptionsmohamed5"
                     [legend]="true">
                 </canvas>
             </div>
-        </div>
-
-        <div class="row" *jhiHasAnyAuthority="'ROLE_ENSEIGNANT'">
-            <p class="col-md-12 display-8 text-center">Les Masters</p>
-            <div class="col-md-12">
-                <canvas
-                    baseChart
-                    [chartType]="'bar'"
-                    [datasets]="chartData5"
-                    [labels]="chartLabels5"
-                    [options]="chartOptions5"
-                    [legend]="true">
-                </canvas>
             </div>
-        </div>
-
-            <br><br>
-
-        <div class="row" *jhiHasAnyAuthority="'ROLE_ENSEIGNANT'">
-            <p class="col-md-12 display-8 text-center">Les Ecoles d'Ingénierie</p>
-            <div class="col-md-6">
-                <p class="col-md-6 display-8 text-center">ENSIAS</p>
-                <canvas
-                    baseChart
-                    [chartType]="'bar'"
-                    [datasets]="chartData3"
-                    [labels]="chartLabels3"
-                    [options]="chartOptions3"
-                    [legend]="true">
-                </canvas>
-            </div>
-
-            <div class="col-md-6">
-                <p class="col-md-6 display-8 text-center">INSEA</p>
-                <canvas
-                    baseChart
-                    [chartType]="'bar'"
-                    [datasets]="chartData4"
-                    [labels]="chartLabels4"
-                    [options]="chartOptions4"
-                    [legend]="true">
-                </canvas>
+             <br>
+            <div class="col-md-6"  *ngIf="account.login === 'mohamed000'">
+                <div class="card shadow">
+                    <p class="col-md-6 display-8 text-center">INPT</p>
+                    <canvas
+                        baseChart
+                        [chartType]="'bar'"
+                        [datasets]="chartDatamohamed6"
+                        [labels]="chartLabelsmohamed6"
+                        [options]="chartOptionsmohamed6"
+                        [legend]="true">
+                    </canvas>
+                </div>
             </div>
         </div>
 
 
-
-
-    </div>
-</div>

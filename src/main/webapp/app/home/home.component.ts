@@ -14,45 +14,50 @@ export class HomeComponent implements OnInit, OnDestroy {
   account: Account | null = null;
   authSubscription?: Subscription;
 
-  chartOptions1 = {
+  chartOptionsmohamed1 = {
     responsive: true
   };
-  chartData1 = [{ data: [330, 600, 260, 700], label: 'IOT: Internet Of Things' }];
-  chartLabels1 = ['2016', '2017', '2018', '2016'];
+  chartDatamohamed1 = [{ data: [330, 600, 260, 700], label: 'IOT: Internet Of Things' }];
+  chartLabelsmohamed1 = ['2016', '2017', '2018', '2016'];
 
-  chartOptions2 = {
+  chartOptionsmohamed2 = {
     responsive: true
   };
-  chartData2 = [{ data: [33, 6, 26, 100], label: 'IDDL: Ingenierie des Données et Developpement Logiciel' }];
-  chartLabels2 = ['2016', '2017', '2018', '2016'];
+  chartDatamohamed2 = [{ data: [33, 6, 26, 100], label: 'IDDL: Ingenierie des Données et Developpement Logiciel' }];
+  chartLabelsmohamed2 = ['2016', '2017', '2018', '2016'];
 
-  chartOptions3 = {
+  chartOptionsmohamed3 = {
     responsive: true
   };
-  chartData3 = [
+  chartDatamohamed3 = [{ data: [33, 6, 26, 100], label: 'TIS: Traitement Intelligent des Systèmes ' }];
+  chartLabelsmohamed3 = ['2016', '2017', '2018', '2016'];
+
+  chartOptionsmohamed4 = {
+    responsive: true
+  };
+  chartDatamohamed4 = [
     { data: [390, 200, 260, 700], label: 'Deug' },
     { data: [80, 60, 260, 700], label: 'Licence' }
   ];
-  chartLabels3 = ['2016', '2017', '2018', '2016'];
+  chartLabelsmohamed4 = ['2016', '2017', '2018', '2016'];
 
-  chartOptions4 = {
+  chartOptionsmohamed5 = {
     responsive: true
   };
-  chartData4 = [
+  chartDatamohamed5 = [
     { data: [39, 20, 26, 700], label: 'Deug' },
     { data: [80, 60, 28, 90], label: 'Licence' }
   ];
-  chartLabels4 = ['2016', '2017', '2018', '2016'];
+  chartLabelsmohamed5 = ['2016', '2017', '2018', '2016'];
 
-  chartOptions5 = {
+  chartOptionsmohamed6 = {
     responsive: true
   };
-  chartData5 = [
-    { data: [39, 20, 26, 700], label: 'IOT' },
-    { data: [80, 60, 28, 90], label: 'IDDL' },
-    { data: [80, 60, 28, 90], label: 'TES' }
+  chartDatamohamed6 = [
+    { data: [3, 2, 26, 70], label: 'Deug' },
+    { data: [8, 60, 28, 0], label: 'Licence' }
   ];
-  chartLabels5 = ['2016', '2017', '2018', '2016'];
+  chartLabelsmohamed6 = ['2016', '2017', '2018', '2016'];
 
   constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
 
