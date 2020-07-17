@@ -1,0 +1,37 @@
+<div>
+
+
+    <div class="table-responsive" >
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col" >Code</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Semestre</th>
+                <th scope="col" >Section</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr>
+                <td>58993</td>
+                <td>Sassy</td>
+                <td>Meryem</td>
+                <td>6</td>
+                <td>B</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                (click)="shownotemeryem()"
+                                class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

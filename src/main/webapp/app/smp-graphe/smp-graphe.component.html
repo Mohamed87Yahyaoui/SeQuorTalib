@@ -1,0 +1,95 @@
+
+<!--Master Meryem -->
+<div *ngIf="account.login === 'fati1212' || account.login ==='amine'">
+    <div class="row">
+        <br>
+        <p class="col-md-12 display-8 text-center" >Les Masters</p>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem1"
+                    [labels]="chartLabelsmeryem1"
+                    [options]="chartOptionsmeryem1"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem2"
+                    [labels]="chartLabelsmeryem2"
+                    [options]="chartOptionsmeryem2"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ecoles d'ing Meryem-->
+<div *ngIf="account.login === 'fati1212' || account.login === 'amine'">
+    <div class="row mt-6">
+        <br>
+        <p class="col-md-12 display-8 text-center" >Les Ecoles d'Ingénierie</p>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">EMI</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem4"
+                    [labels]="chartLabelsmeryem4"
+                    [options]="chartOptionsmeryem4"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">EHTP</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem5"
+                    [labels]="chartLabelsmeryem5"
+                    [options]="chartOptionsmeryem5"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-6">
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">ENIM</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem5"
+                    [labels]="chartLabelsmeryem5"
+                    [options]="chartOptionsmeryem5"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">ENSIAS</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatameryem6"
+                    [labels]="chartLabelsmeryem6"
+                    [options]="chartOptionsmeryem6"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

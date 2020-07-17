@@ -1,0 +1,65 @@
+<!--Master Rachid -->
+<div *ngIf="account.login === 'amine'">
+    <div class="row">
+        <br>
+        <p class="col-md-12 display-8 text-center" >Les Masters</p>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatarachid1"
+                    [labels]="chartLabelsrachid1"
+                    [options]="chartOptionsrachid1"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatarachid2"
+                    [labels]="chartLabelsrachid2"
+                    [options]="chartOptionsrachid2"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ecoles d'ing Rachid-->
+<div *ngIf="account.login === 'amine'">
+    <div class="row mt-6">
+        <br>
+        <p class="col-md-12 display-8 text-center" >D'autres</p>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">FMP: Faculté de Medecine et de Pharmacie</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatarachid3"
+                    [labels]="chartLabelsrachid3"
+                    [options]="chartOptionsrachid3"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">FMD: Faculté de Medecine Dentaire</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatarachid4"
+                    [labels]="chartLabelsrachid4"
+                    [options]="chartOptionsrachid4"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>

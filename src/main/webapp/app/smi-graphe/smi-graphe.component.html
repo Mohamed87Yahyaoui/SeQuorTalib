@@ -1,0 +1,97 @@
+<!--Master Mohamed -->
+<div *ngIf="account.login === 'fati1212'">
+    <div class="row">
+        <br>
+        <p class="col-md-12 display-8 text-center" >Les Masters</p>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed1"
+                    [labels]="chartLabelsmohamed1"
+                    [options]="chartOptionsmohamed1"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed2"
+                    [labels]="chartLabelsmohamed2"
+                    [options]="chartOptionsmohamed2"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed3"
+                    [labels]="chartLabelsmohamed3"
+                    [options]="chartOptionsmohamed3"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ecoles d'ing Mohamed-->
+<div *ngIf="account.login === 'fati1212'">
+    <div class="row mt-6">
+        <br>
+        <p class="col-md-12 display-8 text-center" >Les Ecoles d'Ingénierie</p>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">ENSIAS</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed4"
+                    [labels]="chartLabelsmohamed4"
+                    [options]="chartOptionsmohamed4"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+        <div class="col-md-6"  >
+            <div class="card shadow">
+                <p class="text-center">INSEA</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed5"
+                    [labels]="chartLabelsmohamed5"
+                    [options]="chartOptionsmohamed5"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center mt-4">
+        <div class="col-md-6" >
+            <div class="card shadow">
+                <p class="text-center">INPT</p>
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDatamohamed6"
+                    [labels]="chartLabelsmohamed6"
+                    [options]="chartOptionsmohamed6"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+

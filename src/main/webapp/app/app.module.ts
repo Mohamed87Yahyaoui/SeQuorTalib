@@ -20,6 +20,13 @@ import { ChartsModule } from 'ng2-charts';
 import { Semsetre3Component } from './semsetre3/semsetre3.component';
 import { Semsetre4Component } from './semsetre4/semsetre4.component';
 import { Semsetre5Component } from './semsetre5/semsetre5.component';
+import { SmiGrapheComponent } from './smi-graphe/smi-graphe.component';
+import { SmpGrapheComponent } from './smp-graphe/smp-graphe.component';
+import { SvtGrapheComponent } from './svt-graphe/svt-graphe.component';
+import { SmiEtudiantsComponent } from './smi-etudiants/smi-etudiants.component';
+import { SmpEtudiantsComponent } from './smp-etudiants/smp-etudiants.component';
+import { SvtEtudiantsComponent } from './svt-etudiants/svt-etudiants.component';
+import { NoteetudiantsComponent } from './noteetudiants/noteetudiants.component';
 
 @NgModule({
   imports: [
@@ -43,7 +50,14 @@ import { Semsetre5Component } from './semsetre5/semsetre5.component';
     Semestre2Component,
     Semsetre3Component,
     Semsetre4Component,
-    Semsetre5Component
+    Semsetre5Component,
+    SmiGrapheComponent,
+    SmpGrapheComponent,
+    SvtGrapheComponent,
+    SmiEtudiantsComponent,
+    SmpEtudiantsComponent,
+    SvtEtudiantsComponent,
+    NoteetudiantsComponent
   ],
   bootstrap: [MainComponent],
   providers: [NavbarComponent]

@@ -17,7 +17,7 @@
                 </a>
             </li>
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <li  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
                         <fa-icon icon="th-list"></fa-icon>
@@ -131,6 +131,73 @@
                         <a class="dropdown-item" routerLink="/notesS5">
                             <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
                             <span>Semestre 5</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ENSEIGNANT'">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Graphe
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <!-- Button SMI -->
+                    <li *ngIf="account.login === 'fati1212'">
+                        <a class="dropdown-item" routerLink="/GrapheSMI" >
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >SMI</span>
+                        </a>
+                    </li>
+                    <!-- Button SMP -->
+                    <li *ngIf="account.login === 'fati1212' || account.login ==='amine'">
+                        <a class="dropdown-item" routerLink="/GrapheSMP">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>SMP</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'amine'">
+                        <a class="dropdown-item" routerLink="/GrapheSVT">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>SVT</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ENSEIGNANT'">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Etudiants
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <!-- Button SMI -->
+                    <li *ngIf="account.login === 'fati1212'">
+                        <a class="dropdown-item" routerLink="/SmiEtudiant" >
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span >SMI</span>
+                        </a>
+                    </li>
+                    <!-- Button SMP -->
+                    <li *ngIf="account.login === 'fati1212' || account.login ==='amine'">
+                        <a class="dropdown-item" routerLink="/SmpEtudiant">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>SMP</span>
+                        </a>
+                    </li>
+                    <li *ngIf="account.login === 'amine'">
+                        <a class="dropdown-item" routerLink="/SvtEtudiant">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span>SVT</span>
                         </a>
                     </li>
                 </ul>

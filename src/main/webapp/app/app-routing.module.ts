@@ -11,6 +11,13 @@ import { Semestre2Component } from 'app/semestres/semestre2/semestre2.component'
 import { Semsetre3Component } from 'app/semsetre3/semsetre3.component';
 import { Semsetre4Component } from 'app/semsetre4/semsetre4.component';
 import { Semsetre5Component } from 'app/semsetre5/semsetre5.component';
+import { SmiGrapheComponent } from './smi-graphe/smi-graphe.component';
+import { SmpGrapheComponent } from './smp-graphe/smp-graphe.component';
+import { SvtGrapheComponent } from './svt-graphe/svt-graphe.component';
+import { SmiEtudiantsComponent } from './smi-etudiants/smi-etudiants.component';
+import { SmpEtudiantsComponent } from './smp-etudiants/smp-etudiants.component';
+import { SvtEtudiantsComponent } from './svt-etudiants/svt-etudiants.component';
+import { NoteetudiantsComponent } from './noteetudiants/noteetudiants.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -18,6 +25,34 @@ const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
   imports: [
     RouterModule.forRoot(
       [
+        {
+          path: 'note',
+          component: NoteetudiantsComponent
+        },
+        {
+          path: 'SmiEtudiant',
+          component: SmiEtudiantsComponent
+        },
+        {
+          path: 'SmpEtudiant',
+          component: SmpEtudiantsComponent
+        },
+        {
+          path: 'SvtEtudiant',
+          component: SvtEtudiantsComponent
+        },
+        {
+          path: 'GrapheSMI',
+          component: SmiGrapheComponent
+        },
+        {
+          path: 'GrapheSMP',
+          component: SmpGrapheComponent
+        },
+        {
+          path: 'GrapheSVT',
+          component: SvtGrapheComponent
+        },
         {
           path: 'notesS1',
           component: Semestre1Component
