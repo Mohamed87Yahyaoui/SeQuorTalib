@@ -31,7 +31,7 @@ export class SmpEtudiantsComponent implements OnInit {
       section: 'A'
     }
   ];
-  notesoufyane = false;
+  notesanae = false;
 
   constructor(private accountService: AccountService, private router: Router) {}
 
@@ -44,8 +44,8 @@ export class SmpEtudiantsComponent implements OnInit {
     this.router.navigateByUrl('/note');
   }
 
-  shownotesoufyane(): void {
-    this.notesoufyane = true;
+  shownotesanae(): void {
+    this.notesanae = true;
     this.router.navigateByUrl('/note');
   }
 }
