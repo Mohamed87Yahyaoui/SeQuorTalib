@@ -23,6 +23,6 @@ export class SmpEtudiantsComponent implements OnInit {
 
   shownotemeryem(): void {
     this.notemeryem = true;
-    this.router.navigateByUrl('url: /note');
+    this.router.navigateByUrl('/note');
   }
 }
