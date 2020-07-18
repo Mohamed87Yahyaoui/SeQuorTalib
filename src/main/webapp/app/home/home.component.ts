@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'jhi-home',
@@ -59,7 +60,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
   chartLabelsmohamed6 = ['2016', '2017', '2018', '2016'];
 
-  constructor(private accountService: AccountService, private loginModalService: LoginModalService) {}
+  constructor(private accountService: AccountService, private loginModalService: LoginModalService, config: NgbCarouselConfig) {
+    config.interval = 2000;
+    config.wrap = true;
+    config.keyboard = false;
+    config.pauseOnHover = false;
+  }
 
   ngOnInit(): void {
     this.authSubscription = this.accountService.getAuthenticationState().subscribe(account => (this.account = account as Account));

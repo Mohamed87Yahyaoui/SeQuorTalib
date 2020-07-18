@@ -14,20 +14,23 @@
             </tr>
             </thead>
             <tbody >
-            <tr>
-                <td>58993</td>
-                <td>Sassy</td>
-                <td>Meryem</td>
-                <td>6</td>
-                <td>B</td>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{etudiant.code}}</td>
+                <td>{{etudiant.nom}}</td>
+                <td>{{etudiant.prenom}}</td>
+                <td>{{etudiant.semestre}}</td>
+                <td>{{etudiant.section}}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <button
-                                (click)="shownotemeryem()"
-                                class="btn btn-info btn-sm">
+                        <button *ngIf="etudiant.nom === 'Sassy'" (click)="shownotemeryem()" class="btn btn-info btn-sm">
                             <fa-icon icon="eye"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
+                        <button *ngIf="etudiant.nom === 'Atif'" (click)="shownotesoufyane()" class="btn btn-info btn-sm">
+                            <fa-icon icon="eye"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+
                     </div>
                 </td>
             </tr>

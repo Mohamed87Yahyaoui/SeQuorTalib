@@ -15,6 +15,24 @@ export class SmpEtudiantsComponent implements OnInit {
 
   notemeryem = false;
 
+  etudiants = [
+    {
+      code: '58993',
+      nom: 'Sassy',
+      prenom: 'Meryem',
+      semestre: '6',
+      section: 'B'
+    },
+    {
+      code: '24862',
+      nom: 'Atif',
+      prenom: 'Sanae',
+      semestre: '6',
+      section: 'A'
+    }
+  ];
+  notesoufyane = false;
+
   constructor(private accountService: AccountService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,6 +41,11 @@ export class SmpEtudiantsComponent implements OnInit {
 
   shownotemeryem(): void {
     this.notemeryem = true;
+    this.router.navigateByUrl('/note');
+  }
+
+  shownotesoufyane(): void {
+    this.notesoufyane = true;
     this.router.navigateByUrl('/note');
   }
 }
