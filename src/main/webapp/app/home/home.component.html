@@ -15,34 +15,27 @@
             </div>
 
 
-            <div *ngSwitchCase="false">
-                <div class="container-login100" style="background-image: url('../../content/images/pic3.jpg');">
-                    <div class="wrap-login100 p-l-20 p-r-20 p-t-20 p-b-20">
-                        <form class="login100-form validate-form">
+            <div class="container" *ngSwitchCase="false">
+                <ngb-carousel>
+                    <ng-template ngbSlide>
+                        <img src="../../content/images/pic1.jpg" alt="Delhi Metro">
+                        <div class="carousel-caption">
+                            <h3 style="color: black">Delhi Metro</h3>
+                        </div>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <img src="../../content/images/pic2.jpg" alt="Bangalore Metro" style="align-items: center;">
+                        <div class="carousel-caption">
+                            <h3 style="color: black">Bangalore Metro</h3>
+                        </div>
+                    </ng-template>
 
+                </ngb-carousel>
+            </div>
 
-                            <div class="container-login100-form-btn">
-                                <button class="login100-form-btn">
-                                    Sign In
-                                </button>
-                            </div>
-
-                            <div class="container-login100-form-btn p-t-10">
-                                <button class="login100-form-btn">
-                                    Register
-                                </button>
-                            </div>
-
-
-
-
-
-
-                        </form>
-
-
-                    </div>
-                </div>
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
+                <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
 

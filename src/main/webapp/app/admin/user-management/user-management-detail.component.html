@@ -1,58 +1,63 @@
-<div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="user">
-            <h2>
-                <span jhiTranslate="userManagement.detail.title">User</span> [<b>{{ user.login }}</b>]
-            </h2>
-
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="userManagement.login">Login</span></dt>
-                <dd>
-                    <span>{{ user.login }}</span>
-                    <jhi-boolean
-                        [value]="user.activated"
-                        [textTrue]="'userManagement.activated' | translate"
-                        [textFalse]="'userManagement.deactivated' | translate">
-                    </jhi-boolean>
-                </dd>
-
-                <dt><span jhiTranslate="userManagement.firstName">First Name</span></dt>
-                <dd>{{ user.firstName }}</dd>
-
-                <dt><span jhiTranslate="userManagement.lastName">Last Name</span></dt>
-                <dd>{{ user.lastName }}</dd>
-
-                <dt><span jhiTranslate="userManagement.email">Email</span></dt>
-                <dd>{{ user.email }}</dd>
-
-                <dt><span jhiTranslate="userManagement.langKey">Lang Key</span></dt>
-                <dd>{{ user.langKey }}</dd>
-
-                <dt><span jhiTranslate="userManagement.createdBy">Created By</span></dt>
-                <dd>{{ user.createdBy }}</dd>
-
-                <dt><span jhiTranslate="userManagement.createdDate">Created Date</span></dt>
-                <dd>{{ user.createdDate | date:'dd/MM/yy HH:mm' }}</dd>
-
-                <dt><span jhiTranslate="userManagement.lastModifiedBy">Last Modified By</span></dt>
-                <dd>{{ user.lastModifiedBy }}</dd>
-
-                <dt><span jhiTranslate="userManagement.lastModifiedDate">Last Modified Date</span></dt>
-                <dd>{{ user.lastModifiedDate | date:'dd/MM/yy HH:mm' }}</dd>
-
-                <dt><span jhiTranslate="userManagement.profiles">Profiles</span></dt>
-                <dd>
-                    <ul class="list-unstyled">
-                        <li *ngFor="let authority of user.authorities">
-                            <span class="badge badge-info">{{ authority }}</span>
-                        </li>
-                    </ul>
-                </dd>
-            </dl>
-
-            <button type="submit" routerLink="../../" class="btn btn-info">
-                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-            </button>
+<div class="row justify-content-center mt-4" *ngIf="user">
+        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+            <div class="card card-profile shadow">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 order-lg-2">
+                        <div class="card-profile-image">
+                            <a href="javascript:void(0)">
+                                <img src="../../../content/images/jhipster_family_member_0_head-192.png" class="rounded-circle">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                    <div class="d-flex justify-content-between">
+                        <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+                        <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
+                    </div>
+                </div>
+                <div class="card-body pt-0 pt-md-4">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                                <div>
+                                    <span class="heading">{{ user.lastModifiedBy }}</span>
+                                    <span class="description">Last modified by</span>
+                                </div>
+                                <div>
+                                    <span class="heading">{{ user.createdBy }}</span>
+                                    <span class="description">Created by</span>
+                                </div>
+                                <div>
+                                    <span class="heading">{{ user.createdDate }}</span>
+                                    <span class="description">Created date</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h3>
+                            {{user.firstName}} {{user.lastName}}<span class="font-weight-light"></span>
+                        </h3>
+                        <div class="h5 font-weight-300">
+                            <i class="ni location_pin mr-2"></i>{{ user.login }}
+                        </div>
+                        <div class="h5 mt-4">
+                            <i class="ni business_briefcase-24 mr-2"></i>{{ user.email }}
+                        </div>
+                        <div>
+                            <i class="ni education_hat mr-2"></i>{{ user.langKey }}
+                        </div>
+                        <div>
+                            <i class="ni education_hat mr-2"></i>{{ user.createdBy }}
+                        </div>
+                        <div>
+                            <i class="ni education_hat mr-2"></i>{{ user.lastModifiedBy }}
+                        </div>
+                        <hr class="my-4" />
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+
 </div>
