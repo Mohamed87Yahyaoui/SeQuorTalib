@@ -10,10 +10,28 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                     <div class="d-flex justify-content-between">
                         <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
                         <a href="javascript:void(0)" class="btn btn-sm btn-default float-right">Message</a>
+                        <div class="mr-4">
+                        <button type="submit"
+                                [routerLink]="['/edit']"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon icon="pencil-alt"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        </div>
+
+                        <div class=" float-right">
+                            <button type="button" (click)="deleteUser(user)"
+                                    class="btn btn-danger btn-sm" [disabled]="!currentAccount || currentAccount.login === user.login">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body pt-0 pt-md-4">
