@@ -16,6 +16,7 @@ import { userManagementRoute } from './user-management.route';
     UserManagementUpdateComponent,
     UserManagementDeleteDialogComponent
   ],
-  entryComponents: [UserManagementDeleteDialogComponent]
+  entryComponents: [UserManagementDeleteDialogComponent],
+  exports: [UserManagementDeleteDialogComponent]
 })
 export class UserManagementModule {}
