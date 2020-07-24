@@ -1,6 +1,4 @@
-<div>
-
-
+<div *ngIf="notemohamed===false && account.login==='fati1212'" >
     <div class="table-responsive" >
         <table class="table table-striped">
             <thead>
@@ -14,24 +12,190 @@
             </tr>
             </thead>
             <tbody >
-            <tr>
-                <td>487690</td>
-                <td>Yahyaoui</td>
-                <td>Mohamed</td>
-                <td>5</td>
-                <td>A</td>
+            <tr *ngFor="let etudiant of etudiants">
+                <td>{{etudiant.code}}</td>
+                <td>{{etudiant.nom}}</td>
+                <td>{{etudiant.prenom}}</td>
+                <td>{{etudiant.semestre}}</td>
+                <td>{{etudiant.section}}</td>
                 <td class="text-right">
                     <div class="btn-group">
-                        <a type="submit"
-                                routerLink="/note"
-                                class="btn btn-info btn-sm">
+                        <button *ngIf="etudiant.nom === 'Yahyaoui'" (click)="shownotemohamed()" class="btn btn-info btn-sm">
                             <fa-icon icon="eye"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </a>
+                        </button>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+
+<div class="container-fluid mt-2" *ngIf="notemohamed===true">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="card-header border-0">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="mb-0 text-center">Semestre 1 </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">VLD</th>
+                            <th scope="col">Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                M1
+                            </th>
+                            <th scope="row">
+                                Analyse 1 : Suites numériques et fonctions
+                            </th>
+                            <td>
+                                06.00
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M2
+                            </th>
+                            <th scope="row">
+                                Algèbre 1 :Généralités et arithmétique dans Z
+                            </th>
+                            <td>
+                                10.50
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M3
+                            </th>
+                            <th scope="row">
+                                Algèbre 2 : Structures, polynômes et fractions rationnelles
+                            </th>
+                            <td>
+                                10.25
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M4
+                            </th>
+                            <th scope="row">
+                                Mécanique 1
+                            </th>
+                            <td>
+                                07.50
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M4
+                            </th>
+                            <th scope="row">
+                                Thermodynamique
+                            </th>
+                            <td>
+                                12.00
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M5
+                            </th>
+                            <th scope="row">
+                                Introduction à l’informatique
+                            </th>
+                            <td>
+                                13.50
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                M6
+                            </th>
+                            <th scope="row">
+                                Langue et terminologie I
+                            </th>
+                            <td>
+                                13.00
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>
+</div>
+<div class="container-fluid mt-2" *ngIf="notemohamed===true && account.login==='fati1212'">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'radar'"
+                    [options]="chartOptionmohamed1"
+                    [datasets]="chartDatamohamed1"
+                    [labels]="chartLabelsmohamed1"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
     </div>
 </div>

@@ -13,17 +13,17 @@ export class Semsetre5Component implements OnInit {
   authSubscription?: Subscription;
 
   chartOptions5meryem = {
-    responsive: true,
-    scales: {
-      yAxes: [
-        {
-          display: true,
-          ticks: {
-            max: 20,
-            beginAtZero: true
-          }
-        }
-      ]
+    legend: {
+      display: false
+    },
+    scale: {
+      angleLines: {
+        display: false
+      },
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 20
+      }
     }
   };
   chartData5meryem = [{ data: [13.77, 18, 9.98, 10, 6, 9] }];

@@ -15,6 +15,33 @@ export class SmiEtudiantsComponent implements OnInit {
 
   notemohamed = false;
 
+  etudiants = [
+    {
+      code: '487655',
+      nom: 'Yahyaoui',
+      prenom: 'Mohamed',
+      semestre: '5',
+      section: 'A'
+    }
+  ];
+
+  chartOptionmohamed1 = {
+    legend: {
+      display: false
+    },
+    scale: {
+      angleLines: {
+        display: false
+      },
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 20
+      }
+    }
+  };
+  chartDatamohamed1 = [{ data: [6, 10.5, 10.25, 7.5, 12.0, 13.5, 13.5] }];
+  chartLabelsmohamed1 = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
+
   constructor(private accountService: AccountService, private router: Router) {}
 
   ngOnInit(): void {
@@ -23,6 +50,6 @@ export class SmiEtudiantsComponent implements OnInit {
 
   shownotemohamed(): void {
     this.notemohamed = true;
-    this.router.navigateByUrl('url: /note');
+    this.router.navigateByUrl('/noteSMI');
   }
 }

@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="notemeryem===false">
     <div class="table-responsive" >
         <table class="table table-striped">
             <thead>
@@ -24,11 +24,6 @@
                             <fa-icon icon="eye"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button *ngIf="etudiant.nom === 'Atif'" (click)="shownotesanae()" class="btn btn-info btn-sm">
-                            <fa-icon icon="eye"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-
                     </div>
                 </td>
             </tr>
@@ -36,3 +31,631 @@
         </table>
     </div>
 </div>
+
+
+<div class="container-fluid mt-2" *ngIf="notemeryem===true">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Semestre</th>
+                            <th scope="col">Module</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">VLD</th>
+                            <th scope="col">Etat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Analyse 1 : Suites numériques et fonctions
+                            </th>
+                            <td>
+                                12.5
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Algèbre 1 :Généralités et arithmétique dans Z
+                            </th>
+                            <td>
+                                9.5
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Atomistique
+                            </th>
+                            <td>
+                                15.25
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Mécanique du point
+                            </th>
+                            <td>
+                                07.50
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Thermodynamique
+                            </th>
+                            <td>
+                                17.00
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Thermochimie
+                            </th>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S1
+                            </th>
+                            <th scope="row">
+                                Langue et terminologie I
+                            </th>
+                            <td>
+                                10.00
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Electrostatique et Electronique
+                            </th>
+                            <td>
+                                18
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Optique 1
+                            </th>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Liaisons chimiques
+                            </th>
+                            <td>
+                                8.5
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Chimie des solutions
+                            </th>
+                            <td>
+                                19
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Analyse 2
+                            </th>
+                            <td>
+                                10
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Algebre 2
+                            </th>
+                            <td>
+                                16.5
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S2
+                            </th>
+                            <th scope="row">
+                                Langue et terminologie II
+                            </th>
+                            <td>
+                                17
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Programmation I
+                            </th>
+                            <td>
+                                16.62
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Algorithme II
+                            </th>
+                            <td>
+                                19
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Probabilité et Statistique
+                            </th>
+                            <td>
+                                14
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Technologie du Web
+                            </th>
+                            <td>
+                                9.89
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Electronique
+                            </th>
+                            <td>
+                                8
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S3
+                            </th>
+                            <th scope="row">
+                                Systeme d'Exploitation
+                            </th>
+                            <td>
+                                18.62
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Programmation II
+                            </th>
+                            <td>
+                                10
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Structures de Données
+                            </th>
+                            <td>
+                                11
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Systèmes d'Exploitation II
+                            </th>
+                            <td>
+                                9
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Analyse numérique I
+                            </th>
+                            <td>
+                                7
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Architecture des Ordinateurs
+                            </th>
+                            <td>
+                                17.5
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S4
+                            </th>
+                            <th scope="row">
+                                Electromagnétisme
+                            </th>
+                            <td>
+                                15.25
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+            <div class="card shadow">
+                <div class="table-responsive">
+                    <!-- Projects table -->
+                    <table class="table align-items-center table-flush">
+                        <tbody>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Electronique Analogique
+                            </th>
+                            <td>
+                                13.77
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AV
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Mécanique Analytique et Vibrations
+                            </th>
+                            <td>
+                                18
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AR
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Physique Nucléaire
+                            </th>
+                            <td>
+                                9.98
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Physique des Matériaux
+                            </th>
+                            <td>
+                                10
+                            </td>
+                            <td>
+                                <span class="badge badge-success">Validé</span>
+                            </td>
+                            <td>
+                                V.AP
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Physique Quantique
+                            </th>
+                            <td>
+                                6
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                S5
+                            </th>
+                            <th scope="row">
+                                Physique Statistique
+                            </th>
+                            <td>
+                                9
+                            </td>
+                            <td>
+                                <span class="badge badge-danger">Non Validé</span>
+                            </td>
+                            <td>
+                                V.C.S
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container-fluid mt-2" *ngIf="notemeryem===true">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+            <div class="card shadow">
+                <canvas
+                    baseChart
+                    [chartType]="'polarArea'"
+                    [datasets]="chartDatameryem1"
+                    [labels]="chartLabelsmeryem1"
+                    [legend]="true">
+                </canvas>
+            </div>
+        </div>
+    </div>
+</div>
+

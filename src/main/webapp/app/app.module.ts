@@ -26,7 +26,6 @@ import { SvtGrapheComponent } from './svt-graphe/svt-graphe.component';
 import { SmiEtudiantsComponent } from './smi-etudiants/smi-etudiants.component';
 import { SmpEtudiantsComponent } from './smp-etudiants/smp-etudiants.component';
 import { SvtEtudiantsComponent } from './svt-etudiants/svt-etudiants.component';
-import { NoteetudiantsComponent } from './noteetudiants/noteetudiants.component';
 
 @NgModule({
   imports: [
@@ -56,8 +55,7 @@ import { NoteetudiantsComponent } from './noteetudiants/noteetudiants.component'
     SvtGrapheComponent,
     SmiEtudiantsComponent,
     SmpEtudiantsComponent,
-    SvtEtudiantsComponent,
-    NoteetudiantsComponent
+    SvtEtudiantsComponent
   ],
   bootstrap: [MainComponent],
   providers: [NavbarComponent]

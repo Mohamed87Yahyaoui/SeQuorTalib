@@ -22,16 +22,11 @@ export class SmpEtudiantsComponent implements OnInit {
       prenom: 'Meryem',
       semestre: '6',
       section: 'B'
-    },
-    {
-      code: '24862',
-      nom: 'Atif',
-      prenom: 'Sanae',
-      semestre: '6',
-      section: 'A'
     }
   ];
-  notesanae = false;
+
+  chartDatameryem1 = [{ data: [11.12, 14.32, 14.35, 11.89, 15.3] }];
+  chartLabelsmeryem1 = ['Moy S1', 'Moy S2', 'Moy S3', 'Moy S4', 'Moy S5'];
 
   constructor(private accountService: AccountService, private router: Router) {}
 
@@ -41,11 +36,6 @@ export class SmpEtudiantsComponent implements OnInit {
 
   shownotemeryem(): void {
     this.notemeryem = true;
-    this.router.navigateByUrl('/note');
-  }
-
-  shownotesanae(): void {
-    this.notesanae = true;
-    this.router.navigateByUrl('/note');
+    this.router.navigateByUrl('/noteSMP');
   }
 }
