@@ -24,7 +24,6 @@ public class Etudiant implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "tel")
@@ -50,9 +49,9 @@ public class Etudiant implements Serializable {
     @Column(name = "datenaissance")
     private LocalDate datenaissance;
 
-    @ManyToOne
-    @JsonIgnoreProperties("etudiants")
-    private HistoriqueEtudiantFiliere historiqueEtudiantFiliere;
+    @NotNull
+    @Column(name = "code_etudiant", nullable = false)
+    private Integer codeEtudiant;
 
     @ManyToOne
     @JsonIgnoreProperties("etudiants")
@@ -61,6 +60,16 @@ public class Etudiant implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("etudiants")
     private HistoriqueEtudiantModule historiqueEtudiantModule;
+
+    @OneToOne
+
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
+
+    @ManyToOne
+    @JsonIgnoreProperties("etudiants")
+    private Filiere filiere;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -149,17 +158,17 @@ public class Etudiant implements Serializable {
         this.datenaissance = datenaissance;
     }
 
-    public HistoriqueEtudiantFiliere getHistoriqueEtudiantFiliere() {
-        return historiqueEtudiantFiliere;
+    public Integer getCodeEtudiant() {
+        return codeEtudiant;
     }
 
-    public Etudiant historiqueEtudiantFiliere(HistoriqueEtudiantFiliere historiqueEtudiantFiliere) {
-        this.historiqueEtudiantFiliere = historiqueEtudiantFiliere;
+    public Etudiant codeEtudiant(Integer codeEtudiant) {
+        this.codeEtudiant = codeEtudiant;
         return this;
     }
 
-    public void setHistoriqueEtudiantFiliere(HistoriqueEtudiantFiliere historiqueEtudiantFiliere) {
-        this.historiqueEtudiantFiliere = historiqueEtudiantFiliere;
+    public void setCodeEtudiant(Integer codeEtudiant) {
+        this.codeEtudiant = codeEtudiant;
     }
 
     public Etablissement getEtablissement() {
@@ -186,6 +195,32 @@ public class Etudiant implements Serializable {
 
     public void setHistoriqueEtudiantModule(HistoriqueEtudiantModule historiqueEtudiantModule) {
         this.historiqueEtudiantModule = historiqueEtudiantModule;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Etudiant user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Filiere getFiliere() {
+        return filiere;
+    }
+
+    public Etudiant filiere(Filiere filiere) {
+        this.filiere = filiere;
+        return this;
+    }
+
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -215,6 +250,7 @@ public class Etudiant implements Serializable {
             ", section='" + getSection() + "'" +
             ", etat='" + getEtat() + "'" +
             ", datenaissance='" + getDatenaissance() + "'" +
+            ", codeEtudiant=" + getCodeEtudiant() +
             "}";
     }
 }

@@ -2,6 +2,7 @@ package com.pfe.sequortalib.web.rest;
 
 import com.pfe.sequortalib.SequortalibApp;
 import com.pfe.sequortalib.domain.Enseignant;
+import com.pfe.sequortalib.domain.User;
 import com.pfe.sequortalib.repository.EnseignantRepository;
 import com.pfe.sequortalib.service.EnseignantService;
 
@@ -71,6 +72,11 @@ public class EnseignantResourceIT {
             .datenaissance(DEFAULT_DATENAISSANCE)
             .cin(DEFAULT_CIN)
             .grade(DEFAULT_GRADE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        enseignant.setUser(user);
         return enseignant;
     }
     /**
@@ -85,6 +91,11 @@ public class EnseignantResourceIT {
             .datenaissance(UPDATED_DATENAISSANCE)
             .cin(UPDATED_CIN)
             .grade(UPDATED_GRADE);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        enseignant.setUser(user);
         return enseignant;
     }
 
@@ -112,6 +123,9 @@ public class EnseignantResourceIT {
         assertThat(testEnseignant.getDatenaissance()).isEqualTo(DEFAULT_DATENAISSANCE);
         assertThat(testEnseignant.getCin()).isEqualTo(DEFAULT_CIN);
         assertThat(testEnseignant.getGrade()).isEqualTo(DEFAULT_GRADE);
+
+        // Validate the id for MapsId, the ids must be same
+        assertThat(testEnseignant.getId()).isEqualTo(testEnseignant.getUser().getId());
     }
 
     @Test
@@ -133,6 +147,38 @@ public class EnseignantResourceIT {
         assertThat(enseignantList).hasSize(databaseSizeBeforeCreate);
     }
 
+    @Test
+    @Transactional
+    public void updateEnseignantMapsIdAssociationWithNewId() throws Exception {
+        // Initialize the database
+        enseignantService.save(enseignant);
+        int databaseSizeBeforeCreate = enseignantRepository.findAll().size();
+
+
+        // Load the enseignant
+        Enseignant updatedEnseignant = enseignantRepository.findById(enseignant.getId()).get();
+        // Disconnect from session so that the updates on updatedEnseignant are not directly saved in db
+        em.detach(updatedEnseignant);
+
+        // Update the User with new association value
+        //updatedEnseignant.setUser();
+
+        // Update the entity
+        restEnseignantMockMvc.perform(put("/api/enseignants")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(updatedEnseignant)))
+            .andExpect(status().isOk());
+
+        // Validate the Enseignant in the database
+        List<Enseignant> enseignantList = enseignantRepository.findAll();
+        assertThat(enseignantList).hasSize(databaseSizeBeforeCreate);
+        Enseignant testEnseignant = enseignantList.get(enseignantList.size() - 1);
+
+        // Validate the id for MapsId, the ids must be same
+        // Uncomment the following line for assertion. However, please note that there is a known issue and uncommenting will fail the test.
+        // Please look at https://github.com/jhipster/generator-jhipster/issues/9100. You can modify this test as necessary.
+        // assertThat(testEnseignant.getId()).isEqualTo(testEnseignant.getUser().getId());
+    }
 
     @Test
     @Transactional
@@ -168,7 +214,7 @@ public class EnseignantResourceIT {
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)));
     }
-    
+
     @Test
     @Transactional
     public void getEnseignant() throws Exception {

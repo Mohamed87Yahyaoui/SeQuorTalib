@@ -3,6 +3,7 @@ package com.pfe.sequortalib.service.impl;
 import com.pfe.sequortalib.service.EnseignantService;
 import com.pfe.sequortalib.domain.Enseignant;
 import com.pfe.sequortalib.repository.EnseignantRepository;
+import com.pfe.sequortalib.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,8 +25,11 @@ public class EnseignantServiceImpl implements EnseignantService {
 
     private final EnseignantRepository enseignantRepository;
 
-    public EnseignantServiceImpl(EnseignantRepository enseignantRepository) {
+    private final UserRepository userRepository;
+
+    public EnseignantServiceImpl(EnseignantRepository enseignantRepository, UserRepository userRepository) {
         this.enseignantRepository = enseignantRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -37,6 +41,8 @@ public class EnseignantServiceImpl implements EnseignantService {
     @Override
     public Enseignant save(Enseignant enseignant) {
         log.debug("Request to save Enseignant : {}", enseignant);
+        long userId = enseignant.getUser().getId();
+        userRepository.findById(userId).ifPresent(enseignant::user);
         return enseignantRepository.save(enseignant);
     }
 

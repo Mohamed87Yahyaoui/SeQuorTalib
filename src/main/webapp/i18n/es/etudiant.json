@@ -22,9 +22,11 @@
       "section": "Section",
       "etat": "Etat",
       "datenaissance": "Datenaissance",
-      "historiqueEtudiantFiliere": "Historique Etudiant Filiere",
+      "codeEtudiant": "Code Etudiant",
       "etablissement": "Etablissement",
-      "historiqueEtudiantModule": "Historique Etudiant Module"
+      "historiqueEtudiantModule": "Historique Etudiant Module",
+      "user": "User",
+      "filiere": "Filiere"
     }
   }
 }

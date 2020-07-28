@@ -1,7 +1,8 @@
 import { Moment } from 'moment';
-import { IHistoriqueEtudiantFiliere } from 'app/shared/model/historique-etudiant-filiere.model';
 import { IEtablissement } from 'app/shared/model/etablissement.model';
 import { IHistoriqueEtudiantModule } from 'app/shared/model/historique-etudiant-module.model';
+import { IUser } from 'app/core/user/user.model';
+import { IFiliere } from 'app/shared/model/filiere.model';
 import { Status } from 'app/shared/model/enumerations/status.model';
 
 export interface IEtudiant {
@@ -12,9 +13,11 @@ export interface IEtudiant {
   section?: string;
   etat?: Status;
   datenaissance?: Moment;
-  historiqueEtudiantFiliere?: IHistoriqueEtudiantFiliere;
+  codeEtudiant?: number;
   etablissement?: IEtablissement;
   historiqueEtudiantModule?: IHistoriqueEtudiantModule;
+  user?: IUser;
+  filiere?: IFiliere;
 }
 
 export class Etudiant implements IEtudiant {
@@ -26,8 +29,10 @@ export class Etudiant implements IEtudiant {
     public section?: string,
     public etat?: Status,
     public datenaissance?: Moment,
-    public historiqueEtudiantFiliere?: IHistoriqueEtudiantFiliere,
+    public codeEtudiant?: number,
     public etablissement?: IEtablissement,
-    public historiqueEtudiantModule?: IHistoriqueEtudiantModule
+    public historiqueEtudiantModule?: IHistoriqueEtudiantModule,
+    public user?: IUser,
+    public filiere?: IFiliere
   ) {}
 }

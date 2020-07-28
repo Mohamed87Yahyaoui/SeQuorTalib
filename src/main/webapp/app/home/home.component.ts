@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   account!: Account;
   authSubscription?: Subscription;
 
+  isNavbarCollapsed = true;
+
   chartOptionsmohamed1 = {
     responsive: true
   };
@@ -83,5 +85,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
+  }
+
+  collapseNavbar(): void {
+    this.isNavbarCollapsed = true;
   }
 }

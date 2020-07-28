@@ -1,7 +1,7 @@
 import { IModule } from 'app/shared/model/module.model';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseignant-filiere.model';
-import { IHistoriqueEtudiantFiliere } from 'app/shared/model/historique-etudiant-filiere.model';
+import { IEtudiant } from 'app/shared/model/etudiant.model';
 
 export interface IFiliere {
   id?: number;
@@ -9,7 +9,7 @@ export interface IFiliere {
   modules?: IModule[];
   departement?: IDepartement;
   historiqueEnseignantFiliere?: IHistoriqueEnseignantFiliere;
-  historiqueEtudiantFiliere?: IHistoriqueEtudiantFiliere;
+  etudiants?: IEtudiant[];
 }
 
 export class Filiere implements IFiliere {
@@ -19,6 +19,6 @@ export class Filiere implements IFiliere {
     public modules?: IModule[],
     public departement?: IDepartement,
     public historiqueEnseignantFiliere?: IHistoriqueEnseignantFiliere,
-    public historiqueEtudiantFiliere?: IHistoriqueEtudiantFiliere
+    public etudiants?: IEtudiant[]
   ) {}
 }

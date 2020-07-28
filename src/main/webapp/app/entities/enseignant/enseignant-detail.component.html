@@ -42,6 +42,10 @@
                         <a [routerLink]="['/departement', enseignant.departement?.id, 'view']">{{ enseignant.departement?.nom }}</a>
                     </div>
                 </dd>
+                <dt><span jhiTranslate="sequortalibApp.enseignant.user">User</span></dt>
+                <dd>
+                    {{ enseignant.user?.login }}
+                </dd>
             </dl>
 
             <button type="submit"

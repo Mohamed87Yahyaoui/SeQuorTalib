@@ -7,14 +7,16 @@ import { Observable } from 'rxjs';
 
 import { IEtudiant, Etudiant } from 'app/shared/model/etudiant.model';
 import { EtudiantService } from './etudiant.service';
-import { IHistoriqueEtudiantFiliere } from 'app/shared/model/historique-etudiant-filiere.model';
-import { HistoriqueEtudiantFiliereService } from 'app/entities/historique-etudiant-filiere/historique-etudiant-filiere.service';
 import { IEtablissement } from 'app/shared/model/etablissement.model';
 import { EtablissementService } from 'app/entities/etablissement/etablissement.service';
 import { IHistoriqueEtudiantModule } from 'app/shared/model/historique-etudiant-module.model';
 import { HistoriqueEtudiantModuleService } from 'app/entities/historique-etudiant-module/historique-etudiant-module.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
+import { IFiliere } from 'app/shared/model/filiere.model';
+import { FiliereService } from 'app/entities/filiere/filiere.service';
 
-type SelectableEntity = IHistoriqueEtudiantFiliere | IEtablissement | IHistoriqueEtudiantModule;
+type SelectableEntity = IEtablissement | IHistoriqueEtudiantModule | IUser | IFiliere;
 
 @Component({
   selector: 'jhi-etudiant-update',
@@ -22,9 +24,10 @@ type SelectableEntity = IHistoriqueEtudiantFiliere | IEtablissement | IHistoriqu
 })
 export class EtudiantUpdateComponent implements OnInit {
   isSaving = false;
-  historiqueetudiantfilieres: IHistoriqueEtudiantFiliere[] = [];
   etablissements: IEtablissement[] = [];
   historiqueetudiantmodules: IHistoriqueEtudiantModule[] = [];
+  users: IUser[] = [];
+  filieres: IFiliere[] = [];
   datenaissanceDp: any;
 
   editForm = this.fb.group({
@@ -35,16 +38,19 @@ export class EtudiantUpdateComponent implements OnInit {
     section: [null, [Validators.required]],
     etat: [null, [Validators.required]],
     datenaissance: [],
-    historiqueEtudiantFiliere: [],
+    codeEtudiant: [null, [Validators.required]],
     etablissement: [],
-    historiqueEtudiantModule: []
+    historiqueEtudiantModule: [],
+    user: [],
+    filiere: []
   });
 
   constructor(
     protected etudiantService: EtudiantService,
-    protected historiqueEtudiantFiliereService: HistoriqueEtudiantFiliereService,
     protected etablissementService: EtablissementService,
     protected historiqueEtudiantModuleService: HistoriqueEtudiantModuleService,
+    protected userService: UserService,
+    protected filiereService: FiliereService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -53,15 +59,15 @@ export class EtudiantUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ etudiant }) => {
       this.updateForm(etudiant);
 
-      this.historiqueEtudiantFiliereService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEtudiantFiliere[]>) => (this.historiqueetudiantfilieres = res.body || []));
-
       this.etablissementService.query().subscribe((res: HttpResponse<IEtablissement[]>) => (this.etablissements = res.body || []));
 
       this.historiqueEtudiantModuleService
         .query()
         .subscribe((res: HttpResponse<IHistoriqueEtudiantModule[]>) => (this.historiqueetudiantmodules = res.body || []));
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+
+      this.filiereService.query().subscribe((res: HttpResponse<IFiliere[]>) => (this.filieres = res.body || []));
     });
   }
 
@@ -74,9 +80,11 @@ export class EtudiantUpdateComponent implements OnInit {
       section: etudiant.section,
       etat: etudiant.etat,
       datenaissance: etudiant.datenaissance,
-      historiqueEtudiantFiliere: etudiant.historiqueEtudiantFiliere,
+      codeEtudiant: etudiant.codeEtudiant,
       etablissement: etudiant.etablissement,
-      historiqueEtudiantModule: etudiant.historiqueEtudiantModule
+      historiqueEtudiantModule: etudiant.historiqueEtudiantModule,
+      user: etudiant.user,
+      filiere: etudiant.filiere
     });
   }
 
@@ -104,9 +112,11 @@ export class EtudiantUpdateComponent implements OnInit {
       section: this.editForm.get(['section'])!.value,
       etat: this.editForm.get(['etat'])!.value,
       datenaissance: this.editForm.get(['datenaissance'])!.value,
-      historiqueEtudiantFiliere: this.editForm.get(['historiqueEtudiantFiliere'])!.value,
+      codeEtudiant: this.editForm.get(['codeEtudiant'])!.value,
       etablissement: this.editForm.get(['etablissement'])!.value,
-      historiqueEtudiantModule: this.editForm.get(['historiqueEtudiantModule'])!.value
+      historiqueEtudiantModule: this.editForm.get(['historiqueEtudiantModule'])!.value,
+      user: this.editForm.get(['user'])!.value,
+      filiere: this.editForm.get(['filiere'])!.value
     };
   }
 

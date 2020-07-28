@@ -26,5 +26,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="departement"/>
 
+        <addForeignKeyConstraint baseColumnNames="id"
+                                 baseTableName="enseignant"
+                                 constraintName="fk_enseignant_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
     </changeSet>
 </databaseChangeLog>

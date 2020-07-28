@@ -30,12 +30,6 @@
                         <a [routerLink]="['/historique-enseignant-filiere', filiere.historiqueEnseignantFiliere?.id, 'view']">{{ filiere.historiqueEnseignantFiliere?.datedebut }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.filiere.historiqueEtudiantFiliere">Historique Etudiant Filiere</span></dt>
-                <dd>
-                    <div *ngIf="filiere.historiqueEtudiantFiliere">
-                        <a [routerLink]="['/historique-etudiant-filiere', filiere.historiqueEtudiantFiliere?.id, 'view']">{{ filiere.historiqueEtudiantFiliere?.datedebut }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

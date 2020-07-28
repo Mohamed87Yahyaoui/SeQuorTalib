@@ -1,4 +1,32 @@
-<div>
+<div class="row d-flex justify-content-center mt-4" *ngIf="diplome===false">
+<div class="col-md-6">
+    <div class="card" >
+        <img class="card-img-top" src="../../../content/images/etdnond.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">Etudiants de la faculté</h5>
+            <table class="text-center">
+                <tr><td><button class="btn success">SMIA</button></td><td><button class="btn success">SMPC</button></td><td><button class="btn success">SVT</button></td></tr>
+                <tr><td><button class="btn success">SMI</button></td><td><button class="btn success">SMP</button></td><td><button class="btn success">SVU</button></td></tr>
+                <tr><td><button class="btn success">SMA</button></td><td><button class="btn success">SMC</button></td><td><button class="btn success">SVI</button></td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="shownetddiplome()">
+    <div class="card" >
+        <img class="card-img-top" src="../../../content/images/etdavecd.png" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title text-center">Anciens etudiants de la faculté</h5>
+        </div>
+    </div>
+    </a>
+</div>
+</div>
+
+<!--
+<div *ngIf="diplome===true">
     <h2 id="page-heading">
         <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
@@ -29,9 +57,11 @@
                     <th scope="col"  jhiSortBy="section"><span jhiTranslate="sequortalibApp.etudiant.section">Section</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="etat"><span jhiTranslate="sequortalibApp.etudiant.etat">Etat</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="datenaissance"><span jhiTranslate="sequortalibApp.etudiant.datenaissance">Datenaissance</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="historiqueEtudiantFiliere.id"><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantFiliere">Historique Etudiant Filiere</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codeEtudiant"><span jhiTranslate="sequortalibApp.etudiant.codeEtudiant">Code Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="etablissement.nom"><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="historiqueEtudiantModule.id"><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantModule">Historique Etudiant Module</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.etudiant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="filiere.nom"><span jhiTranslate="sequortalibApp.etudiant.filiere">Filiere</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -44,11 +74,7 @@
                     <td>{{ etudiant.section }}</td>
                     <td jhiTranslate="{{ 'sequortalibApp.Status.' + etudiant.etat }}">{{ etudiant.etat }}</td>
                     <td>{{ etudiant.datenaissance | date:'mediumDate' }}</td>
-                    <td>
-                        <div *ngIf="etudiant.historiqueEtudiantFiliere">
-                            <a [routerLink]="['/historique-etudiant-filiere', etudiant.historiqueEtudiantFiliere?.id, 'view']" >{{ etudiant.historiqueEtudiantFiliere?.id }}</a>
-                        </div>
-                    </td>
+                    <td>{{ etudiant.codeEtudiant }}</td>
                     <td>
                         <div *ngIf="etudiant.etablissement">
                             <a [routerLink]="['/etablissement', etudiant.etablissement?.id, 'view']" >{{ etudiant.etablissement?.nom }}</a>
@@ -57,6 +83,14 @@
                     <td>
                         <div *ngIf="etudiant.historiqueEtudiantModule">
                             <a [routerLink]="['/historique-etudiant-module', etudiant.historiqueEtudiantModule?.id, 'view']" >{{ etudiant.historiqueEtudiantModule?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        {{ etudiant.user?.login }}
+                    </td>
+                    <td>
+                        <div *ngIf="etudiant.filiere">
+                            <a [routerLink]="['/filiere', etudiant.filiere?.id, 'view']" >{{ etudiant.filiere?.nom }}</a>
                         </div>
                     </td>
                     <td class="text-right">
@@ -87,3 +121,101 @@
         </table>
     </div>
 </div>
+-->
+
+<div *ngIf="diplome===true">
+<h2 id="page-heading">
+    <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
+
+    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
+        <fa-icon icon="plus"></fa-icon>
+        <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
+            Create a new Etudiant
+            </span>
+    </button>
+</h2>
+
+<jhi-alert-error></jhi-alert-error>
+
+<jhi-alert></jhi-alert>
+
+<div class="alert alert-warning" id="no-result" *ngIf="etudiants?.length === 0">
+    <span jhiTranslate="sequortalibApp.etudiant.home.notFound">No etudiants found</span>
+</div>
+
+<div class="table-responsive" id="entities" *ngIf="etudiants?.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.etudiant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tel"><span jhiTranslate="sequortalibApp.etudiant.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="datenaissance"><span jhiTranslate="sequortalibApp.etudiant.datenaissance">Datenaissance</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="etablissement.nom"><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="etablissement.filiere"><span >Filiere</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let etudiant of etudiants ;trackBy: trackId">
+
+            <td *ngIf="etudiant.etat==='DIPLOME'" (click)="showbouton()" ><a [routerLink]="['/etudiant', etudiant.id, 'view']">{{ etudiant.id }}</a></td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.user.firstName }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.user.lastName }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.cin }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.tel }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.datenaissance | date:'mediumDate' }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">
+                <div *ngIf="etudiant.etablissement">
+                    <a [routerLink]="['/etablissement', etudiant.etablissement?.id, 'view']" >{{ etudiant.etablissement?.nom }}</a>
+                </div>
+            </td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">
+                <div *ngIf="etudiant.etablissement.filiere">
+                    {{ etudiant.etablissement.filiere}}
+                </div>
+            </td>
+            <td class="text-right" *ngIf="etudiant.etat==='DIPLOME'">
+                <div class="btn-group">
+                    <button type="submit"
+                            [routerLink]="['/etudiant', etudiant.id, 'view']"
+                            class="btn btn-info btn-sm">
+                        <fa-icon icon="eye"></fa-icon>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                    </button>
+
+                    <button type="submit"
+                            [routerLink]="['/etudiant', etudiant.id, 'edit']"
+                            class="btn btn-primary btn-sm">
+                        <fa-icon icon="pencil-alt"></fa-icon>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+
+                    <button type="submit" (click)="delete(etudiant)"
+                            class="btn btn-danger btn-sm">
+                        <fa-icon icon="times"></fa-icon>
+                        <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

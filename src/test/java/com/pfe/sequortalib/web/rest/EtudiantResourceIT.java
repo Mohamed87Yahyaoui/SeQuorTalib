@@ -2,6 +2,7 @@ package com.pfe.sequortalib.web.rest;
 
 import com.pfe.sequortalib.SequortalibApp;
 import com.pfe.sequortalib.domain.Etudiant;
+import com.pfe.sequortalib.domain.User;
 import com.pfe.sequortalib.repository.EtudiantRepository;
 import com.pfe.sequortalib.service.EtudiantService;
 
@@ -52,6 +53,9 @@ public class EtudiantResourceIT {
     private static final LocalDate DEFAULT_DATENAISSANCE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATENAISSANCE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Integer DEFAULT_CODE_ETUDIANT = 1;
+    private static final Integer UPDATED_CODE_ETUDIANT = 2;
+
     @Autowired
     private EtudiantRepository etudiantRepository;
 
@@ -79,7 +83,13 @@ public class EtudiantResourceIT {
             .semsetre(DEFAULT_SEMSETRE)
             .section(DEFAULT_SECTION)
             .etat(DEFAULT_ETAT)
-            .datenaissance(DEFAULT_DATENAISSANCE);
+            .datenaissance(DEFAULT_DATENAISSANCE)
+            .codeEtudiant(DEFAULT_CODE_ETUDIANT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        etudiant.setUser(user);
         return etudiant;
     }
     /**
@@ -95,7 +105,13 @@ public class EtudiantResourceIT {
             .semsetre(UPDATED_SEMSETRE)
             .section(UPDATED_SECTION)
             .etat(UPDATED_ETAT)
-            .datenaissance(UPDATED_DATENAISSANCE);
+            .datenaissance(UPDATED_DATENAISSANCE)
+            .codeEtudiant(UPDATED_CODE_ETUDIANT);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        etudiant.setUser(user);
         return etudiant;
     }
 
@@ -125,6 +141,10 @@ public class EtudiantResourceIT {
         assertThat(testEtudiant.getSection()).isEqualTo(DEFAULT_SECTION);
         assertThat(testEtudiant.getEtat()).isEqualTo(DEFAULT_ETAT);
         assertThat(testEtudiant.getDatenaissance()).isEqualTo(DEFAULT_DATENAISSANCE);
+        assertThat(testEtudiant.getCodeEtudiant()).isEqualTo(DEFAULT_CODE_ETUDIANT);
+
+        // Validate the id for MapsId, the ids must be same
+        assertThat(testEtudiant.getId()).isEqualTo(testEtudiant.getUser().getId());
     }
 
     @Test
@@ -146,6 +166,38 @@ public class EtudiantResourceIT {
         assertThat(etudiantList).hasSize(databaseSizeBeforeCreate);
     }
 
+    @Test
+    @Transactional
+    public void updateEtudiantMapsIdAssociationWithNewId() throws Exception {
+        // Initialize the database
+        etudiantService.save(etudiant);
+        int databaseSizeBeforeCreate = etudiantRepository.findAll().size();
+
+
+        // Load the etudiant
+        Etudiant updatedEtudiant = etudiantRepository.findById(etudiant.getId()).get();
+        // Disconnect from session so that the updates on updatedEtudiant are not directly saved in db
+        em.detach(updatedEtudiant);
+
+        // Update the User with new association value
+        //updatedEtudiant.setUser();
+
+        // Update the entity
+        restEtudiantMockMvc.perform(put("/api/etudiants")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(updatedEtudiant)))
+            .andExpect(status().isOk());
+
+        // Validate the Etudiant in the database
+        List<Etudiant> etudiantList = etudiantRepository.findAll();
+        assertThat(etudiantList).hasSize(databaseSizeBeforeCreate);
+        Etudiant testEtudiant = etudiantList.get(etudiantList.size() - 1);
+
+        // Validate the id for MapsId, the ids must be same
+        // Uncomment the following line for assertion. However, please note that there is a known issue and uncommenting will fail the test.
+        // Please look at https://github.com/jhipster/generator-jhipster/issues/9100. You can modify this test as necessary.
+        // assertThat(testEtudiant.getId()).isEqualTo(testEtudiant.getUser().getId());
+    }
 
     @Test
     @Transactional
@@ -221,6 +273,24 @@ public class EtudiantResourceIT {
 
     @Test
     @Transactional
+    public void checkCodeEtudiantIsRequired() throws Exception {
+        int databaseSizeBeforeTest = etudiantRepository.findAll().size();
+        // set the field null
+        etudiant.setCodeEtudiant(null);
+
+        // Create the Etudiant, which fails.
+
+        restEtudiantMockMvc.perform(post("/api/etudiants")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(etudiant)))
+            .andExpect(status().isBadRequest());
+
+        List<Etudiant> etudiantList = etudiantRepository.findAll();
+        assertThat(etudiantList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllEtudiants() throws Exception {
         // Initialize the database
         etudiantRepository.saveAndFlush(etudiant);
@@ -235,9 +305,10 @@ public class EtudiantResourceIT {
             .andExpect(jsonPath("$.[*].semsetre").value(hasItem(DEFAULT_SEMSETRE)))
             .andExpect(jsonPath("$.[*].section").value(hasItem(DEFAULT_SECTION)))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.toString())))
-            .andExpect(jsonPath("$.[*].datenaissance").value(hasItem(DEFAULT_DATENAISSANCE.toString())));
+            .andExpect(jsonPath("$.[*].datenaissance").value(hasItem(DEFAULT_DATENAISSANCE.toString())))
+            .andExpect(jsonPath("$.[*].codeEtudiant").value(hasItem(DEFAULT_CODE_ETUDIANT)));
     }
-    
+
     @Test
     @Transactional
     public void getEtudiant() throws Exception {
@@ -254,7 +325,8 @@ public class EtudiantResourceIT {
             .andExpect(jsonPath("$.semsetre").value(DEFAULT_SEMSETRE))
             .andExpect(jsonPath("$.section").value(DEFAULT_SECTION))
             .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.toString()))
-            .andExpect(jsonPath("$.datenaissance").value(DEFAULT_DATENAISSANCE.toString()));
+            .andExpect(jsonPath("$.datenaissance").value(DEFAULT_DATENAISSANCE.toString()))
+            .andExpect(jsonPath("$.codeEtudiant").value(DEFAULT_CODE_ETUDIANT));
     }
 
     @Test
@@ -283,7 +355,8 @@ public class EtudiantResourceIT {
             .semsetre(UPDATED_SEMSETRE)
             .section(UPDATED_SECTION)
             .etat(UPDATED_ETAT)
-            .datenaissance(UPDATED_DATENAISSANCE);
+            .datenaissance(UPDATED_DATENAISSANCE)
+            .codeEtudiant(UPDATED_CODE_ETUDIANT);
 
         restEtudiantMockMvc.perform(put("/api/etudiants")
             .contentType(MediaType.APPLICATION_JSON)
@@ -300,6 +373,7 @@ public class EtudiantResourceIT {
         assertThat(testEtudiant.getSection()).isEqualTo(UPDATED_SECTION);
         assertThat(testEtudiant.getEtat()).isEqualTo(UPDATED_ETAT);
         assertThat(testEtudiant.getDatenaissance()).isEqualTo(UPDATED_DATENAISSANCE);
+        assertThat(testEtudiant.getCodeEtudiant()).isEqualTo(UPDATED_CODE_ETUDIANT);
     }
 
     @Test

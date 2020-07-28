@@ -25,10 +25,9 @@
             "otherEntityRelationshipName": "filiere"
         },
         {
-            "relationshipName": "historiqueEtudiantFiliere",
-            "otherEntityName": "historiqueEtudiantFiliere",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "datedebut",
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
+            "relationshipType": "one-to-many",
             "otherEntityRelationshipName": "filiere"
         }
     ],

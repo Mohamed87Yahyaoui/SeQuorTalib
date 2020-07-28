@@ -26,7 +26,6 @@
                     <th scope="col"  jhiSortBy="nom"><span jhiTranslate="sequortalibApp.filiere.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="departement.nom"><span jhiTranslate="sequortalibApp.filiere.departement">Departement</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="historiqueEnseignantFiliere.datedebut"><span jhiTranslate="sequortalibApp.filiere.historiqueEnseignantFiliere">Historique Enseignant Filiere</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="historiqueEtudiantFiliere.datedebut"><span jhiTranslate="sequortalibApp.filiere.historiqueEtudiantFiliere">Historique Etudiant Filiere</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -42,11 +41,6 @@
                     <td>
                         <div *ngIf="filiere.historiqueEnseignantFiliere">
                             <a [routerLink]="['/historique-enseignant-filiere', filiere.historiqueEnseignantFiliere?.id, 'view']" >{{ filiere.historiqueEnseignantFiliere?.datedebut }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="filiere.historiqueEtudiantFiliere">
-                            <a [routerLink]="['/historique-etudiant-filiere', filiere.historiqueEtudiantFiliere?.id, 'view']" >{{ filiere.historiqueEtudiantFiliere?.datedebut }}</a>
                         </div>
                     </td>
                     <td class="text-right">

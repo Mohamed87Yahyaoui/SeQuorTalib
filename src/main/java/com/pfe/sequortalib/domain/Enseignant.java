@@ -22,7 +22,6 @@ public class Enseignant implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "tel")
@@ -49,6 +48,12 @@ public class Enseignant implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("enseignants")
     private Departement departement;
+
+    @OneToOne
+
+    @MapsId
+    @JoinColumn(name = "id")
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -148,6 +153,19 @@ public class Enseignant implements Serializable {
 
     public void setDepartement(Departement departement) {
         this.departement = departement;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Enseignant user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

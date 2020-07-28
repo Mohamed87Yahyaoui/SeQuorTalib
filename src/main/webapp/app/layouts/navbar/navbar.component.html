@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-primary">
+<nav class="navbar navbar-dark navbar-expand-md bg-primary" >
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">Sequortalib</span> <span class="navbar-version">{{ version }}</span>
@@ -16,7 +16,20 @@
                     </span>
                 </a>
             </li>
-            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+
+            <li class="nav-item" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                <a class="nav-link" routerLink="etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <span>
+                        <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                        <span jhiTranslate="global.menu.entities.etudiant">Etudiant</span>
+                    </span>
+                </a>
+            </li>
+
+
+
+
+            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here
             <li  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
@@ -87,9 +100,9 @@
                             <span jhiTranslate="global.menu.entities.enseignant">Enseignant</span>
                         </a>
                     </li>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                     jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here
                 </ul>
-            </li>
+            </li>-->
 
             <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">

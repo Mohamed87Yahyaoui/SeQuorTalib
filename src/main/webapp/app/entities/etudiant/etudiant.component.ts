@@ -9,6 +9,7 @@ import { IEtudiant } from 'app/shared/model/etudiant.model';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EtudiantService } from './etudiant.service';
 import { EtudiantDeleteDialogComponent } from './etudiant-delete-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-etudiant',
@@ -23,11 +24,16 @@ export class EtudiantComponent implements OnInit, OnDestroy {
   predicate: string;
   ascending: boolean;
 
+  nondiplome = false;
+  diplome = false;
+  bouton = false;
+
   constructor(
     protected etudiantService: EtudiantService,
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
-    protected parseLinks: JhiParseLinks
+    protected parseLinks: JhiParseLinks,
+    private router: Router
   ) {
     this.etudiants = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
@@ -101,5 +107,14 @@ export class EtudiantComponent implements OnInit, OnDestroy {
         this.etudiants.push(data[i]);
       }
     }
+  }
+
+  shownetddiplome(): void {
+    this.diplome = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showbouton(): void {
+    this.bouton = true;
   }
 }

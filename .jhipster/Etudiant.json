@@ -3,13 +3,6 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "historiqueEtudiantFiliere",
-            "otherEntityName": "historiqueEtudiantFiliere",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "etudiant"
-        },
-        {
             "relationshipName": "etablissement",
             "otherEntityName": "etablissement",
             "relationshipType": "many-to-one",
@@ -21,6 +14,22 @@
             "otherEntityName": "historiqueEtudiantModule",
             "relationshipType": "many-to-one",
             "otherEntityField": "id",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nom",
             "otherEntityRelationshipName": "etudiant"
         }
     ],
@@ -61,6 +70,13 @@
         {
             "fieldName": "datenaissance",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "codeEtudiant",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20200703222207",

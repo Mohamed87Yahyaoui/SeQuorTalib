@@ -2,6 +2,7 @@ import { Moment } from 'moment';
 import { IHistoriqueEnseignantModule } from 'app/shared/model/historique-enseignant-module.model';
 import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseignant-filiere.model';
 import { IDepartement } from 'app/shared/model/departement.model';
+import { IUser } from 'app/core/user/user.model';
 
 export interface IEnseignant {
   id?: number;
@@ -12,6 +13,7 @@ export interface IEnseignant {
   historiqueEnseignantModule?: IHistoriqueEnseignantModule;
   historiqueEnseignantFiliere?: IHistoriqueEnseignantFiliere;
   departement?: IDepartement;
+  user?: IUser;
 }
 
 export class Enseignant implements IEnseignant {
@@ -23,6 +25,7 @@ export class Enseignant implements IEnseignant {
     public grade?: string,
     public historiqueEnseignantModule?: IHistoriqueEnseignantModule,
     public historiqueEnseignantFiliere?: IHistoriqueEnseignantFiliere,
-    public departement?: IDepartement
+    public departement?: IDepartement,
+    public user?: IUser
   ) {}
 }

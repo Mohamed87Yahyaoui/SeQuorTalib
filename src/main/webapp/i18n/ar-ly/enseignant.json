@@ -22,7 +22,8 @@
       "grade": "Grade",
       "historiqueEnseignantModule": "Historique Enseignant Module",
       "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
-      "departement": "Departement"
+      "departement": "Departement",
+      "user": "User"
     }
   }
 }

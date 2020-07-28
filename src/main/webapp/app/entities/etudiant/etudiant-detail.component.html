@@ -32,11 +32,9 @@
                 <dd>
                     <span>{{ etudiant.datenaissance }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantFiliere">Historique Etudiant Filiere</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.codeEtudiant">Code Etudiant</span></dt>
                 <dd>
-                    <div *ngIf="etudiant.historiqueEtudiantFiliere">
-                        <a [routerLink]="['/historique-etudiant-filiere', etudiant.historiqueEtudiantFiliere?.id, 'view']">{{ etudiant.historiqueEtudiantFiliere?.id }}</a>
-                    </div>
+                    <span>{{ etudiant.codeEtudiant }}</span>
                 </dd>
                 <dt><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span></dt>
                 <dd>
@@ -48,6 +46,16 @@
                 <dd>
                     <div *ngIf="etudiant.historiqueEtudiantModule">
                         <a [routerLink]="['/historique-etudiant-module', etudiant.historiqueEtudiantModule?.id, 'view']">{{ etudiant.historiqueEtudiantModule?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.user">User</span></dt>
+                <dd>
+                    {{ etudiant.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.filiere">Filiere</span></dt>
+                <dd>
+                    <div *ngIf="etudiant.filiere">
+                        <a [routerLink]="['/filiere', etudiant.filiere?.id, 'view']">{{ etudiant.filiere?.nom }}</a>
                     </div>
                 </dd>
             </dl>
@@ -62,6 +70,11 @@
                     [routerLink]="['/etudiant', etudiant.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+            <button type="submit" (click)="delete(etudiant)"
+                    class="btn btn-danger btn-sm">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
             </button>
         </div>
     </div>

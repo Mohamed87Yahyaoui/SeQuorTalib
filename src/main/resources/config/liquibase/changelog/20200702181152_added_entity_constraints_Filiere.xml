@@ -32,11 +32,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="historique_enseignant_filiere"/>
 
-        <addForeignKeyConstraint baseColumnNames="historique_etudiant_filiere_id"
-                                 baseTableName="filiere"
-                                 constraintName="fk_filiere_historique_etudiant_filiere_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="historique_etudiant_filiere"/>
-
     </changeSet>
 </databaseChangeLog>

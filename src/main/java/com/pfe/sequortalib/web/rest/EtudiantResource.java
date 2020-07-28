@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -56,6 +57,9 @@ public class EtudiantResource {
         log.debug("REST request to save Etudiant : {}", etudiant);
         if (etudiant.getId() != null) {
             throw new BadRequestAlertException("A new etudiant cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (Objects.isNull(etudiant.getUser())) {
+            throw new BadRequestAlertException("Invalid association value provided", ENTITY_NAME, "null");
         }
         Etudiant result = etudiantService.save(etudiant);
         return ResponseEntity.created(new URI("/api/etudiants/" + result.getId()))

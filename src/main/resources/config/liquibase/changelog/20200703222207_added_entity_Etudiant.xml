@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-        <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="false"/>
 
     <!--
         Added the entity Etudiant.
@@ -34,13 +34,16 @@
             <column name="datenaissance" type="date">
                 <constraints nullable="true" />
             </column>
-            <column name="historique_etudiant_filiere_id" type="bigint">
-                <constraints nullable="true" />
+            <column name="code_etudiant" type="integer">
+                <constraints nullable="false" />
             </column>
             <column name="etablissement_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="historique_etudiant_module_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="filiere_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -72,6 +75,7 @@
             <column name="section" type="string"/>
             <column name="etat" type="string"/>
             <column name="datenaissance" type="date"/>
+            <column name="code_etudiant" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

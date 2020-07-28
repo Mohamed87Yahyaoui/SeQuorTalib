@@ -13,8 +13,10 @@ import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseig
 import { HistoriqueEnseignantFiliereService } from 'app/entities/historique-enseignant-filiere/historique-enseignant-filiere.service';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
-type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEnseignantFiliere | IDepartement;
+type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEnseignantFiliere | IDepartement | IUser;
 
 @Component({
   selector: 'jhi-enseignant-update',
@@ -25,6 +27,7 @@ export class EnseignantUpdateComponent implements OnInit {
   historiqueenseignantmodules: IHistoriqueEnseignantModule[] = [];
   historiqueenseignantfilieres: IHistoriqueEnseignantFiliere[] = [];
   departements: IDepartement[] = [];
+  users: IUser[] = [];
   datenaissanceDp: any;
 
   editForm = this.fb.group({
@@ -35,7 +38,8 @@ export class EnseignantUpdateComponent implements OnInit {
     grade: [],
     historiqueEnseignantModule: [],
     historiqueEnseignantFiliere: [],
-    departement: []
+    departement: [],
+    user: []
   });
 
   constructor(
@@ -43,6 +47,7 @@ export class EnseignantUpdateComponent implements OnInit {
     protected historiqueEnseignantModuleService: HistoriqueEnseignantModuleService,
     protected historiqueEnseignantFiliereService: HistoriqueEnseignantFiliereService,
     protected departementService: DepartementService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -60,6 +65,8 @@ export class EnseignantUpdateComponent implements OnInit {
         .subscribe((res: HttpResponse<IHistoriqueEnseignantFiliere[]>) => (this.historiqueenseignantfilieres = res.body || []));
 
       this.departementService.query().subscribe((res: HttpResponse<IDepartement[]>) => (this.departements = res.body || []));
+
+      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -72,7 +79,8 @@ export class EnseignantUpdateComponent implements OnInit {
       grade: enseignant.grade,
       historiqueEnseignantModule: enseignant.historiqueEnseignantModule,
       historiqueEnseignantFiliere: enseignant.historiqueEnseignantFiliere,
-      departement: enseignant.departement
+      departement: enseignant.departement,
+      user: enseignant.user
     });
   }
 
@@ -100,7 +108,8 @@ export class EnseignantUpdateComponent implements OnInit {
       grade: this.editForm.get(['grade'])!.value,
       historiqueEnseignantModule: this.editForm.get(['historiqueEnseignantModule'])!.value,
       historiqueEnseignantFiliere: this.editForm.get(['historiqueEnseignantFiliere'])!.value,
-      departement: this.editForm.get(['departement'])!.value
+      departement: this.editForm.get(['departement'])!.value,
+      user: this.editForm.get(['user'])!.value
     };
   }
 

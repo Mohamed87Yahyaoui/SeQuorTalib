@@ -39,7 +39,7 @@ export const enseignantRoute: Routes = [
     path: '',
     component: EnseignantComponent,
     data: {
-      authorities: [Authority.ADMIN],
+      authorities: [Authority.USER],
       pageTitle: 'sequortalibApp.enseignant.home.title'
     },
     canActivate: [UserRouteAccessService]

@@ -13,10 +13,8 @@ import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
 import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseignant-filiere.model';
 import { HistoriqueEnseignantFiliereService } from 'app/entities/historique-enseignant-filiere/historique-enseignant-filiere.service';
-import { IHistoriqueEtudiantFiliere } from 'app/shared/model/historique-etudiant-filiere.model';
-import { HistoriqueEtudiantFiliereService } from 'app/entities/historique-etudiant-filiere/historique-etudiant-filiere.service';
 
-type SelectableEntity = IModule | IDepartement | IHistoriqueEnseignantFiliere | IHistoriqueEtudiantFiliere;
+type SelectableEntity = IModule | IDepartement | IHistoriqueEnseignantFiliere;
 
 @Component({
   selector: 'jhi-filiere-update',
@@ -27,15 +25,13 @@ export class FiliereUpdateComponent implements OnInit {
   modules: IModule[] = [];
   departements: IDepartement[] = [];
   historiqueenseignantfilieres: IHistoriqueEnseignantFiliere[] = [];
-  historiqueetudiantfilieres: IHistoriqueEtudiantFiliere[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [null, [Validators.required]],
     modules: [],
     departement: [],
-    historiqueEnseignantFiliere: [],
-    historiqueEtudiantFiliere: []
+    historiqueEnseignantFiliere: []
   });
 
   constructor(
@@ -43,7 +39,6 @@ export class FiliereUpdateComponent implements OnInit {
     protected moduleService: ModuleService,
     protected departementService: DepartementService,
     protected historiqueEnseignantFiliereService: HistoriqueEnseignantFiliereService,
-    protected historiqueEtudiantFiliereService: HistoriqueEtudiantFiliereService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -59,10 +54,6 @@ export class FiliereUpdateComponent implements OnInit {
       this.historiqueEnseignantFiliereService
         .query()
         .subscribe((res: HttpResponse<IHistoriqueEnseignantFiliere[]>) => (this.historiqueenseignantfilieres = res.body || []));
-
-      this.historiqueEtudiantFiliereService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEtudiantFiliere[]>) => (this.historiqueetudiantfilieres = res.body || []));
     });
   }
 
@@ -72,8 +63,7 @@ export class FiliereUpdateComponent implements OnInit {
       nom: filiere.nom,
       modules: filiere.modules,
       departement: filiere.departement,
-      historiqueEnseignantFiliere: filiere.historiqueEnseignantFiliere,
-      historiqueEtudiantFiliere: filiere.historiqueEtudiantFiliere
+      historiqueEnseignantFiliere: filiere.historiqueEnseignantFiliere
     });
   }
 
@@ -98,8 +88,7 @@ export class FiliereUpdateComponent implements OnInit {
       nom: this.editForm.get(['nom'])!.value,
       modules: this.editForm.get(['modules'])!.value,
       departement: this.editForm.get(['departement'])!.value,
-      historiqueEnseignantFiliere: this.editForm.get(['historiqueEnseignantFiliere'])!.value,
-      historiqueEtudiantFiliere: this.editForm.get(['historiqueEtudiantFiliere'])!.value
+      historiqueEnseignantFiliere: this.editForm.get(['historiqueEnseignantFiliere'])!.value
     };
   }
 

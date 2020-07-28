@@ -17,9 +17,7 @@
         "title": "Historique Etudiant Filiere"
       },
       "datedebut": "Datedebut",
-      "datefin": "Datefin",
-      "filiere": "Filiere",
-      "etudiant": "Etudiant"
+      "datefin": "Datefin"
     }
   }
 }

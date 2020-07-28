@@ -30,6 +30,7 @@
                     <th scope="col"  jhiSortBy="historiqueEnseignantModule.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule">Historique Enseignant Module</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="historiqueEnseignantFiliere.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantFiliere">Historique Enseignant Filiere</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="departement.nom"><span jhiTranslate="sequortalibApp.enseignant.departement">Departement</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.enseignant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -54,6 +55,9 @@
                         <div *ngIf="enseignant.departement">
                             <a [routerLink]="['/departement', enseignant.departement?.id, 'view']" >{{ enseignant.departement?.nom }}</a>
                         </div>
+                    </td>
+                    <td>
+                        {{ enseignant.user?.login }}
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
