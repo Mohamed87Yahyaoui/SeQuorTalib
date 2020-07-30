@@ -14,7 +14,7 @@
 </div>
 
 <div class="col-md-6">
-    <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="shownetddiplome()">
+    <a class="dropdown-item" routerLinkActive="active" (click)="shownetddiplome()">
     <div class="card" >
         <img class="card-img-top" src="../../../content/images/etdavecd.png" alt="Card image cap">
         <div class="card-body">
@@ -25,12 +25,12 @@
 </div>
 </div>
 
-<!--
-<div *ngIf="diplome===true">
-    <h2 id="page-heading">
+
+<div >
+    <h2 >
         <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
+        <button  class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
             <fa-icon icon="plus"></fa-icon>
             <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
             Create a new Etudiant
@@ -42,11 +42,11 @@
 
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="etudiants?.length === 0">
+    <div class="alert alert-warning"  *ngIf="etudiants?.length === 0">
         <span jhiTranslate="sequortalibApp.etudiant.home.notFound">No etudiants found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="etudiants?.length > 0">
+    <div class="table-responsive"  *ngIf="etudiants?.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
@@ -121,7 +121,7 @@
         </table>
     </div>
 </div>
--->
+
 
 <div *ngIf="diplome===true">
 <h2 id="page-heading">

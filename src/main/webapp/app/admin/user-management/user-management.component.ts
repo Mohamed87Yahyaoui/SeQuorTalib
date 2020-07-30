@@ -28,6 +28,10 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   previousPage!: number;
   ascending!: boolean;
 
+  compteEtudiant = false;
+  compteEnseignant = false;
+  autrecompte = false;
+
   constructor(
     private userService: UserService,
     private accountService: AccountService,
@@ -114,5 +118,20 @@ export class UserManagementComponent implements OnInit, OnDestroy {
   private onSuccess(users: User[] | null, headers: HttpHeaders): void {
     this.totalItems = Number(headers.get('X-Total-Count'));
     this.users = users;
+  }
+
+  showetudiants(): void {
+    this.compteEtudiant = true;
+    this.router.navigateByUrl('/admin/user-management');
+  }
+
+  showenseignants(): void {
+    this.compteEnseignant = true;
+    this.router.navigateByUrl('/admin/user-management');
+  }
+
+  showautre(): void {
+    this.autrecompte = true;
+    this.router.navigateByUrl('/admin/user-management');
   }
 }

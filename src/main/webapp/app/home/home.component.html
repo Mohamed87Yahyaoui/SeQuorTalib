@@ -5,15 +5,6 @@
         <h1 class="display-4 text-center" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
 
         <p class="lead text-center" jhiTranslate="home.subtitle">This is your homepage</p>
-
-
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                    [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
-            </div>
-
-
             <div class="container-fluid" *ngSwitchCase="false">
                 <ngb-carousel>
                     <ng-template ngbSlide>
@@ -58,6 +49,12 @@
  -->
 
 <div [ngSwitch]="isAuthenticated()">
+<div class="card jh-card">
+    <div class="alert alert-success" *ngSwitchCase="true">
+                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
+                      [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+    </div>
+
     <div  *ngSwitchCase="true">
         <div class="row" *jhiHasAnyAuthority="'ROLE_ADMIN'">
             <div class="col-xl-3 col-md-6">
@@ -153,8 +150,19 @@
                 </div>
             </div>
         </div>
+
+        <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
+            <jhi-dashboard-etudiant></jhi-dashboard-etudiant>
+        </div>
+
+        <div *jhiHasAnyAuthority="'ROLE_ENSEIGNANT'">
+            <jhi-dashboard-enseignant></jhi-dashboard-enseignant>
+        </div>
+
+    </div>
     </div>
     <div *ngSwitchCase="false">
+
         <div class="header bg-gradient-danger py-7 py-lg-8">
             <div class="container">
                 <div class="header-body text-center mb-7">
@@ -177,22 +185,9 @@
             <div class="row justify-content-center">
                 <div class="col-lg-5 col-md-7">
                     <div class="card bg-secondary shadow border-0">
-                        <div class="card-header bg-transparent pb-5">
-                            <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
-                            <div class="btn-wrapper text-center">
-                                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="../../content/images/icons/github.svg"></span>
-                                    <span class="btn-inner--text">Github</span>
-                                </a>
-                                <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-                                    <span class="btn-inner--icon"><img src="../../content/images/icons/google.svg"></span>
-                                    <span class="btn-inner--text">Google</span>
-                                </a>
-                            </div>
-                        </div>
                         <div class="card-body px-lg-5 py-lg-5">
                             <div class="text-center text-muted mb-4">
-                                <small>Or sign in with credentials</small>
+                                <small>Sign in with </small>
                             </div>
                             <form class="form" role="form" (ngSubmit)="login()" [formGroup]="loginForm">
                                 <div class="form-group mb-3">
