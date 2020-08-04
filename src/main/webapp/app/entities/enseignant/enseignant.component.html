@@ -1,3 +1,4 @@
+<div class="card jh-card">
 <div>
     <h2 id="page-heading">
         <span jhiTranslate="sequortalibApp.enseignant.home.title">Enseignants</span>
@@ -23,36 +24,39 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.enseignant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.enseignant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="tel"><span jhiTranslate="sequortalibApp.enseignant.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="datenaissance"><span jhiTranslate="sequortalibApp.enseignant.datenaissance">Datenaissance</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.enseignant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="grade"><span jhiTranslate="sequortalibApp.enseignant.grade">Grade</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="historiqueEnseignantModule.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule">Historique Enseignant Module</span> <fa-icon icon="sort"></fa-icon></th>
+                    <!--<th scope="col"  jhiSortBy="historiqueEnseignantModule.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule">Historique Enseignant Module</span> <fa-icon icon="sort"></fa-icon></th>-->
                     <th scope="col"  jhiSortBy="departement.nom"><span jhiTranslate="sequortalibApp.enseignant.departement">Departement</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.enseignant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                 <tr *ngFor="let enseignant of enseignants ;trackBy: trackId">
                     <td><a [routerLink]="['/enseignant', enseignant.id, 'view']">{{ enseignant.id }}</a></td>
+                    <td>{{ enseignant.user.firstName }}</td>
+                    <td>{{ enseignant.user.lastName }}</td>
+                    <td>{{ enseignant.user?.login }}</td>
+                    <td>{{ enseignant.cin }}</td>
                     <td>{{ enseignant.tel }}</td>
                     <td>{{ enseignant.datenaissance | date:'mediumDate' }}</td>
-                    <td>{{ enseignant.cin }}</td>
                     <td>{{ enseignant.grade }}</td>
-                    <td>
+                    <!--<td>
                         <div *ngIf="enseignant.historiqueEnseignantModule">
                             <a [routerLink]="['/historique-enseignant-module', enseignant.historiqueEnseignantModule?.id, 'view']" >{{ enseignant.historiqueEnseignantModule?.id }}</a>
                         </div>
-                    </td>
+                    </td>-->
                     <td>
                         <div *ngIf="enseignant.departement">
                             <a [routerLink]="['/departement', enseignant.departement?.id, 'view']" >{{ enseignant.departement?.nom }}</a>
                         </div>
                     </td>
-                    <td>
-                        {{ enseignant.user?.login }}
-                    </td>
+
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -60,13 +64,6 @@
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/enseignant', enseignant.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(enseignant)"
@@ -80,4 +77,5 @@
             </tbody>
         </table>
     </div>
+</div>
 </div>

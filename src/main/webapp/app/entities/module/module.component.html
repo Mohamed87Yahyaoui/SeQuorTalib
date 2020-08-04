@@ -5,7 +5,7 @@
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-module" [routerLink]="['/module/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="sequortalibApp.module.home.createLabel">
+            <span  jhiTranslate="sequortalibApp.module.home.createLabel" class="text-center">
             Create a new Module
             </span>
         </button>
@@ -26,8 +26,9 @@
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="nom"><span jhiTranslate="sequortalibApp.module.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="semester"><span jhiTranslate="sequortalibApp.module.semester">Semester</span> <fa-icon icon="sort"></fa-icon></th>
+                    <!--
                     <th scope="col"  jhiSortBy="historiqueEnseignantModule.datedebut"><span jhiTranslate="sequortalibApp.module.historiqueEnseignantModule">Historique Enseignant Module</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="historiqueEtudiantModule.datedebut"><span jhiTranslate="sequortalibApp.module.historiqueEtudiantModule">Historique Etudiant Module</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="historiqueEtudiantModule.datedebut"><span jhiTranslate="sequortalibApp.module.historiqueEtudiantModule">Historique Etudiant Module</span> <fa-icon icon="sort"></fa-icon></th>-->
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,6 +37,7 @@
                     <td><a [routerLink]="['/module', module.id, 'view']">{{ module.id }}</a></td>
                     <td>{{ module.nom }}</td>
                     <td>{{ module.semester }}</td>
+                    <!--
                     <td>
                         <div *ngIf="module.historiqueEnseignantModule">
                             <a [routerLink]="['/historique-enseignant-module', module.historiqueEnseignantModule?.id, 'view']" >{{ module.historiqueEnseignantModule?.datedebut }}</a>
@@ -46,6 +48,7 @@
                             <a [routerLink]="['/historique-etudiant-module', module.historiqueEtudiantModule?.id, 'view']" >{{ module.historiqueEtudiantModule?.datedebut }}</a>
                         </div>
                     </td>
+                    -->
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -53,13 +56,6 @@
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                            </button>
-
-                            <button type="submit"
-                                    [routerLink]="['/module', module.id, 'edit']"
-                                    class="btn btn-primary btn-sm">
-                                <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(module)"

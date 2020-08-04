@@ -53,10 +53,11 @@
 <div [ngSwitch]="isAuthenticated()">
 
     <div class="card jh-card" *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_ENSEIGNANT','ROLE_ETUDIANT']">
+        <!--
     <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
                       [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
-    </div>
+    </div>-->
 
     <div  *ngSwitchCase="true">
         <div class="row" *jhiHasAnyAuthority="'ROLE_ADMIN'">
@@ -75,10 +76,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-nowrap">Nombre:</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 8</span>
-                            </p>
                         </div>
                     </a>
                 </div>
@@ -98,10 +95,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-nowrap">Nombre:</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 6</span>
-                            </p>
                         </div>
                     </a>
                 </div>
@@ -121,10 +114,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-nowrap">Nombre:</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 50</span>
-                            </p>
                         </div>
                     </a>
                 </div>
@@ -144,18 +133,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-nowrap">Nombre:</span>
-                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 20</span>
-                            </p>
                         </div>
                     </a>
                 </div>
             </div>
+            <div class="card-body">
+             <div class="row d-flex justify-content-center ">
+                <div class="col-8">
+                    <div class="card shadow">
+                        <canvas
+                            baseChart
+                            [chartType]="'line'"
+                            [datasets]="chartDataAdmin"
+                            [labels]="chartLabelAdmin"
+                            [options]="chartOptionsAdmin"
+                            [legend]="true">
+                        </canvas>
+                        <br>
+                        <p class="text-center">Nombre des visiteurs (en %) dans les 5 mois derniers</p>
+                    </div>
 
-
-
-
+                </div>
+             </div>
+            </div>
         </div>
 
         <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'">

@@ -4,7 +4,7 @@
       "home": {
         "title": "Etudiants",
         "createLabel": "Créer un nouveau Etudiant",
-        "createOrEditLabel": "Editer un Etudiant",
+        "createOrEditLabel": "Créer ou Editer un Etudiant",
         "notFound": "Aucun Etudiant trouvé"
       },
       "created": "Un nouveau Etudiant a été créé avec l'identifiant {{ param }}",

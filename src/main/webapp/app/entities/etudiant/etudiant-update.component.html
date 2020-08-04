@@ -1,149 +1,3 @@
-<!--<div class="row justify-content-center">
-    <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-etudiant-heading" jhiTranslate="sequortalibApp.etudiant.home.createOrEditLabel">Create or edit a Etudiant</h2>
-
-            <div>
-                <jhi-alert-error></jhi-alert-error>
-
-                <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Tel</label>
-                    <input type="number" class="form-control" name="tel" id="field_tel"
-                           formControlName="tel"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.cin" for="field_cin">Cin</label>
-                    <input type="text" class="form-control" name="cin" id="field_cin"
-                           formControlName="cin"/>
-                    <div *ngIf="editForm.get('cin')!.invalid && (editForm.get('cin')!.dirty || editForm.get('cin')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('cin')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.semsetre" for="field_semsetre">Semsetre</label>
-                    <input type="number" class="form-control" name="semsetre" id="field_semsetre"
-                           formControlName="semsetre"/>
-                    <div *ngIf="editForm.get('semsetre')!.invalid && (editForm.get('semsetre')!.dirty || editForm.get('semsetre')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('semsetre')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('semsetre')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.section" for="field_section">Section</label>
-                    <input type="text" class="form-control" name="section" id="field_section"
-                           formControlName="section"/>
-                    <div *ngIf="editForm.get('section')!.invalid && (editForm.get('section')!.dirty || editForm.get('section')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('section')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etat" for="field_etat">Etat</label>
-                    <select class="form-control" name="etat" formControlName="etat" id="field_etat">
-                        <option value="DIPLOME">{{ 'sequortalibApp.Status.DIPLOME' | translate }}</option>
-                        <option value="NONDIPLOME">{{ 'sequortalibApp.Status.NONDIPLOME' | translate }}</option>
-                    </select>
-                    <div *ngIf="editForm.get('etat')!.invalid && (editForm.get('etat')!.dirty || editForm.get('etat')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('etat')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.datenaissance" for="field_datenaissance">Datenaissance</label>
-                    <div class="input-group">
-                        <input id="field_datenaissance" type="text" class="form-control" name="datenaissance" ngbDatepicker #datenaissanceDp="ngbDatepicker" formControlName="datenaissance"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.codeEtudiant" for="field_codeEtudiant">Code Etudiant</label>
-                    <input type="number" class="form-control" name="codeEtudiant" id="field_codeEtudiant"
-                           formControlName="codeEtudiant"/>
-                    <div *ngIf="editForm.get('codeEtudiant')!.invalid && (editForm.get('codeEtudiant')!.dirty || editForm.get('codeEtudiant')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('codeEtudiant')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                        <small class="form-text text-danger"
-                            [hidden]="!editForm.get('codeEtudiant')?.errors?.number" jhiTranslate="entity.validation.number">
-                            This field should be a number.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etablissement" for="field_etablissement">Etablissement</label>
-                    <select class="form-control" id="field_etablissement" name="etablissement" formControlName="etablissement">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="etablissementOption.id === editForm.get('etablissement')!.value?.id ? editForm.get('etablissement')!.value : etablissementOption" *ngFor="let etablissementOption of etablissements; trackBy: trackById">{{ etablissementOption.nom }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantModule" for="field_historiqueEtudiantModule">Historique Etudiant Module</label>
-                    <select class="form-control" id="field_historiqueEtudiantModule" name="historiqueEtudiantModule" formControlName="historiqueEtudiantModule">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="historiqueEtudiantModuleOption.id === editForm.get('historiqueEtudiantModule')!.value?.id ? editForm.get('historiqueEtudiantModule')!.value : historiqueEtudiantModuleOption" *ngFor="let historiqueEtudiantModuleOption of historiqueetudiantmodules; trackBy: trackById">{{ historiqueEtudiantModuleOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="user">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.filiere" for="field_filiere">Filiere</label>
-                    <select class="form-control" id="field_filiere" name="filiere" formControlName="filiere">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="filiereOption.id === editForm.get('filiere')!.value?.id ? editForm.get('filiere')!.value : filiereOption" *ngFor="let filiereOption of filieres; trackBy: trackById">{{ filiereOption.nom }}</option>
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                </button>
-
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
--->
-
 <div class="card jh-card">
     <div class="col-xl-12 order-xl-1">
         <div class="card">
@@ -151,7 +5,7 @@
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-12">
-                            <h2 id="jhi-etudiant-heading" jhiTranslate="sequortalibApp.etudiant.home.createOrEditLabel">Create or edit a Etudiant</h2>
+                            <h2 id="jhi-etudiant-heading" jhiTranslate="sequortalibApp.etudiant.home.createOrEditLabel" class="text-center">Create or edit a Etudiant</h2>
                         </div>
                     </div>
                 </div>
@@ -161,188 +15,167 @@
                         <h6 class="heading-small text-muted mb-4">User information</h6>
                         <div class="pl-lg-4">
                             <div class="row">
-                                <jhi-alert-error></jhi-alert-error>
-
                                 <div class="col-lg-6">
-
                                     <div class="form-group" [hidden]="!editForm.get('id')!.value">
                                         <label for="id" jhiTranslate="global.field.id">ID</label>
                                         <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                                     </div>
-
-
                                 </div>
                                 <div class="col-lg-6">
-
-                                    <div class="form-group">
+                                   <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
                                         <select class="form-control" id="field_user" name="user" formControlName="user">
                                             <option [ngValue]="null"></option>
                                             <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
                                         </select>
                                     </div>
-
-
-                                    <!--
-                                     <div class="form-group">
-                                         <label class="form-control-label" jhiTranslate="userManagement.login">Login</label>
-                                         <input type="text" class="form-control" name="login"
-                                                formControlName="login">
-
-                                         <div *ngIf="editForm.get('login')!.invalid && (editForm.get('login')!.dirty || editForm.get('login')!.touched)">
-                                             <small class="form-text text-danger"
-                                                    *ngIf="editForm.get('login')?.errors?.required"
-                                                    jhiTranslate="entity.validation.required">
-                                                 This field is required.
-                                             </small>
-
-                                             <small class="form-text text-danger"
-                                                    *ngIf="editForm.get('login')?.errors?.maxlength"
-                                                    jhiTranslate="entity.validation.maxlength"
-                                                    [translateValues]="{ max: 50 }">
-                                                 This field cannot be longer than 50 characters.
-                                             </small>
-
-                                             <small class="form-text text-danger"
-                                                    *ngIf="editForm.get('login')?.errors?.pattern"
-                                                    jhiTranslate="entity.validation.patternLogin">
-                                                 This field can only contain letters, digits and e-mail addresses.
-                                             </small>
-                                         </div>
-                                     </div>
-
-                                     <div class="form-group">
-                                         <label class="form-control-label" for="input-email">Email address</label>
-                                         <input type="email" id="input-email" class="form-control" placeholder="jesse@example.com">
-                                     </div>-->
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="userManagement.firstName">First Name</label>
-                                        <input type="text" class="form-control" name="firstName"
-                                               formControlName="firstName">
-
-                                        <div *ngIf="editForm.get('firstName')!.invalid && (editForm.get('firstName')!.dirty || editForm.get('firstName')!.touched)">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.cin" for="field_cin">Cin</label>
+                                        <input type="text" class="form-control" name="cin" id="field_cin"
+                                               formControlName="cin"/>
+                                        <div *ngIf="editForm.get('cin')!.invalid && (editForm.get('cin')!.dirty || editForm.get('cin')!.touched)">
                                             <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('firstName')?.errors?.maxlength"
-                                                   jhiTranslate="entity.validation.maxlength"
-                                                   [translateValues]="{ max: 50 }">
-                                                This field cannot be longer than 50 characters.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label jhiTranslate="userManagement.lastName">Last Name</label>
-                                        <input type="text" class="form-control" name="lastName"
-                                               formControlName="lastName">
-
-                                        <div *ngIf="editForm.get('lastName')!.invalid && (editForm.get('lastName')!.dirty || editForm.get('lastName')!.touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('lastName')?.errors?.maxlength"
-                                                   jhiTranslate="entity.validation.maxlength"
-                                                   [translateValues]="{ max: 50 }">
-                                                This field cannot be longer than 50 characters.
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="my-4" />
-                        <!-- Address -->
-                        <h6 class="heading-small text-muted mb-4">Contact information</h6>
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="userManagement.email">Email</label>
-                                        <input type="email" class="form-control" name="email" formControlName="email">
-
-                                        <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('email')?.errors?.required"
-                                                   jhiTranslate="entity.validation.required">
+                                                   *ngIf="editForm.get('cin')?.errors?.required" jhiTranslate="entity.validation.required">
                                                 This field is required.
                                             </small>
-
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Tel</label>
+                                        <input type="number" class="form-control" name="tel" id="field_tel"
+                                               formControlName="tel"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.datenaissance" for="field_datenaissance">Datenaissance</label>
+                                        <div class="input-group">
+                                            <input id="field_datenaissance" type="text" class="form-control" name="datenaissance" ngbDatepicker #datenaissanceDp="ngbDatepicker" formControlName="datenaissance"/>
+                                            <span class="input-group-append">
+                                             <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etat" for="field_etat">Etat</label>
+                                        <select class="form-control" name="etat" formControlName="etat" id="field_etat">
+                                            <option value="DIPLOME">{{ 'sequortalibApp.Status.DIPLOME' | translate }}</option>
+                                            <option value="NONDIPLOME">{{ 'sequortalibApp.Status.NONDIPLOME' | translate }}</option>
+                                        </select>
+                                        <div *ngIf="editForm.get('etat')!.invalid && (editForm.get('etat')!.dirty || editForm.get('etat')!.touched)">
                                             <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('email')?.errors?.maxlength"
-                                                   jhiTranslate="entity.validation.maxlength"
-                                                   [translateValues]="{ max: 100 }">
-                                                This field cannot be longer than 100 characters.
-                                            </small>
-
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('email')?.errors?.minlength"
-                                                   jhiTranslate="entity.validation.minlength"
-                                                   [translateValues]="{ min: 5 }">
-                                                This field is required to be at least 5 characters.
-                                            </small>
-
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('email')?.errors?.email"
-                                                   jhiTranslate="global.messages.validate.email.invalid">
-                                                Your email is invalid.
+                                                   *ngIf="editForm.get('etat')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
                                             </small>
                                         </div>
                                     </div>
                                 </div>
-                                <!--
-                                <div class="col-md-4">
-                                    <div class="form-check">
-                                        <label class="form-check-label" for="activated">
-                                            <input class="form-check-input" [attr.disabled]="user.id === undefined ? 'disabled' : null"
-                                                   type="checkbox" id="activated" name="activated" formControlName="activated">
-                                            <span jhiTranslate="userManagement.activated">Activated</span>
-                                        </label>
-                                    </div>
-                                    <div class="form-group" *ngIf="languages && languages.length > 0">
-                                        <label jhiTranslate="userManagement.langKey">Lang Key</label>
-                                        <select class="form-control" id="langKey" name="langKey" formControlName="langKey">
-                                            <option *ngFor="let language of languages" [value]="language">{{ language | findLanguageFromKey }}</option>
+                            </div>
+                        </div>
+                        <hr class="my-4" />
+                        <h6 class="heading-small text-muted mb-4">Etudiants Diplomés</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label  class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etablissement" for="field_etablissement">Etablissement</label>
+                                        <select  class="form-control" id="field_etablissement" name="etablissement" formControlName="etablissement">
+                                            <option  [ngValue]="null"></option>
+                                            <option  [ngValue]="etablissementOption.id === editForm.get('etablissement')!.value?.id ? editForm.get('etablissement')!.value : etablissementOption" *ngFor="let etablissementOption of etablissements; trackBy: trackById">{{ etablissementOption.nom }}</option>
                                         </select>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                         </div>
-                        <!--
                         <hr class="my-4" />
-                        Description
-                        <h6 class="heading-small text-muted mb-4">Roles</h6>
+                        <h6 class="heading-small text-muted mb-4">Etudiants non Diplomés</h6>
                         <div class="pl-lg-4">
-                            <div class="form-group">
-                                <label jhiTranslate="userManagement.profiles">Profiles</label>
-                                <select class="form-control" multiple name="authority" formControlName="authorities">
-                                    <option *ngFor="let authority of authorities" [value]="authority">{{ authority }}</option>
-                                </select>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.codeEtudiant" for="field_codeEtudiant">Code Etudiant</label>
+                                        <input type="number" class="form-control" name="codeEtudiant" id="field_codeEtudiant"
+                                               formControlName="codeEtudiant"/>
+                                        <div *ngIf="editForm.get('codeEtudiant')!.invalid && (editForm.get('codeEtudiant')!.dirty || editForm.get('codeEtudiant')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('codeEtudiant')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   [hidden]="!editForm.get('codeEtudiant')?.errors?.number" jhiTranslate="entity.validation.number">
+                                                This field should be a number.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.filiere" for="field_filiere">Filiere</label>
+                                        <select class="form-control" id="field_filiere" name="filiere" formControlName="filiere">
+                                            <option [ngValue]="null"></option>
+                                            <option [ngValue]="filiereOption.id === editForm.get('filiere')!.value?.id ? editForm.get('filiere')!.value : filiereOption" *ngFor="let filiereOption of filieres; trackBy: trackById">{{ filiereOption.nom }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.semsetre" for="field_semsetre">Semsetre</label>
+                                        <input type="number" class="form-control" name="semsetre" id="field_semsetre"
+                                               formControlName="semsetre"/>
+                                        <div *ngIf="editForm.get('semsetre')!.invalid && (editForm.get('semsetre')!.dirty || editForm.get('semsetre')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('semsetre')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   [hidden]="!editForm.get('semsetre')?.errors?.number" jhiTranslate="entity.validation.number">
+                                                This field should be a number.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.section" for="field_section">Section</label>
+                                        <input type="text" class="form-control" name="section" id="field_section"
+                                               formControlName="section"/>
+                                        <div *ngIf="editForm.get('section')!.invalid && (editForm.get('section')!.dirty || editForm.get('section')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('section')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div *ngIf="user">
-                            <button type="button" class="btn btn-secondary" (click)="previousState()">
-                                <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-                            </button>
+                    </div>
+                    <div class="justify-content-between">
+                        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                        </button>
 
-                            <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-                            </button>
-                        </div>-->
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 </div>
-</div>
-</div>
-
-
-
-
-
-
-
 
 
 

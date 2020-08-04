@@ -1,15 +1,15 @@
 <div class="card jh-card">
 
 
-<div class="row d-flex justify-content-center mt-4" *ngIf="diplome===false && trifiliere===false">
+<div class="row d-flex justify-content-center " *ngIf="diplome===false && trifiliere===false">
 <div class="col-md-6">
     <div class="card" >
-        <img class="card-img-top" src="../../../content/images/etdnond.png" alt="Card image cap">
+        <img class="card-img-top" src="../../../content/images/bbb.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title text-center">Etudiants de la faculté</h5>
-            <table class="text-center">
+            <table style="margin: auto">
                 <tr><td><button class="btn success" (click)="showsmia()" >SMIA</button></td><td><button class="btn success" (click)="showsmpc()">SMPC</button></td><td><button class="btn success" (click)="showsvt()">SVT</button></td></tr>
-                <tr><td><button class="btn success" (click)="showsmi()">SMI</button></td><td><button class="btn success" (click)="showsmp()">SMP</button></td><td><button class="btn success" (click)="showsvu()">SVU</button></td></tr>
+                <td><button class="btn success" (click)="showsmi()">SMI</button></td><td><button class="btn success" (click)="showsmp()">SMP</button></td><td><button class="btn success" (click)="showsvu()">SVU</button></td>
                 <tr><td><button class="btn success" (click)="showsma()">SMA</button></td><td><button class="btn success" (click)="showsmc()">SMC</button></td><td><button class="btn success" (click)="showsvi()">SVI</button></td></tr>
             </table>
         </div>
@@ -19,7 +19,7 @@
 <div class="col-md-6">
     <a class="dropdown-item" routerLink="account/settings" routerLinkActive="active" (click)="shownetddiplome()">
     <div class="card" >
-        <img class="card-img-top" src="../../../content/images/etdavecd.png" alt="Card image cap">
+        <img class="card-img-top" src="../../../content/images/aaaa.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title text-center">Anciens etudiants de la faculté</h5>
         </div>

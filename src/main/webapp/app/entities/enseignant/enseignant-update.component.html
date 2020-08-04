@@ -1,3 +1,4 @@
+<!--
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
@@ -81,4 +82,98 @@
             </div>
         </form>
     </div>
+</div>-->
+
+
+<div class="card jh-card">
+    <div class="col-xl-12 order-xl-1">
+        <div class="card">
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h2 id="jhi-etudiant-heading" jhiTranslate="sequortalibApp.etudiant.home.createOrEditLabel" class="text-center">Create or edit a Etudiant</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <jhi-alert-error></jhi-alert-error>
+                        <h6 class="heading-small text-muted mb-4">User information</h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                                        <label for="id" jhiTranslate="global.field.id">ID</label>
+                                        <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
+                                        <select class="form-control" id="field_user" name="user" formControlName="user">
+                                            <option [ngValue]="null"></option>
+                                            <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.cin" for="field_cin">Cin</label>
+                                        <input type="text" class="form-control" name="cin" id="field_cin"
+                                               formControlName="cin"/>
+                                        <div *ngIf="editForm.get('cin')!.invalid && (editForm.get('cin')!.dirty || editForm.get('cin')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('cin')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Tel</label>
+                                        <input type="number" class="form-control" name="tel" id="field_tel"
+                                               formControlName="tel"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.grade" for="field_grade">Grade</label>
+                                        <input type="text" class="form-control" name="grade" id="field_grade"
+                                               formControlName="grade"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.enseignant.departement" for="field_departement">Departement</label>
+                                        <select class="form-control" id="field_departement" name="departement" formControlName="departement">
+                                            <option [ngValue]="null"></option>
+                                            <option [ngValue]="departementOption.id === editForm.get('departement')!.value?.id ? editForm.get('departement')!.value : departementOption" *ngFor="let departementOption of departements; trackBy: trackById">{{ departementOption.nom }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="justify-content-between">
+                        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                            <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                        </button>
+
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                            <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+
+

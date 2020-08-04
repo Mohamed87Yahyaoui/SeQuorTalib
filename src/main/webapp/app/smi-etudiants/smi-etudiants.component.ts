@@ -25,22 +25,8 @@ export class SmiEtudiantsComponent implements OnInit {
     }
   ];
 
-  chartOptionmohamed1 = {
-    legend: {
-      display: false
-    },
-    scale: {
-      angleLines: {
-        display: false
-      },
-      ticks: {
-        suggestedMin: 0,
-        suggestedMax: 20
-      }
-    }
-  };
-  chartDatamohamed1 = [{ data: [6, 10.5, 10.25, 7.5, 12.0, 13.5, 13.5] }];
-  chartLabelsmohamed1 = ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'];
+  chartDatamohamed1 = [{ data: [6, 10.5, 10.25, 7.5] }];
+  chartLabelsmohamed1 = ['Moy S1', 'Moy S2', 'Moy S3', 'Moy S4'];
 
   constructor(private accountService: AccountService, private router: Router) {}
 
