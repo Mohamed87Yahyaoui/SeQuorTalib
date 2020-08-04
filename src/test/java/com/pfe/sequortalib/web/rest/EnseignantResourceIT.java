@@ -161,7 +161,7 @@ public class EnseignantResourceIT {
         em.detach(updatedEnseignant);
 
         // Update the User with new association value
-        //updatedEnseignant.setUser();
+        updatedEnseignant.setUser();
 
         // Update the entity
         restEnseignantMockMvc.perform(put("/api/enseignants")
@@ -214,7 +214,7 @@ public class EnseignantResourceIT {
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)))
             .andExpect(jsonPath("$.[*].grade").value(hasItem(DEFAULT_GRADE)));
     }
-
+    
     @Test
     @Transactional
     public void getEnseignant() throws Exception {

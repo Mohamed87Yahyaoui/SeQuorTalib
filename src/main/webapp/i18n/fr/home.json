@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Bienvenue dans SeQuorTalib !",
-    "subtitle": "Ceci est votre page d'accueil",
+    "title": "Bienvenue !",
+    "subtitle": "Bonne orientation, Succes grantit!",
     "logged": {
       "message": "Vous êtes connecté en tant que \"{{username}}\"."
     },

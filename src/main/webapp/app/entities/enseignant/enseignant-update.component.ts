@@ -9,14 +9,12 @@ import { IEnseignant, Enseignant } from 'app/shared/model/enseignant.model';
 import { EnseignantService } from './enseignant.service';
 import { IHistoriqueEnseignantModule } from 'app/shared/model/historique-enseignant-module.model';
 import { HistoriqueEnseignantModuleService } from 'app/entities/historique-enseignant-module/historique-enseignant-module.service';
-import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseignant-filiere.model';
-import { HistoriqueEnseignantFiliereService } from 'app/entities/historique-enseignant-filiere/historique-enseignant-filiere.service';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 
-type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEnseignantFiliere | IDepartement | IUser;
+type SelectableEntity = IHistoriqueEnseignantModule | IDepartement | IUser;
 
 @Component({
   selector: 'jhi-enseignant-update',
@@ -25,7 +23,6 @@ type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEnseignantFilie
 export class EnseignantUpdateComponent implements OnInit {
   isSaving = false;
   historiqueenseignantmodules: IHistoriqueEnseignantModule[] = [];
-  historiqueenseignantfilieres: IHistoriqueEnseignantFiliere[] = [];
   departements: IDepartement[] = [];
   users: IUser[] = [];
   datenaissanceDp: any;
@@ -37,7 +34,6 @@ export class EnseignantUpdateComponent implements OnInit {
     cin: [null, [Validators.required]],
     grade: [],
     historiqueEnseignantModule: [],
-    historiqueEnseignantFiliere: [],
     departement: [],
     user: []
   });
@@ -45,7 +41,6 @@ export class EnseignantUpdateComponent implements OnInit {
   constructor(
     protected enseignantService: EnseignantService,
     protected historiqueEnseignantModuleService: HistoriqueEnseignantModuleService,
-    protected historiqueEnseignantFiliereService: HistoriqueEnseignantFiliereService,
     protected departementService: DepartementService,
     protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
@@ -59,10 +54,6 @@ export class EnseignantUpdateComponent implements OnInit {
       this.historiqueEnseignantModuleService
         .query()
         .subscribe((res: HttpResponse<IHistoriqueEnseignantModule[]>) => (this.historiqueenseignantmodules = res.body || []));
-
-      this.historiqueEnseignantFiliereService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEnseignantFiliere[]>) => (this.historiqueenseignantfilieres = res.body || []));
 
       this.departementService.query().subscribe((res: HttpResponse<IDepartement[]>) => (this.departements = res.body || []));
 
@@ -78,7 +69,6 @@ export class EnseignantUpdateComponent implements OnInit {
       cin: enseignant.cin,
       grade: enseignant.grade,
       historiqueEnseignantModule: enseignant.historiqueEnseignantModule,
-      historiqueEnseignantFiliere: enseignant.historiqueEnseignantFiliere,
       departement: enseignant.departement,
       user: enseignant.user
     });
@@ -107,7 +97,6 @@ export class EnseignantUpdateComponent implements OnInit {
       cin: this.editForm.get(['cin'])!.value,
       grade: this.editForm.get(['grade'])!.value,
       historiqueEnseignantModule: this.editForm.get(['historiqueEnseignantModule'])!.value,
-      historiqueEnseignantFiliere: this.editForm.get(['historiqueEnseignantFiliere'])!.value,
       departement: this.editForm.get(['departement'])!.value,
       user: this.editForm.get(['user'])!.value
     };

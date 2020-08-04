@@ -26,7 +26,17 @@ export class EtudiantComponent implements OnInit, OnDestroy {
 
   nondiplome = false;
   diplome = false;
-  bouton = false;
+  trifiliere = false;
+
+  smia = false;
+  smi = false;
+  sma = false;
+  smpc = false;
+  smp = false;
+  smc = false;
+  svt = false;
+  svu = false;
+  svi = false;
 
   constructor(
     protected etudiantService: EtudiantService,
@@ -114,7 +124,66 @@ export class EtudiantComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/etudiant');
   }
 
-  showbouton(): void {
-    this.bouton = true;
+  showsmia(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.smia = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsmi(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.smi = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsma(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.sma = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsmpc(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.smpc = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsmp(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.smp = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsmc(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.smc = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsvt(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.svt = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsvi(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.svi = true;
+    this.router.navigateByUrl('/etudiant');
+  }
+
+  showsvu(): void {
+    this.diplome = false;
+    this.trifiliere = true;
+    this.svu = true;
+    this.router.navigateByUrl('/etudiant');
   }
 }

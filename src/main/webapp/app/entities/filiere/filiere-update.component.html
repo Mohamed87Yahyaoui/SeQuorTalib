@@ -39,10 +39,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.historiqueEnseignantFiliere" for="field_historiqueEnseignantFiliere">Historique Enseignant Filiere</label>
-                    <select class="form-control" id="field_historiqueEnseignantFiliere" name="historiqueEnseignantFiliere" formControlName="historiqueEnseignantFiliere">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="historiqueEnseignantFiliereOption.id === editForm.get('historiqueEnseignantFiliere')!.value?.id ? editForm.get('historiqueEnseignantFiliere')!.value : historiqueEnseignantFiliereOption" *ngFor="let historiqueEnseignantFiliereOption of historiqueenseignantfilieres; trackBy: trackById">{{ historiqueEnseignantFiliereOption.datedebut }}</option>
+                    <label jhiTranslate="sequortalibApp.filiere.enseignant" for="field_enseignants">Enseignant</label>
+                    <select class="form-control" id="field_enseignants" multiple name="enseignants" formControlName="enseignants">
+                        <option [ngValue]="getSelected(editForm.get('enseignants')!.value, enseignantOption)" *ngFor="let enseignantOption of enseignants; trackBy: trackById">{{ enseignantOption.firstName }}</option>
                     </select>
                 </div>
             </div>

@@ -4,7 +4,7 @@
       "home": {
         "title": "Etudiants",
         "createLabel": "Créer un nouveau Etudiant",
-        "createOrEditLabel": "Créer ou éditer un Etudiant",
+        "createOrEditLabel": "Editer un Etudiant",
         "notFound": "Aucun Etudiant trouvé"
       },
       "created": "Un nouveau Etudiant a été créé avec l'identifiant {{ param }}",
@@ -21,7 +21,7 @@
       "semsetre": "Semsetre",
       "section": "Section",
       "etat": "Etat",
-      "datenaissance": "Datenaissance",
+      "datenaissance": "Date de naissance",
       "codeEtudiant": "Code Etudiant",
       "etablissement": "Etablissement",
       "historiqueEtudiantModule": "Historique Etudiant Module",

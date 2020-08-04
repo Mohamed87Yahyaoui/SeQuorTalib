@@ -19,8 +19,7 @@
       "nom": "Nom",
       "module": "Module",
       "departement": "Departement",
-      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
-      "etudiant": "Etudiant"
+      "enseignant": "Enseignant"
     }
   }
 }

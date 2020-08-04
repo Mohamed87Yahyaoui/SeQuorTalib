@@ -18,16 +18,11 @@
             "otherEntityRelationshipName": "filiere"
         },
         {
-            "relationshipName": "historiqueEnseignantFiliere",
-            "otherEntityName": "historiqueEnseignantFiliere",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "datedebut",
-            "otherEntityRelationshipName": "filiere"
-        },
-        {
-            "relationshipName": "etudiant",
-            "otherEntityName": "etudiant",
-            "relationshipType": "one-to-many",
+            "relationshipName": "enseignant",
+            "otherEntityName": "enseignant",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "firstName",
+            "ownerSide": true,
             "otherEntityRelationshipName": "filiere"
         }
     ],

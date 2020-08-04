@@ -21,9 +21,9 @@
       "cin": "Cin",
       "grade": "Grade",
       "historiqueEnseignantModule": "Historique Enseignant Module",
-      "historiqueEnseignantFiliere": "Historique Enseignant Filiere",
       "departement": "Departement",
-      "user": "User"
+      "user": "User",
+      "filiere": "Filiere"
     }
   }
 }

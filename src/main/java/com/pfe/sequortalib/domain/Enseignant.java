@@ -1,5 +1,6 @@
 package com.pfe.sequortalib.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -10,6 +11,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Enseignant.
@@ -43,10 +46,6 @@ public class Enseignant implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("enseignants")
-    private HistoriqueEnseignantFiliere historiqueEnseignantFiliere;
-
-    @ManyToOne
-    @JsonIgnoreProperties("enseignants")
     private Departement departement;
 
     @OneToOne
@@ -54,6 +53,11 @@ public class Enseignant implements Serializable {
     @MapsId
     @JoinColumn(name = "id")
     private User user;
+
+    @ManyToMany(mappedBy = "enseignants")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JsonIgnore
+    private Set<Filiere> filieres = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -129,19 +133,6 @@ public class Enseignant implements Serializable {
         this.historiqueEnseignantModule = historiqueEnseignantModule;
     }
 
-    public HistoriqueEnseignantFiliere getHistoriqueEnseignantFiliere() {
-        return historiqueEnseignantFiliere;
-    }
-
-    public Enseignant historiqueEnseignantFiliere(HistoriqueEnseignantFiliere historiqueEnseignantFiliere) {
-        this.historiqueEnseignantFiliere = historiqueEnseignantFiliere;
-        return this;
-    }
-
-    public void setHistoriqueEnseignantFiliere(HistoriqueEnseignantFiliere historiqueEnseignantFiliere) {
-        this.historiqueEnseignantFiliere = historiqueEnseignantFiliere;
-    }
-
     public Departement getDepartement() {
         return departement;
     }
@@ -166,6 +157,31 @@ public class Enseignant implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Filiere> getFilieres() {
+        return filieres;
+    }
+
+    public Enseignant filieres(Set<Filiere> filieres) {
+        this.filieres = filieres;
+        return this;
+    }
+
+    public Enseignant addFiliere(Filiere filiere) {
+        this.filieres.add(filiere);
+        filiere.getEnseignants().add(this);
+        return this;
+    }
+
+    public Enseignant removeFiliere(Filiere filiere) {
+        this.filieres.remove(filiere);
+        filiere.getEnseignants().remove(this);
+        return this;
+    }
+
+    public void setFilieres(Set<Filiere> filieres) {
+        this.filieres = filieres;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

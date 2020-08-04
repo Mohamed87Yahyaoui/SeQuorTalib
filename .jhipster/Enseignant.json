@@ -11,13 +11,6 @@
             "otherEntityRelationshipName": "enseignant"
         },
         {
-            "relationshipName": "historiqueEnseignantFiliere",
-            "otherEntityName": "historiqueEnseignantFiliere",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "enseignant"
-        },
-        {
             "relationshipName": "departement",
             "otherEntityName": "departement",
             "relationshipType": "many-to-one",
@@ -31,6 +24,13 @@
             "otherEntityField": "login",
             "ownerSide": true,
             "useJPADerivedIdentifier": true,
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
             "otherEntityRelationshipName": "enseignant"
         }
     ],

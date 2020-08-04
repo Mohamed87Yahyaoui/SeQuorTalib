@@ -30,12 +30,6 @@
                         <a [routerLink]="['/historique-enseignant-module', enseignant.historiqueEnseignantModule?.id, 'view']">{{ enseignant.historiqueEnseignantModule?.id }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantFiliere">Historique Enseignant Filiere</span></dt>
-                <dd>
-                    <div *ngIf="enseignant.historiqueEnseignantFiliere">
-                        <a [routerLink]="['/historique-enseignant-filiere', enseignant.historiqueEnseignantFiliere?.id, 'view']">{{ enseignant.historiqueEnseignantFiliere?.id }}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="sequortalibApp.enseignant.departement">Departement</span></dt>
                 <dd>
                     <div *ngIf="enseignant.departement">

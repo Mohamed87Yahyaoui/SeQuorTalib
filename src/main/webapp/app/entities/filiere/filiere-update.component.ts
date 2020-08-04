@@ -11,10 +11,12 @@ import { IModule } from 'app/shared/model/module.model';
 import { ModuleService } from 'app/entities/module/module.service';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
-import { IHistoriqueEnseignantFiliere } from 'app/shared/model/historique-enseignant-filiere.model';
-import { HistoriqueEnseignantFiliereService } from 'app/entities/historique-enseignant-filiere/historique-enseignant-filiere.service';
+import { IEnseignant } from 'app/shared/model/enseignant.model';
+import { EnseignantService } from 'app/entities/enseignant/enseignant.service';
 
-type SelectableEntity = IModule | IDepartement | IHistoriqueEnseignantFiliere;
+type SelectableEntity = IModule | IDepartement | IEnseignant;
+
+type SelectableManyToManyEntity = IModule | IEnseignant;
 
 @Component({
   selector: 'jhi-filiere-update',
@@ -24,21 +26,21 @@ export class FiliereUpdateComponent implements OnInit {
   isSaving = false;
   modules: IModule[] = [];
   departements: IDepartement[] = [];
-  historiqueenseignantfilieres: IHistoriqueEnseignantFiliere[] = [];
+  enseignants: IEnseignant[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [null, [Validators.required]],
     modules: [],
     departement: [],
-    historiqueEnseignantFiliere: []
+    enseignants: []
   });
 
   constructor(
     protected filiereService: FiliereService,
     protected moduleService: ModuleService,
     protected departementService: DepartementService,
-    protected historiqueEnseignantFiliereService: HistoriqueEnseignantFiliereService,
+    protected enseignantService: EnseignantService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -51,9 +53,7 @@ export class FiliereUpdateComponent implements OnInit {
 
       this.departementService.query().subscribe((res: HttpResponse<IDepartement[]>) => (this.departements = res.body || []));
 
-      this.historiqueEnseignantFiliereService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEnseignantFiliere[]>) => (this.historiqueenseignantfilieres = res.body || []));
+      this.enseignantService.query().subscribe((res: HttpResponse<IEnseignant[]>) => (this.enseignants = res.body || []));
     });
   }
 
@@ -63,7 +63,7 @@ export class FiliereUpdateComponent implements OnInit {
       nom: filiere.nom,
       modules: filiere.modules,
       departement: filiere.departement,
-      historiqueEnseignantFiliere: filiere.historiqueEnseignantFiliere
+      enseignants: filiere.enseignants
     });
   }
 
@@ -88,7 +88,7 @@ export class FiliereUpdateComponent implements OnInit {
       nom: this.editForm.get(['nom'])!.value,
       modules: this.editForm.get(['modules'])!.value,
       departement: this.editForm.get(['departement'])!.value,
-      historiqueEnseignantFiliere: this.editForm.get(['historiqueEnseignantFiliere'])!.value
+      enseignants: this.editForm.get(['enseignants'])!.value
     };
   }
 
@@ -112,7 +112,7 @@ export class FiliereUpdateComponent implements OnInit {
     return item.id;
   }
 
-  getSelected(selectedVals: IModule[], option: IModule): IModule {
+  getSelected(selectedVals: SelectableManyToManyEntity[], option: SelectableManyToManyEntity): SelectableManyToManyEntity {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
         if (option.id === selectedVals[i].id) {

@@ -26,11 +26,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="departement"/>
 
-        <addForeignKeyConstraint baseColumnNames="historique_enseignant_filiere_id"
-                                 baseTableName="filiere"
-                                 constraintName="fk_filiere_historique_enseignant_filiere_id"
+        <addForeignKeyConstraint baseColumnNames="filiere_id"
+                                 baseTableName="filiere_enseignant"
+                                 constraintName="fk_filiere_enseignant_filiere_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="historique_enseignant_filiere"/>
+                                 referencedTableName="filiere"/>
 
+        <addForeignKeyConstraint baseColumnNames="enseignant_id"
+                                 baseTableName="filiere_enseignant"
+                                 constraintName="fk_filiere_enseignant_enseignant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enseignant"/>
+        
     </changeSet>
 </databaseChangeLog>

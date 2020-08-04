@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'app/core/user/user.model';
-import { UserManagementDeleteDialogComponent } from './user-management-delete-dialog.component';
 import { Account } from 'app/core/user/account.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,8 +18,7 @@ export class UserManagementDetailComponent implements OnInit {
     this.route.data.subscribe(({ user }) => (this.user = user));
   }
 
-  deleteUser(user: User): void {
-    const modalRef = this.modalService.open(UserManagementDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
-    modalRef.componentInstance.user = user;
+  previousState(): void {
+    window.history.back();
   }
 }

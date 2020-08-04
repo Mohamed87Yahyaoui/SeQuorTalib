@@ -31,9 +31,6 @@
             <column name="historique_enseignant_module_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="historique_enseignant_filiere_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="departement_id" type="bigint">
                 <constraints nullable="true" />
             </column>

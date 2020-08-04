@@ -22,9 +22,6 @@
             <column name="departement_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="historique_enseignant_filiere_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
     </changeSet>
@@ -41,6 +38,17 @@
         </createTable>
 
         <addPrimaryKey columnNames="filiere_id, module_id" tableName="filiere_module"/>
+        
+        <createTable tableName="filiere_enseignant">
+            <column name="enseignant_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="filiere_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="filiere_id, enseignant_id" tableName="filiere_enseignant"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

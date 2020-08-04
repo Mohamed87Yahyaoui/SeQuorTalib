@@ -28,7 +28,6 @@
                     <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.enseignant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="grade"><span jhiTranslate="sequortalibApp.enseignant.grade">Grade</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="historiqueEnseignantModule.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule">Historique Enseignant Module</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="historiqueEnseignantFiliere.id"><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantFiliere">Historique Enseignant Filiere</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="departement.nom"><span jhiTranslate="sequortalibApp.enseignant.departement">Departement</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.enseignant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
@@ -44,11 +43,6 @@
                     <td>
                         <div *ngIf="enseignant.historiqueEnseignantModule">
                             <a [routerLink]="['/historique-enseignant-module', enseignant.historiqueEnseignantModule?.id, 'view']" >{{ enseignant.historiqueEnseignantModule?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="enseignant.historiqueEnseignantFiliere">
-                            <a [routerLink]="['/historique-enseignant-filiere', enseignant.historiqueEnseignantFiliere?.id, 'view']" >{{ enseignant.historiqueEnseignantFiliere?.id }}</a>
                         </div>
                     </td>
                     <td>

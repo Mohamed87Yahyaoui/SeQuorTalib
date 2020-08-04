@@ -1,20 +1,7 @@
 {
     "fluentMethods": true,
     "clientRootFolder": "",
-    "relationships": [
-        {
-            "relationshipName": "filiere",
-            "otherEntityName": "filiere",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "historiqueEnseignantFiliere"
-        },
-        {
-            "relationshipName": "enseignant",
-            "otherEntityName": "enseignant",
-            "relationshipType": "one-to-many",
-            "otherEntityRelationshipName": "historiqueEnseignantFiliere"
-        }
-    ],
+    "relationships": [],
     "fields": [
         {
             "fieldName": "datedebut",

@@ -41,13 +41,12 @@ public class Filiere implements Serializable {
     @JsonIgnoreProperties("filieres")
     private Departement departement;
 
-    @ManyToOne
-    @JsonIgnoreProperties("filieres")
-    private HistoriqueEnseignantFiliere historiqueEnseignantFiliere;
-
-    @OneToMany(mappedBy = "filiere")
+    @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Etudiant> etudiants = new HashSet<>();
+    @JoinTable(name = "filiere_enseignant",
+               joinColumns = @JoinColumn(name = "filiere_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "enseignant_id", referencedColumnName = "id"))
+    private Set<Enseignant> enseignants = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -109,42 +108,29 @@ public class Filiere implements Serializable {
         this.departement = departement;
     }
 
-    public HistoriqueEnseignantFiliere getHistoriqueEnseignantFiliere() {
-        return historiqueEnseignantFiliere;
+    public Set<Enseignant> getEnseignants() {
+        return enseignants;
     }
 
-    public Filiere historiqueEnseignantFiliere(HistoriqueEnseignantFiliere historiqueEnseignantFiliere) {
-        this.historiqueEnseignantFiliere = historiqueEnseignantFiliere;
+    public Filiere enseignants(Set<Enseignant> enseignants) {
+        this.enseignants = enseignants;
         return this;
     }
 
-    public void setHistoriqueEnseignantFiliere(HistoriqueEnseignantFiliere historiqueEnseignantFiliere) {
-        this.historiqueEnseignantFiliere = historiqueEnseignantFiliere;
-    }
-
-    public Set<Etudiant> getEtudiants() {
-        return etudiants;
-    }
-
-    public Filiere etudiants(Set<Etudiant> etudiants) {
-        this.etudiants = etudiants;
+    public Filiere addEnseignant(Enseignant enseignant) {
+        this.enseignants.add(enseignant);
+        enseignant.getFilieres().add(this);
         return this;
     }
 
-    public Filiere addEtudiant(Etudiant etudiant) {
-        this.etudiants.add(etudiant);
-        etudiant.setFiliere(this);
+    public Filiere removeEnseignant(Enseignant enseignant) {
+        this.enseignants.remove(enseignant);
+        enseignant.getFilieres().remove(this);
         return this;
     }
 
-    public Filiere removeEtudiant(Etudiant etudiant) {
-        this.etudiants.remove(etudiant);
-        etudiant.setFiliere(null);
-        return this;
-    }
-
-    public void setEtudiants(Set<Etudiant> etudiants) {
-        this.etudiants = etudiants;
+    public void setEnseignants(Set<Enseignant> enseignants) {
+        this.enseignants = enseignants;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

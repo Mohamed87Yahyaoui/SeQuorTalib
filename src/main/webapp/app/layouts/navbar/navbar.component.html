@@ -17,18 +17,6 @@
                 </a>
             </li>
 
-            <li class="nav-item" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
-                <a class="nav-link" routerLink="etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                    <span>
-                        <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                        <span jhiTranslate="global.menu.entities.etudiant">Etudiant</span>
-                    </span>
-                </a>
-            </li>
-
-
-
-
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here
             <li  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
@@ -103,6 +91,36 @@
                      jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here
                 </ul>
             </li>-->
+
+            <li  ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
+                    <span>
+                        <fa-icon icon="th-list"></fa-icon>
+                        <span>
+                            Utilisateurs
+                        </span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
+                    <li>
+                        <a class="dropdown-item" routerLink="etudiant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.etudiant">Etudiant</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="enseignant" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.enseignant">Enseignant</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+
+
 
             <li ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *jhiHasAnyAuthority="'ROLE_ETUDIANT'">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);">

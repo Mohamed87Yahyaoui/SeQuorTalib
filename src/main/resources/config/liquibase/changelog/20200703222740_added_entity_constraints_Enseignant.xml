@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="historique_enseignant_module"/>
 
-        <addForeignKeyConstraint baseColumnNames="historique_enseignant_filiere_id"
-                                 baseTableName="enseignant"
-                                 constraintName="fk_enseignant_historique_enseignant_filiere_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="historique_enseignant_filiere"/>
-
         <addForeignKeyConstraint baseColumnNames="departement_id"
                                  baseTableName="enseignant"
                                  constraintName="fk_enseignant_departement_id"

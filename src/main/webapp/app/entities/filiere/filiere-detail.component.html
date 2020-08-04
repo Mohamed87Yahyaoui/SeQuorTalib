@@ -24,11 +24,11 @@
                         <a [routerLink]="['/departement', filiere.departement?.id, 'view']">{{ filiere.departement?.nom }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.filiere.historiqueEnseignantFiliere">Historique Enseignant Filiere</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.filiere.enseignant">Enseignant</span></dt>
                 <dd>
-                    <div *ngIf="filiere.historiqueEnseignantFiliere">
-                        <a [routerLink]="['/historique-enseignant-filiere', filiere.historiqueEnseignantFiliere?.id, 'view']">{{ filiere.historiqueEnseignantFiliere?.datedebut }}</a>
-                    </div>
+                    <span *ngFor="let enseignant of filiere.enseignants; let last = last">
+                        <a [routerLink]="['/enseignant', enseignant?.id, 'view']">{{ enseignant.firstName }}</a>{{ last ? '' : ', ' }}
+                    </span>
                 </dd>
             </dl>
 
