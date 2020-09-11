@@ -1,5 +1,14 @@
 <div class="card jh-card">
-
+    <div class="row d-flex justify-content-center" *ngIf="diplome===false && trifiliere===false">
+        <div class="col text-center">
+    <button id="jh-create-entity" class="btn btn-primary jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
+        <fa-icon icon="plus"></fa-icon>
+        <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
+            Create a new Etudiant
+            </span>
+    </button>
+        </div>
+    </div>
 
 <div class="row d-flex justify-content-center " *ngIf="diplome===false && trifiliere===false">
 <div class="col-md-6">
@@ -132,12 +141,7 @@
 <h2 id="page-heading">
     <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-    <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-        <fa-icon icon="plus"></fa-icon>
-        <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-    </button>
+
 </h2>
 
 <jhi-alert-error></jhi-alert-error>
@@ -209,13 +213,6 @@
     <div *ngIf="smi===true">
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
-
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
 
         </h2>
 
@@ -291,12 +288,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -373,12 +365,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -455,12 +442,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -537,12 +519,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -618,12 +595,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -700,12 +672,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -782,12 +749,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -864,12 +826,7 @@
         <h2 id="page-heading">
             <span jhiTranslate="sequortalibApp.etudiant.home.title">Etudiants</span>
 
-            <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-etudiant" [routerLink]="['/etudiant/new']">
-                <fa-icon icon="plus"></fa-icon>
-                <span  jhiTranslate="sequortalibApp.etudiant.home.createLabel">
-            Create a new Etudiant
-            </span>
-            </button>
+
 
         </h2>
 
@@ -939,11 +896,6 @@
             </table>
         </div>
     </div>
-
-
-
-
-
 </div>
 
 

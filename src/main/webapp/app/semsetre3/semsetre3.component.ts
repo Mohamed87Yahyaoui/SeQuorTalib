@@ -13,40 +13,6 @@ export class Semsetre3Component implements OnInit {
   account!: Account;
   authSubscription?: Subscription;
 
-  chartOptions3mohamed = {
-    legend: {
-      display: false
-    },
-    scale: {
-      angleLines: {
-        display: false
-      },
-      ticks: {
-        suggestedMin: 0,
-        suggestedMax: 20
-      }
-    }
-  };
-  chartData3mohamed = [{ data: [16.62, 19, 14, 9.89, 8, 18.62] }];
-  chartLabels3mohamed = ['M15', 'M16', 'M17', 'M18', 'M19', 'M20'];
-
-  chartOptions3meryem = {
-    legend: {
-      display: false
-    },
-    scale: {
-      angleLines: {
-        display: false
-      },
-      ticks: {
-        suggestedMin: 0,
-        suggestedMax: 20
-      }
-    }
-  };
-  chartData3meryem = [{ data: [20, 7, 12, 8, 7.5, 15] }];
-  chartLabels3meryem = ['M15', 'M16', 'M17', 'M18', 'M19', 'M20'];
-
   constructor(private accountService: AccountService) {}
 
   ngOnInit(): void {

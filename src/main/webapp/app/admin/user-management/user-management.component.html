@@ -141,7 +141,7 @@
                             jhiTranslate="userManagement.deactivated">Deactivated</button>
                     <button class="btn btn-success btn-sm" (click)="setActive(user, false)" *ngIf="user.activated"
                             [disabled]="!currentAccount || currentAccount.login === user.login" jhiTranslate="userManagement.activated">Activated</button>
-                </td *ngIf="user.authorities[0] === 'ROLE_ENSEIGNANT'">
+                </td>
                 <td *ngIf="user.authorities[0] === 'ROLE_ENSEIGNANT'">{{ user.langKey }}</td>
                 <td *ngIf="user.authorities[0] === 'ROLE_ENSEIGNANT'">
                     <div *ngFor="let authority of user.authorities">

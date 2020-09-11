@@ -14,6 +14,10 @@ export class SmiEtudiantsComponent implements OnInit {
   authSubscription?: Subscription;
 
   notemohamed = false;
+  notemohameds1 = false;
+  notemohameds2 = false;
+  notemohameds3 = false;
+  notemohameds4 = false;
 
   etudiants = [
     {
@@ -25,8 +29,28 @@ export class SmiEtudiantsComponent implements OnInit {
     }
   ];
 
-  chartDatamohamed1 = [{ data: [6, 10.5, 10.25, 7.5] }];
-  chartLabelsmohamed1 = ['Moy S1', 'Moy S2', 'Moy S3', 'Moy S4'];
+  chartOptionsmohamed = {
+    legend: {
+      display: false
+    },
+    scale: {
+      angleLines: {
+        display: false
+      },
+      pointLabels: {
+        fontColor: 'white'
+      },
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 20
+      },
+      gridLines: {
+        color: ['cyan', 'cyan', 'cyan', 'cyan', 'cyan', 'cyan', 'cyan', 'cyan', 'cyan', 'cyan']
+      }
+    }
+  };
+  chartDatamohamed = [{ data: [13.77, 18, 9.98, 10] }];
+  chartLabelsmohamed = ['S1', 'S2', 'S3', 'S4'];
 
   constructor(private accountService: AccountService, private router: Router) {}
 
@@ -36,6 +60,26 @@ export class SmiEtudiantsComponent implements OnInit {
 
   shownotemohamed(): void {
     this.notemohamed = true;
+    this.router.navigateByUrl('/noteSMI');
+  }
+
+  shownotemohameds1(): void {
+    this.notemohameds1 = true;
+    this.router.navigateByUrl('/noteSMI');
+  }
+
+  shownotemohameds2(): void {
+    this.notemohameds2 = true;
+    this.router.navigateByUrl('/noteSMI');
+  }
+
+  shownotemohameds3(): void {
+    this.notemohameds3 = true;
+    this.router.navigateByUrl('/noteSMI');
+  }
+
+  shownotemohameds4(): void {
+    this.notemohameds4 = true;
     this.router.navigateByUrl('/noteSMI');
   }
 }
