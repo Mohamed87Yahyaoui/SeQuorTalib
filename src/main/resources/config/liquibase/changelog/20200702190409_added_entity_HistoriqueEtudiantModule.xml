@@ -16,10 +16,13 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="datedebut" type="date">
-                <constraints nullable="false" />
+            <column name="note" type="${floatType}">
+                <constraints nullable="true" />
             </column>
-            <column name="datefin" type="date">
+            <column name="validation" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="etat" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -45,8 +48,9 @@
                   separator=";"
                   tableName="historique_etudiant_module">
             <column name="id" type="numeric"/>
-            <column name="datedebut" type="date"/>
-            <column name="datefin" type="date"/>
+            <column name="note" type="numeric"/>
+            <column name="validation" type="string"/>
+            <column name="etat" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

@@ -39,7 +39,7 @@ export const historiqueEtudiantModuleRoute: Routes = [
     path: '',
     component: HistoriqueEtudiantModuleComponent,
     data: {
-      authorities: [Authority.ETUDIANT, Authority.ADMIN],
+      authorities: [Authority.USER],
       pageTitle: 'sequortalibApp.historiqueEtudiantModule.home.title'
     },
     canActivate: [UserRouteAccessService]

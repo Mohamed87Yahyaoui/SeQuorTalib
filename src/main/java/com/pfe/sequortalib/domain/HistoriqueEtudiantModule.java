@@ -4,13 +4,15 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.pfe.sequortalib.domain.enumeration.Valider;
+
+import com.pfe.sequortalib.domain.enumeration.Typevalidation;
 
 /**
  * A HistoriqueEtudiantModule.
@@ -26,12 +28,16 @@ public class HistoriqueEtudiantModule implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "datedebut", nullable = false)
-    private LocalDate datedebut;
+    @Column(name = "note")
+    private Float note;
 
-    @Column(name = "datefin")
-    private LocalDate datefin;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "validation")
+    private Valider validation;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "etat")
+    private Typevalidation etat;
 
     @OneToMany(mappedBy = "historiqueEtudiantModule")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -50,30 +56,43 @@ public class HistoriqueEtudiantModule implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getDatedebut() {
-        return datedebut;
+    public Float getNote() {
+        return note;
     }
 
-    public HistoriqueEtudiantModule datedebut(LocalDate datedebut) {
-        this.datedebut = datedebut;
+    public HistoriqueEtudiantModule note(Float note) {
+        this.note = note;
         return this;
     }
 
-    public void setDatedebut(LocalDate datedebut) {
-        this.datedebut = datedebut;
+    public void setNote(Float note) {
+        this.note = note;
     }
 
-    public LocalDate getDatefin() {
-        return datefin;
+    public Valider getValidation() {
+        return validation;
     }
 
-    public HistoriqueEtudiantModule datefin(LocalDate datefin) {
-        this.datefin = datefin;
+    public HistoriqueEtudiantModule validation(Valider validation) {
+        this.validation = validation;
         return this;
     }
 
-    public void setDatefin(LocalDate datefin) {
-        this.datefin = datefin;
+    public void setValidation(Valider validation) {
+        this.validation = validation;
+    }
+
+    public Typevalidation getEtat() {
+        return etat;
+    }
+
+    public HistoriqueEtudiantModule etat(Typevalidation etat) {
+        this.etat = etat;
+        return this;
+    }
+
+    public void setEtat(Typevalidation etat) {
+        this.etat = etat;
     }
 
     public Set<Module> getModules() {
@@ -147,8 +166,9 @@ public class HistoriqueEtudiantModule implements Serializable {
     public String toString() {
         return "HistoriqueEtudiantModule{" +
             "id=" + getId() +
-            ", datedebut='" + getDatedebut() + "'" +
-            ", datefin='" + getDatefin() + "'" +
+            ", note=" + getNote() +
+            ", validation='" + getValidation() + "'" +
+            ", etat='" + getEtat() + "'" +
             "}";
     }
 }

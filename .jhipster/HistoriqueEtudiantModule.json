@@ -17,15 +17,18 @@
     ],
     "fields": [
         {
-            "fieldName": "datedebut",
-            "fieldType": "LocalDate",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "note",
+            "fieldType": "Float"
         },
         {
-            "fieldName": "datefin",
-            "fieldType": "LocalDate"
+            "fieldName": "validation",
+            "fieldType": "Valider",
+            "fieldValues": "V,NV"
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "Typevalidation",
+            "fieldValues": "VCS,VCA,VAV,VAP"
         }
     ],
     "changelogDate": "20200702190409",

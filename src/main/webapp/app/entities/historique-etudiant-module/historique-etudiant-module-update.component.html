@@ -1,3 +1,4 @@
+<div class="card jh-card">
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
@@ -12,29 +13,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.datedebut" for="field_datedebut">Datedebut</label>
-                    <div class="input-group">
-                        <input id="field_datedebut" type="text" class="form-control" name="datedebut" ngbDatepicker #datedebutDp="ngbDatepicker" formControlName="datedebut"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="datedebutDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
-                    <div *ngIf="editForm.get('datedebut')!.invalid && (editForm.get('datedebut')!.dirty || editForm.get('datedebut')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('datedebut')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.note" for="field_note">Note</label>
+                    <input type="number" class="form-control" name="note" id="field_note"
+                           formControlName="note"/>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.datefin" for="field_datefin">Datefin</label>
-                    <div class="input-group">
-                        <input id="field_datefin" type="text" class="form-control" name="datefin" ngbDatepicker #datefinDp="ngbDatepicker" formControlName="datefin"/>
-                        <span class="input-group-append">
-                            <button type="button" class="btn btn-secondary" (click)="datefinDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                        </span>
-                    </div>
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.validation" for="field_validation">Validation</label>
+                    <select class="form-control" name="validation" formControlName="validation" id="field_validation">
+                        <option value="V">{{ 'sequortalibApp.Valider.V' | translate }}</option>
+                        <option value="NV">{{ 'sequortalibApp.Valider.NV' | translate }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.etat" for="field_etat">Etat</label>
+                    <select class="form-control" name="etat" formControlName="etat" id="field_etat">
+                        <option value="VCS">{{ 'sequortalibApp.Typevalidation.VCS' | translate }}</option>
+                        <option value="VCA">{{ 'sequortalibApp.Typevalidation.VCA' | translate }}</option>
+                        <option value="VAV">{{ 'sequortalibApp.Typevalidation.VAV' | translate }}</option>
+                        <option value="VAP">{{ 'sequortalibApp.Typevalidation.VAP' | translate }}</option>
+                    </select>
                 </div>
             </div>
 
@@ -49,4 +48,5 @@
             </div>
         </form>
     </div>
+</div>
 </div>

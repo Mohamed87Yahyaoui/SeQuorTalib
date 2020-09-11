@@ -61,101 +61,84 @@
 
     <div  *ngSwitchCase="true">
         <div class="row" *jhiHasAnyAuthority="'ROLE_ADMIN'">
-            <div class="col-xl-3 col-md-6">
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <a class="dropdown-item" routerLink="filiere" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span jhiTranslate="global.menu.entities.filiere">Filieres</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <a class="dropdown-item" routerLink="departement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span jhiTranslate="global.menu.entities.departement">Departements</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <a class="dropdown-item" routerLink="module" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span jhiTranslate="global.menu.entities.module">Module</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-                <div class="card card-stats">
-                    <!-- Card body -->
-                    <a class="dropdown-item" routerLink="etablissement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <span jhiTranslate="global.menu.entities.etablissement">Etablissement</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="card-body">
-             <div class="row d-flex justify-content-center ">
-                <div class="col-8">
-                    <div class="card shadow">
-                        <canvas
-                            baseChart
-                            [chartType]="'line'"
-                            [datasets]="chartDataAdmin"
-                            [labels]="chartLabelAdmin"
-                            [options]="chartOptionsAdmin"
-                            [legend]="true">
-                        </canvas>
-                        <br>
-                        <p class="text-center">Nombre des visiteurs (en %) dans les 5 mois derniers</p>
-                    </div>
 
+
+            <div class="row d-flex justify-content-center mt-4" >
+                <div class="col-md-4">
+                    <a class="dropdown-item" routerLink="filiere" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()" >
+                        <div class="card" >
+                            <img class="card-img-top" src="../../content/images/fil.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Filieres</h5>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-             </div>
+
+                <div class="col-md-4">
+                    <a class="dropdown-item" routerLink="module" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <div class="card" >
+                            <img class="card-img-top" src="../../content/images/filiere1.jpeg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Modules</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a class="dropdown-item" routerLink="departement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <div class="card" >
+                            <img class="card-img-top" src="../../content/images/depa.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Departements</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
+
+
+
+
+            <div class="row d-flex justify-content-center mt-4" >
+                <div class="col-md-4">
+                    <a class="dropdown-item" routerLink="etablissement" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <div class="card" >
+                            <img class="card-img-top" src="../../content/images/etab.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Etablissements</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a class="dropdown-item" routerLink="historique-etudiant-module" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                        <div class="card" >
+                            <img class="card-img-top" src="../../content/images/note.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Notes etudiants</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
         <div *jhiHasAnyAuthority="'ROLE_ETUDIANT'">

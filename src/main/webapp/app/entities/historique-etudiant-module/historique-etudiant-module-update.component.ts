@@ -14,13 +14,12 @@ import { HistoriqueEtudiantModuleService } from './historique-etudiant-module.se
 })
 export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
   isSaving = false;
-  datedebutDp: any;
-  datefinDp: any;
 
   editForm = this.fb.group({
     id: [],
-    datedebut: [null, [Validators.required]],
-    datefin: []
+    note: [],
+    validation: [],
+    etat: []
   });
 
   constructor(
@@ -38,8 +37,9 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
   updateForm(historiqueEtudiantModule: IHistoriqueEtudiantModule): void {
     this.editForm.patchValue({
       id: historiqueEtudiantModule.id,
-      datedebut: historiqueEtudiantModule.datedebut,
-      datefin: historiqueEtudiantModule.datefin
+      note: historiqueEtudiantModule.note,
+      validation: historiqueEtudiantModule.validation,
+      etat: historiqueEtudiantModule.etat
     });
   }
 
@@ -61,8 +61,9 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
     return {
       ...new HistoriqueEtudiantModule(),
       id: this.editForm.get(['id'])!.value,
-      datedebut: this.editForm.get(['datedebut'])!.value,
-      datefin: this.editForm.get(['datefin'])!.value
+      note: this.editForm.get(['note'])!.value,
+      validation: this.editForm.get(['validation'])!.value,
+      etat: this.editForm.get(['etat'])!.value
     };
   }
 

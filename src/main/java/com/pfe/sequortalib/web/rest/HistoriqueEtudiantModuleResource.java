@@ -18,7 +18,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -52,7 +51,7 @@ public class HistoriqueEtudiantModuleResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/historique-etudiant-modules")
-    public ResponseEntity<HistoriqueEtudiantModule> createHistoriqueEtudiantModule(@Valid @RequestBody HistoriqueEtudiantModule historiqueEtudiantModule) throws URISyntaxException {
+    public ResponseEntity<HistoriqueEtudiantModule> createHistoriqueEtudiantModule(@RequestBody HistoriqueEtudiantModule historiqueEtudiantModule) throws URISyntaxException {
         log.debug("REST request to save HistoriqueEtudiantModule : {}", historiqueEtudiantModule);
         if (historiqueEtudiantModule.getId() != null) {
             throw new BadRequestAlertException("A new historiqueEtudiantModule cannot already have an ID", ENTITY_NAME, "idexists");
@@ -73,7 +72,7 @@ public class HistoriqueEtudiantModuleResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/historique-etudiant-modules")
-    public ResponseEntity<HistoriqueEtudiantModule> updateHistoriqueEtudiantModule(@Valid @RequestBody HistoriqueEtudiantModule historiqueEtudiantModule) throws URISyntaxException {
+    public ResponseEntity<HistoriqueEtudiantModule> updateHistoriqueEtudiantModule(@RequestBody HistoriqueEtudiantModule historiqueEtudiantModule) throws URISyntaxException {
         log.debug("REST request to update HistoriqueEtudiantModule : {}", historiqueEtudiantModule);
         if (historiqueEtudiantModule.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

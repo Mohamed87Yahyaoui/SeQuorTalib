@@ -65,21 +65,34 @@ export class SmiEtudiantsComponent implements OnInit {
 
   shownotemohameds1(): void {
     this.notemohameds1 = true;
+    this.notemohameds2 = false;
+    this.notemohameds3 = false;
+    this.notemohameds3 = false;
+    this.notemohameds4 = false;
     this.router.navigateByUrl('/noteSMI');
   }
 
   shownotemohameds2(): void {
     this.notemohameds2 = true;
+    this.notemohameds1 = false;
+    this.notemohameds3 = false;
+    this.notemohameds4 = false;
     this.router.navigateByUrl('/noteSMI');
   }
 
   shownotemohameds3(): void {
     this.notemohameds3 = true;
+    this.notemohameds1 = false;
+    this.notemohameds2 = false;
+    this.notemohameds4 = false;
     this.router.navigateByUrl('/noteSMI');
   }
 
   shownotemohameds4(): void {
     this.notemohameds4 = true;
+    this.notemohameds1 = false;
+    this.notemohameds2 = false;
+    this.notemohameds3 = false;
     this.router.navigateByUrl('/noteSMI');
   }
 }

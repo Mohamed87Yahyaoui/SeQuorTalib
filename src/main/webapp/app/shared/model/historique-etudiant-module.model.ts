@@ -1,11 +1,13 @@
-import { Moment } from 'moment';
 import { IModule } from 'app/shared/model/module.model';
 import { IEtudiant } from 'app/shared/model/etudiant.model';
+import { Valider } from 'app/shared/model/enumerations/valider.model';
+import { Typevalidation } from 'app/shared/model/enumerations/typevalidation.model';
 
 export interface IHistoriqueEtudiantModule {
   id?: number;
-  datedebut?: Moment;
-  datefin?: Moment;
+  note?: number;
+  validation?: Valider;
+  etat?: Typevalidation;
   modules?: IModule[];
   etudiants?: IEtudiant[];
 }
@@ -13,8 +15,9 @@ export interface IHistoriqueEtudiantModule {
 export class HistoriqueEtudiantModule implements IHistoriqueEtudiantModule {
   constructor(
     public id?: number,
-    public datedebut?: Moment,
-    public datefin?: Moment,
+    public note?: number,
+    public validation?: Valider,
+    public etat?: Typevalidation,
     public modules?: IModule[],
     public etudiants?: IEtudiant[]
   ) {}

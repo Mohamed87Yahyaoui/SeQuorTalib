@@ -16,8 +16,9 @@
       "detail": {
         "title": "Historique Etudiant Module"
       },
-      "datedebut": "Datedebut",
-      "datefin": "Datefin",
+      "note": "Note",
+      "validation": "Validation",
+      "etat": "Etat",
       "module": "Module",
       "etudiant": "Etudiant"
     }

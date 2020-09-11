@@ -15,8 +15,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +22,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.pfe.sequortalib.domain.enumeration.Valider;
+import com.pfe.sequortalib.domain.enumeration.Typevalidation;
 /**
  * Integration tests for the {@link HistoriqueEtudiantModuleResource} REST controller.
  */
@@ -33,11 +33,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class HistoriqueEtudiantModuleResourceIT {
 
-    private static final LocalDate DEFAULT_DATEDEBUT = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATEDEBUT = LocalDate.now(ZoneId.systemDefault());
+    private static final Float DEFAULT_NOTE = 1F;
+    private static final Float UPDATED_NOTE = 2F;
 
-    private static final LocalDate DEFAULT_DATEFIN = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_DATEFIN = LocalDate.now(ZoneId.systemDefault());
+    private static final Valider DEFAULT_VALIDATION = Valider.V;
+    private static final Valider UPDATED_VALIDATION = Valider.NV;
+
+    private static final Typevalidation DEFAULT_ETAT = Typevalidation.VCS;
+    private static final Typevalidation UPDATED_ETAT = Typevalidation.VCA;
 
     @Autowired
     private HistoriqueEtudiantModuleRepository historiqueEtudiantModuleRepository;
@@ -61,8 +64,9 @@ public class HistoriqueEtudiantModuleResourceIT {
      */
     public static HistoriqueEtudiantModule createEntity(EntityManager em) {
         HistoriqueEtudiantModule historiqueEtudiantModule = new HistoriqueEtudiantModule()
-            .datedebut(DEFAULT_DATEDEBUT)
-            .datefin(DEFAULT_DATEFIN);
+            .note(DEFAULT_NOTE)
+            .validation(DEFAULT_VALIDATION)
+            .etat(DEFAULT_ETAT);
         return historiqueEtudiantModule;
     }
     /**
@@ -73,8 +77,9 @@ public class HistoriqueEtudiantModuleResourceIT {
      */
     public static HistoriqueEtudiantModule createUpdatedEntity(EntityManager em) {
         HistoriqueEtudiantModule historiqueEtudiantModule = new HistoriqueEtudiantModule()
-            .datedebut(UPDATED_DATEDEBUT)
-            .datefin(UPDATED_DATEFIN);
+            .note(UPDATED_NOTE)
+            .validation(UPDATED_VALIDATION)
+            .etat(UPDATED_ETAT);
         return historiqueEtudiantModule;
     }
 
@@ -98,8 +103,9 @@ public class HistoriqueEtudiantModuleResourceIT {
         List<HistoriqueEtudiantModule> historiqueEtudiantModuleList = historiqueEtudiantModuleRepository.findAll();
         assertThat(historiqueEtudiantModuleList).hasSize(databaseSizeBeforeCreate + 1);
         HistoriqueEtudiantModule testHistoriqueEtudiantModule = historiqueEtudiantModuleList.get(historiqueEtudiantModuleList.size() - 1);
-        assertThat(testHistoriqueEtudiantModule.getDatedebut()).isEqualTo(DEFAULT_DATEDEBUT);
-        assertThat(testHistoriqueEtudiantModule.getDatefin()).isEqualTo(DEFAULT_DATEFIN);
+        assertThat(testHistoriqueEtudiantModule.getNote()).isEqualTo(DEFAULT_NOTE);
+        assertThat(testHistoriqueEtudiantModule.getValidation()).isEqualTo(DEFAULT_VALIDATION);
+        assertThat(testHistoriqueEtudiantModule.getEtat()).isEqualTo(DEFAULT_ETAT);
     }
 
     @Test
@@ -124,24 +130,6 @@ public class HistoriqueEtudiantModuleResourceIT {
 
     @Test
     @Transactional
-    public void checkDatedebutIsRequired() throws Exception {
-        int databaseSizeBeforeTest = historiqueEtudiantModuleRepository.findAll().size();
-        // set the field null
-        historiqueEtudiantModule.setDatedebut(null);
-
-        // Create the HistoriqueEtudiantModule, which fails.
-
-        restHistoriqueEtudiantModuleMockMvc.perform(post("/api/historique-etudiant-modules")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(historiqueEtudiantModule)))
-            .andExpect(status().isBadRequest());
-
-        List<HistoriqueEtudiantModule> historiqueEtudiantModuleList = historiqueEtudiantModuleRepository.findAll();
-        assertThat(historiqueEtudiantModuleList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllHistoriqueEtudiantModules() throws Exception {
         // Initialize the database
         historiqueEtudiantModuleRepository.saveAndFlush(historiqueEtudiantModule);
@@ -151,8 +139,9 @@ public class HistoriqueEtudiantModuleResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(historiqueEtudiantModule.getId().intValue())))
-            .andExpect(jsonPath("$.[*].datedebut").value(hasItem(DEFAULT_DATEDEBUT.toString())))
-            .andExpect(jsonPath("$.[*].datefin").value(hasItem(DEFAULT_DATEFIN.toString())));
+            .andExpect(jsonPath("$.[*].note").value(hasItem(DEFAULT_NOTE.doubleValue())))
+            .andExpect(jsonPath("$.[*].validation").value(hasItem(DEFAULT_VALIDATION.toString())))
+            .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.toString())));
     }
     
     @Test
@@ -166,8 +155,9 @@ public class HistoriqueEtudiantModuleResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(historiqueEtudiantModule.getId().intValue()))
-            .andExpect(jsonPath("$.datedebut").value(DEFAULT_DATEDEBUT.toString()))
-            .andExpect(jsonPath("$.datefin").value(DEFAULT_DATEFIN.toString()));
+            .andExpect(jsonPath("$.note").value(DEFAULT_NOTE.doubleValue()))
+            .andExpect(jsonPath("$.validation").value(DEFAULT_VALIDATION.toString()))
+            .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.toString()));
     }
 
     @Test
@@ -191,8 +181,9 @@ public class HistoriqueEtudiantModuleResourceIT {
         // Disconnect from session so that the updates on updatedHistoriqueEtudiantModule are not directly saved in db
         em.detach(updatedHistoriqueEtudiantModule);
         updatedHistoriqueEtudiantModule
-            .datedebut(UPDATED_DATEDEBUT)
-            .datefin(UPDATED_DATEFIN);
+            .note(UPDATED_NOTE)
+            .validation(UPDATED_VALIDATION)
+            .etat(UPDATED_ETAT);
 
         restHistoriqueEtudiantModuleMockMvc.perform(put("/api/historique-etudiant-modules")
             .contentType(MediaType.APPLICATION_JSON)
@@ -203,8 +194,9 @@ public class HistoriqueEtudiantModuleResourceIT {
         List<HistoriqueEtudiantModule> historiqueEtudiantModuleList = historiqueEtudiantModuleRepository.findAll();
         assertThat(historiqueEtudiantModuleList).hasSize(databaseSizeBeforeUpdate);
         HistoriqueEtudiantModule testHistoriqueEtudiantModule = historiqueEtudiantModuleList.get(historiqueEtudiantModuleList.size() - 1);
-        assertThat(testHistoriqueEtudiantModule.getDatedebut()).isEqualTo(UPDATED_DATEDEBUT);
-        assertThat(testHistoriqueEtudiantModule.getDatefin()).isEqualTo(UPDATED_DATEFIN);
+        assertThat(testHistoriqueEtudiantModule.getNote()).isEqualTo(UPDATED_NOTE);
+        assertThat(testHistoriqueEtudiantModule.getValidation()).isEqualTo(UPDATED_VALIDATION);
+        assertThat(testHistoriqueEtudiantModule.getEtat()).isEqualTo(UPDATED_ETAT);
     }
 
     @Test

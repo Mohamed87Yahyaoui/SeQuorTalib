@@ -1,3 +1,4 @@
+<div class="card jh-card">
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="historiqueEtudiantModule">
@@ -8,13 +9,17 @@
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.datedebut">Datedebut</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.note">Note</span></dt>
                 <dd>
-                    <span>{{ historiqueEtudiantModule.datedebut }}</span>
+                    <span>{{ historiqueEtudiantModule.note }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.datefin">Datefin</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.validation">Validation</span></dt>
                 <dd>
-                    <span>{{ historiqueEtudiantModule.datefin }}</span>
+                    <span jhiTranslate="{{ 'sequortalibApp.Valider.' + historiqueEtudiantModule.validation }}">{{ historiqueEtudiantModule.validation }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.etat">Etat</span></dt>
+                <dd>
+                    <span jhiTranslate="{{ 'sequortalibApp.Typevalidation.' + historiqueEtudiantModule.etat }}">{{ historiqueEtudiantModule.etat }}</span>
                 </dd>
             </dl>
 
@@ -31,4 +36,5 @@
             </button>
         </div>
     </div>
+</div>
 </div>
