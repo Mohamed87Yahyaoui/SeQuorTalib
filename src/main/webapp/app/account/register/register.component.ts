@@ -6,6 +6,7 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared/constants/error.constants';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { RegisterService } from './register.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'jhi-register',
@@ -14,6 +15,9 @@ import { RegisterService } from './register.service';
 export class RegisterComponent implements AfterViewInit {
   @ViewChild('login', { static: false })
   login?: ElementRef;
+
+  compteEtudiant = false;
+  compteEnseignant = false;
 
   doNotMatch = false;
   error = false;
@@ -32,7 +36,8 @@ export class RegisterComponent implements AfterViewInit {
     private languageService: JhiLanguageService,
     private loginModalService: LoginModalService,
     private registerService: RegisterService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngAfterViewInit(): void {
@@ -72,5 +77,17 @@ export class RegisterComponent implements AfterViewInit {
     } else {
       this.error = true;
     }
+  }
+
+  formulaireEtudiant(): void {
+    this.compteEtudiant = true;
+    this.compteEnseignant = false;
+    this.router.navigateByUrl('/account/register');
+  }
+
+  formulaireEnseignant(): void {
+    this.compteEnseignant = true;
+    this.compteEtudiant = false;
+    this.router.navigateByUrl('/account/register');
   }
 }

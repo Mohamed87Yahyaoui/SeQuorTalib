@@ -6,7 +6,8 @@
       "403": "Vous n'avez pas les droits pour accéder à cette page.",
       "404": "La page n'existe pas.",
       "405": "Le verbe HTTP que vous avez utilisé n'est pas reconnu par cet URL.",
-      "500": "Erreur interne du serveur."
+      "500": "Erreur interne du serveur.",
+      "null": "Erreur null"
     },
     "concurrencyFailure": "Un autre utilisateur a modifié ces données en même temps que vous. Vos changements n'ont pas été sauvegardés.",
     "validation": "Erreur de validation côté serveur."

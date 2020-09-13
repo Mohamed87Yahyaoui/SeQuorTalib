@@ -46,6 +46,7 @@ import { faSchool } from '@fortawesome/free-solid-svg-icons/faSchool';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faListOl } from '@fortawesome/free-solid-svg-icons/faListOl';
 import { faDoorOpen } from '@fortawesome/free-solid-svg-icons/faDoorOpen';
+import { faChalkboardTeacher } from '@fortawesome/free-solid-svg-icons/faChalkboardTeacher';
 
 export const fontAwesomeIcons = [
   faUser,
@@ -91,6 +92,7 @@ export const fontAwesomeIcons = [
   faBook,
   faSchool,
   faListOl,
-  faDoorOpen
+  faDoorOpen,
+  faChalkboardTeacher
   // jhipster-needle-add-icon-import
 ];

@@ -22,15 +22,7 @@
                                         <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                                     </div>
                                 </div>-->
-                                <div class="col-lg-6 align-self-center">
-                                   <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
-                                        <select class="form-control" id="field_user" name="user" formControlName="user">
-                                            <option [ngValue]="null"></option>
-                                            <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
-                                        </select>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -48,7 +40,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Tel</label>
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Numéro fixe</label>
                                         <input type="number" class="form-control" name="tel" id="field_tel"
                                                formControlName="tel"/>
                                     </div>
@@ -63,6 +55,23 @@
                                             <span class="input-group-append">
                                              <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
                                             </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label"  for="field_codeEtudiant">Numéro GSM</label>
+                                        <input type="number" class="form-control" name="codeEtudiant" id="field_codeEtudiant"
+                                               formControlName="codeEtudiant"/>
+                                        <div *ngIf="editForm.get('codeEtudiant')!.invalid && (editForm.get('codeEtudiant')!.dirty || editForm.get('codeEtudiant')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('codeEtudiant')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   [hidden]="!editForm.get('codeEtudiant')?.errors?.number" jhiTranslate="entity.validation.number">
+                                                This field should be a number.
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +96,7 @@
                         <h6 class="heading-small text-muted mb-4">Etudiants Diplomés</h6>
                         <div class="pl-lg-4" [hidden]="editForm.get('etat')!.value==='NONDIPLOME' || !editForm.get('etat')!.value">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label  class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etablissement" for="field_etablissement">Etablissement</label>
                                         <select  class="form-control" id="field_etablissement" name="etablissement" formControlName="etablissement">
@@ -96,7 +105,40 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="field_section">Filiere/Branche</label>
+                                        <input type="text" class="form-control" name="section" id="field_section"
+                                               formControlName="section"/>
+                                        <div *ngIf="editForm.get('section')!.invalid && (editForm.get('section')!.dirty || editForm.get('section')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('section')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label"  for="field_semsetre">Promo</label>
+                                        <input type="number" class="form-control" name="semsetre" id="field_semsetre"
+                                               formControlName="semsetre"/>
+                                        <div *ngIf="editForm.get('semsetre')!.invalid && (editForm.get('semsetre')!.dirty || editForm.get('semsetre')!.touched)">
+                                            <small class="form-text text-danger"
+                                                   *ngIf="editForm.get('semsetre')?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                            <small class="form-text text-danger"
+                                                   [hidden]="!editForm.get('semsetre')?.errors?.number" jhiTranslate="entity.validation.number">
+                                                This field should be a number.
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <hr class="my-4" />
                         <h6 class="heading-small text-muted mb-4">Etudiants non Diplomés</h6>
@@ -104,19 +146,11 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.codeEtudiant" for="field_codeEtudiant">Code Etudiant</label>
-                                        <input type="number" class="form-control" name="codeEtudiant" id="field_codeEtudiant"
-                                               formControlName="codeEtudiant"/>
-                                        <div *ngIf="editForm.get('codeEtudiant')!.invalid && (editForm.get('codeEtudiant')!.dirty || editForm.get('codeEtudiant')!.touched)">
-                                            <small class="form-text text-danger"
-                                                   *ngIf="editForm.get('codeEtudiant')?.errors?.required" jhiTranslate="entity.validation.required">
-                                                This field is required.
-                                            </small>
-                                            <small class="form-text text-danger"
-                                                   [hidden]="!editForm.get('codeEtudiant')?.errors?.number" jhiTranslate="entity.validation.number">
-                                                This field should be a number.
-                                            </small>
-                                        </div>
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
+                                        <select class="form-control" id="field_user" name="user" formControlName="user">
+                                            <option [ngValue]="null"></option>
+                                            <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -168,7 +202,7 @@
                             <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                         </button>
 
-                        <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                        <button type="submit" id="save-entity" [disabled]="editForm.invalid ||isSaving" class="btn btn-primary">
                             <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                         </button>
                     </div>

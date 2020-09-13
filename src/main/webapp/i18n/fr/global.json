@@ -45,7 +45,9 @@
     },
     "form": {
       "username.label": "Nom d'utilisateur",
-      "username.placeholder": "Votre nom d'utilisateur",
+      "etudiant.code": "Votre code Etudiant",
+      "enseignant.matricule": "Votre matricule Enseignant",
+      "username.placeholder": "Votre code/matricule ",
       "currentpassword.label": "Mot de passe actuel",
       "currentpassword.placeholder": "Mot de passe actuel",
       "newpassword.label": "Nouveau mot de passe",

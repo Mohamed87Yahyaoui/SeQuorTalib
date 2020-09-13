@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Bienvenue !",
-    "subtitle": "Bonne orientation, Succes grantit!",
+    "title": "Sequortalib !",
+    "subtitle": "Bonne orientation, Succès granti",
     "logged": {
       "message": "Vous êtes connecté en tant que \"{{username}}\"."
     },

@@ -454,13 +454,24 @@
 <div class="main-content">
     <!-- Header -->
     <div class="header bg-gradient-danger py-7 py-lg-8">
-        <div class="container">
+        <div class="container" *ngIf="compteEtudiant===false && compteEnseignant===false">
             <div class="header-body text-center mb-7">
                 <div class="row justify-content-center">
                     <div class="col-lg-5 col-md-6">
-                        <h1 class="text-white" jhiTranslate="home.title">Welcome!</h1>
+
+                        <h1 class="text-white" >Vous êtes ?</h1>
+                        <!--
                         <p class="text-lead text-light">Si vous etes un etudiant, veuillez saisir un login sous la forme: Nom_Prenom_CodeEtudiant</p>
                         <p class="text-lead text-light">Si vous etes un enseignant, veuillez saisir un login sous la forme: Nom_Prenom</p>
+                        -->
+                        <button  class="btn btn-primary jh-create-entity" (click)="formulaireEtudiant()">
+                            <fa-icon icon="user-graduate"></fa-icon>
+                            <span>Etudiant</span>
+                        </button>
+                        <button  class="btn btn-primary jh-create-entity" (click)="formulaireEnseignant()">
+                            <fa-icon icon="chalkboard-teacher"></fa-icon>
+                            <span>Enseignant</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -472,7 +483,7 @@
         </div>
     </div>
     <!-- Page content -->
-    <div class="container mt--8 pb-5">
+    <div class="container mt--8 pb-5" *ngIf="compteEnseignant===true">
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-7">
                 <div class="card bg-secondary border-0 mb-0">
@@ -510,32 +521,32 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.username.placeholder' | translate }}"
+                                    <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.enseignant.matricule' | translate }}"
                                            formControlName="login" #login>
                                 </div>
 
                                 <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
                                     <small class="form-text text-danger"
                                            *ngIf="registerForm.get('login')?.errors?.required"
-                                           jhiTranslate="register.messages.validate.login.required">
+                                           jhiTranslate="register.messages.validate.login.requiredEnseignant">
                                         Your username is required.
                                     </small>
 
                                     <small class="form-text text-danger"
                                            *ngIf="registerForm.get('login')?.errors?.minlength"
-                                           jhiTranslate="register.messages.validate.login.minlength">
+                                           jhiTranslate="register.messages.validate.login.minlengthEnseignant">
                                         Your username is required to be at least 1 character.
                                     </small>
 
                                     <small class="form-text text-danger"
                                            *ngIf="registerForm.get('login')?.errors?.maxlength"
-                                           jhiTranslate="register.messages.validate.login.maxlength">
+                                           jhiTranslate="register.messages.validate.login.maxlengthEnseignant">
                                         Your username cannot be longer than 50 characters.
                                     </small>
 
                                     <small class="form-text text-danger"
                                            *ngIf="registerForm.get('login')?.errors?.pattern"
-                                           jhiTranslate="register.messages.validate.login.pattern">
+                                           jhiTranslate="register.messages.validate.login.patternEnseignant">
                                         Your username can only contain letters and digits.
                                     </small>
                                 </div>
@@ -647,6 +658,195 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="container mt--8 pb-5" *ngIf="compteEtudiant===true">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card bg-secondary border-0 mb-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+                        <div class="text-center text-muted mb-4">
+                            <small jhiTranslate="register.title">Register </small>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="alert alert-success" *ngIf="success" jhiTranslate="register.messages.success">
+                                <strong>Registration saved!</strong> Please check your email for confirmation.
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="error" jhiTranslate="register.messages.error.fail">
+                                <strong>Registration failed!</strong> Please try again later.
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="errorUserExists" jhiTranslate="register.messages.error.userexists">
+                                <strong>Login name already registered!</strong> Please choose another one.
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="errorEmailExists" jhiTranslate="register.messages.error.emailexists">
+                                <strong>Email is already in use!</strong> Please choose another one.
+                            </div>
+
+                            <div class="alert alert-danger" *ngIf="doNotMatch" jhiTranslate="global.messages.error.dontmatch">
+                                The password and its confirmation do not match!
+                            </div>
+                        </div>
+
+
+                        <form name="form" role="form" (ngSubmit)="register()" [formGroup]="registerForm" *ngIf="!success">
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="login" name="login" placeholder="{{ 'global.form.etudiant.code' | translate }}"
+                                           formControlName="login" #login>
+                                </div>
+
+                                <div *ngIf="registerForm.get('login')!.invalid && (registerForm.get('login')!.dirty || registerForm.get('login')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('login')?.errors?.required"
+                                           jhiTranslate="register.messages.validate.login.requiredEtudiant">
+                                        Your username is required.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('login')?.errors?.minlength"
+                                           jhiTranslate="register.messages.validate.login.minlengthEtudiant">
+                                        Your username is required to be at least 1 character.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('login')?.errors?.maxlength"
+                                           jhiTranslate="register.messages.validate.login.maxlengthEtudiant">
+                                        Your username cannot be longer than 50 characters.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('login')?.errors?.pattern"
+                                           jhiTranslate="register.messages.validate.login.patternEtudiant">
+                                        Your username can only contain letters and digits.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ 'global.form.email.placeholder' | translate }}"
+                                           formControlName="email">
+                                </div>
+
+                                <div *ngIf="registerForm.get('email')!.invalid && (registerForm.get('email')!.dirty || registerForm.get('email')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('email')?.errors?.required"
+                                           jhiTranslate="global.messages.validate.email.required">
+                                        Your email is required.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('email')?.errors?.invalid"
+                                           jhiTranslate="global.messages.validate.email.invalid">
+                                        Your email is invalid.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('email')?.errors?.minlength"
+                                           jhiTranslate="global.messages.validate.email.minlength">
+                                        Your email is required to be at least 5 characters.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('email')?.errors?.maxlength"
+                                           jhiTranslate="global.messages.validate.email.maxlength">
+                                        Your email cannot be longer than 100 characters.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="{{ 'global.form.newpassword.placeholder' | translate }}"
+                                           formControlName="password">
+                                </div>
+
+                                <div *ngIf="registerForm.get('password')!.invalid && (registerForm.get('password')!.dirty || registerForm.get('password')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('password')?.errors?.required"
+                                           jhiTranslate="global.messages.validate.newpassword.required">
+                                        Your password is required.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('password')?.errors?.minlength"
+                                           jhiTranslate="global.messages.validate.newpassword.minlength">
+                                        Your password is required to be at least 4 characters.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('password')?.errors?.maxlength"
+                                           jhiTranslate="global.messages.validate.newpassword.maxlength">
+                                        Your password cannot be longer than 50 characters.
+                                    </small>
+                                </div>
+
+                                <jhi-password-strength-bar [passwordToCheck]="registerForm.get('password')!.value"></jhi-password-strength-bar>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="{{ 'global.form.confirmpassword.placeholder' | translate }}"
+                                           formControlName="confirmPassword">
+                                </div>
+
+                                <div *ngIf="registerForm.get('confirmPassword')!.invalid && (registerForm.get('confirmPassword')!.dirty || registerForm.get('confirmPassword')!.touched)">
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('confirmPassword')?.errors?.required"
+                                           jhiTranslate="global.messages.validate.confirmpassword.required">
+                                        Your confirmation password is required.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('confirmPassword')?.errors?.minlength"
+                                           jhiTranslate="global.messages.validate.confirmpassword.minlength">
+                                        Your confirmation password is required to be at least 4 characters.
+                                    </small>
+
+                                    <small class="form-text text-danger"
+                                           *ngIf="registerForm.get('confirmPassword')?.errors?.maxlength"
+                                           jhiTranslate="global.messages.validate.confirmpassword.maxlength">
+                                        Your confirmation password cannot be longer than 50 characters.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary" jhiTranslate="register.form.button">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
 </div>
 <!-- Footer -->
 <footer class="py-5" id="footer-main">

@@ -14,7 +14,7 @@
     "detail": {
       "title": "Utilisateur"
     },
-    "login": "Login",
+    "login": "Code/Matricule",
     "firstName": "Nom",
     "lastName": "Prenom",
     "email": "Email",
