@@ -11,6 +11,8 @@ import { EtudiantService } from './etudiant.service';
 import { EtudiantDeleteDialogComponent } from './etudiant-delete-dialog.component';
 import { Router } from '@angular/router';
 
+import { JhiLanguageService } from 'ng-jhipster';
+
 @Component({
   selector: 'jhi-etudiant',
   templateUrl: './etudiant.component.html'
@@ -43,7 +45,8 @@ export class EtudiantComponent implements OnInit, OnDestroy {
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
     protected parseLinks: JhiParseLinks,
-    private router: Router
+    private router: Router,
+    private languageService: JhiLanguageService
   ) {
     this.etudiants = [];
     this.itemsPerPage = ITEMS_PER_PAGE;

@@ -16,7 +16,7 @@
         }
       },
 
-      "success": "<strong>Compte enregistré !</strong> Merci de vérifier votre email de confirmation.",
+      "success": "<strong>Compte enregistré !</strong> Veuillez réssayer dans 48h .",
 
       "error": {
         "fail": "<strong>Compte non créé !</strong> Merci d'essayer à nouveau plus tard.",

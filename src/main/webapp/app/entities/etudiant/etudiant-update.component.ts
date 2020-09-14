@@ -16,6 +16,8 @@ import { UserService } from 'app/core/user/user.service';
 import { IFiliere } from 'app/shared/model/filiere.model';
 import { FiliereService } from 'app/entities/filiere/filiere.service';
 
+import { JhiLanguageService } from 'ng-jhipster';
+
 type SelectableEntity = IEtablissement | IHistoriqueEtudiantModule | IUser | IFiliere;
 
 @Component({
@@ -52,7 +54,8 @@ export class EtudiantUpdateComponent implements OnInit {
     protected userService: UserService,
     protected filiereService: FiliereService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private languageService: JhiLanguageService
   ) {}
 
   ngOnInit(): void {

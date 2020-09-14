@@ -13,18 +13,17 @@
                     <div>
                         <jhi-alert-error></jhi-alert-error>
                         <h6 class="heading-small text-muted mb-4">User information</h6>
-                        <div class="pl-lg-4">
-                            <div class="row">
-                                <!--
-                                <div class="col-lg-6">
-                                    <div class="form-group" [hidden]="!editForm.get('id')!.value" >
-                                        <label for="id" jhiTranslate="global.field.id">ID</label>
-                                        <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
-                                    </div>
-                                </div>-->
 
-                            </div>
                             <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
+                                            <select class="form-control" id="field_user" name="user" formControlName="user">
+                                                <option [ngValue]="null"></option>
+                                                <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.cin" for="field_cin">Cin</label>
@@ -38,24 +37,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
+
+                            <div class="row">
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.tel" for="field_tel">Numéro fixe</label>
+                                        <label class="form-control-label"  for="field_tel">Numéro fixe</label>
                                         <input type="number" class="form-control" name="tel" id="field_tel"
                                                formControlName="tel"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.datenaissance" for="field_datenaissance">Datenaissance</label>
-                                        <div class="input-group">
-                                            <input id="field_datenaissance" type="text" class="form-control" name="datenaissance" ngbDatepicker #datenaissanceDp="ngbDatepicker" formControlName="datenaissance"/>
-                                            <span class="input-group-append">
-                                             <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
-                                            </span>
-                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -75,6 +65,20 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.datenaissance" for="field_datenaissance">Datenaissance</label>
+                                        <div class="input-group">
+                                            <input id="field_datenaissance" type="text" class="form-control" name="datenaissance" ngbDatepicker #datenaissanceDp="ngbDatepicker" formControlName="datenaissance"/>
+                                            <span class="input-group-append">
+                                             <button type="button" class="btn btn-secondary" (click)="datenaissanceDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.etat" for="field_etat">Etat</label>
@@ -107,8 +111,8 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="field_section">Filiere/Branche</label>
-                                        <input type="text" class="form-control" name="section" id="field_section"
+                                        <label class="form-control-label" >Filiere/Branche</label>
+                                        <input type="text" class="form-control" name="section"
                                                formControlName="section"/>
                                         <div *ngIf="editForm.get('section')!.invalid && (editForm.get('section')!.dirty || editForm.get('section')!.touched)">
                                             <small class="form-text text-danger"
@@ -122,8 +126,8 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label"  for="field_semsetre">Promo</label>
-                                        <input type="number" class="form-control" name="semsetre" id="field_semsetre"
+                                        <label class="form-control-label"  >Promo</label>
+                                        <input type="number" class="form-control" name="semsetre"
                                                formControlName="semsetre"/>
                                         <div *ngIf="editForm.get('semsetre')!.invalid && (editForm.get('semsetre')!.dirty || editForm.get('semsetre')!.touched)">
                                             <small class="form-text text-danger"
@@ -144,15 +148,6 @@
                         <h6 class="heading-small text-muted mb-4">Etudiants non Diplomés</h6>
                         <div class="pl-lg-4" [hidden]="editForm.get('etat')!.value==='DIPLOME' || !editForm.get('etat')!.value">
                             <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.user" for="field_user">User</label>
-                                        <select class="form-control" id="field_user" name="user" formControlName="user">
-                                            <option [ngValue]="null"></option>
-                                            <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.filiere" for="field_filiere">Filiere</label>

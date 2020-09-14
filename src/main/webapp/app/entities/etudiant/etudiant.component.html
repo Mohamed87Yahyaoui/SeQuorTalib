@@ -160,10 +160,12 @@
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
             <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.etudiant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
-            <th scope="col"  jhiSortBy="tel"><span jhiTranslate="sequortalibApp.etudiant.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="tel"><span >Numéro fixe</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="codeEtudiant"><span>Numéro GSM</span> <fa-icon icon="sort"></fa-icon></th>
             <th scope="col"  jhiSortBy="datenaissance"><span jhiTranslate="sequortalibApp.etudiant.datenaissance">Datenaissance</span> <fa-icon icon="sort"></fa-icon></th>
             <th scope="col"  jhiSortBy="etablissement.nom"><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span> <fa-icon icon="sort"></fa-icon></th>
-            <th scope="col"  jhiSortBy="etablissement.filiere"><span >Filiere</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="section"><span >Filiere</span> <fa-icon icon="sort"></fa-icon></th>
+            <th scope="col"  jhiSortBy="semsetre"><span >Promo</span> <fa-icon icon="sort"></fa-icon></th>
             <th scope="col"></th>
         </tr>
         </thead>
@@ -175,6 +177,7 @@
             <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.user.lastName }}</td>
             <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.cin }}</td>
             <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.tel }}</td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.codeEtudiant }}</td>
             <td *ngIf="etudiant.etat==='DIPLOME'">{{ etudiant.datenaissance | date:'mediumDate' }}</td>
             <td *ngIf="etudiant.etat==='DIPLOME'">
                 <div *ngIf="etudiant.etablissement">
@@ -182,8 +185,13 @@
                 </div>
             </td>
             <td *ngIf="etudiant.etat==='DIPLOME'">
-                <div *ngIf="etudiant.etablissement.filiere">
-                    {{ etudiant.etablissement.filiere}}
+                <div>
+                    {{ etudiant.section}}
+                </div>
+            </td>
+            <td *ngIf="etudiant.etat==='DIPLOME'">
+                <div>
+                    {{ etudiant.semsetre}}
                 </div>
             </td>
             <td class="text-right" *ngIf="etudiant.etat==='DIPLOME'">
@@ -229,15 +237,15 @@
                 <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="codeEtudiant"><span jhiTranslate="sequortalibApp.etudiant.codeEtudiant">Code Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" jhiSortBy="user.login"><span >Code Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col">Nom</th>
                     <th scope="col">Prenom</th>
-                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="sequortalibApp.etudiant.user">User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="cin"><span jhiTranslate="sequortalibApp.etudiant.cin">Cin</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="filiere.nom"><span jhiTranslate="sequortalibApp.etudiant.filiere">Filiere</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="semsetre"><span jhiTranslate="sequortalibApp.etudiant.semsetre">Semsetre</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="section"><span jhiTranslate="sequortalibApp.etudiant.section">Section</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="tel"><span jhiTranslate="sequortalibApp.etudiant.tel">Tel</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="tel"><span >Numéro fixe</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="codeEtudiant"><span >Numéro GSM</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="datenaissance"><span jhiTranslate="sequortalibApp.etudiant.datenaissance">Datenaissance</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
@@ -245,12 +253,9 @@
                 <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
                 <tr *ngFor="let etudiant of etudiants ;trackBy: trackId">
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'"><a [routerLink]="['/etudiant', etudiant.id, 'view']">{{ etudiant.id }}</a></td>
-                    <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.codeEtudiant }}</td>
+                    <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.user.login }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.user.firstName }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.user.lastName }}</td>
-                    <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">
-                        {{ etudiant.user?.login }}
-                    </td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.cin }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">
                         <div *ngIf="etudiant.filiere">
@@ -260,6 +265,7 @@
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.semsetre }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.section }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.tel }}</td>
+                    <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.codeEtudiant }}</td>
                     <td *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">{{ etudiant.datenaissance | date:'mediumDate' }}</td>
                     <td class="text-right" *ngIf="etudiant.filiere.nom==='SMI' && etudiant.etat==='NONDIPLOME'">
                         <div class="btn-group">
