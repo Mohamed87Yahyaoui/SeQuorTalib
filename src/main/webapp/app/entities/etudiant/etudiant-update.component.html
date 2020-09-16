@@ -157,8 +157,6 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.semsetre" for="field_semsetre">Semsetre</label>
@@ -176,6 +174,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label class="form-control-label" jhiTranslate="sequortalibApp.etudiant.section" for="field_section">Section</label>
@@ -189,9 +189,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label class="form-control-label" jhiTranslate="sequortalibApp.module.historiqueEtudiantModule" for="field_historiqueEtudiantModule">Historique Etudiant Module</label>
+                                    <select class="form-control" id="field_historiqueEtudiantModule" name="historiqueEtudiantModule" formControlName="historiqueEtudiantModule">
+                                        <option [ngValue]="null"></option>
+                                        <option [ngValue]="historiqueEtudiantModuleOption.id === editForm.get('historiqueEtudiantModule')!.value?.id ? editForm.get('historiqueEtudiantModule')!.value : historiqueEtudiantModuleOption" *ngFor="let historiqueEtudiantModuleOption of historiqueetudiantmodules; trackBy: trackById">{{ historiqueEtudiantModuleOption.datedebut }}</option>
+                                    </select>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
                     <div class="justify-content-between">
                         <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
                             <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
