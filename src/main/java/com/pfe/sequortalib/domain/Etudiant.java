@@ -10,6 +10,8 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.pfe.sequortalib.domain.enumeration.Status;
 
@@ -34,14 +36,6 @@ public class Etudiant implements Serializable {
     private String cin;
 
     @NotNull
-    @Column(name = "semsetre", nullable = false)
-    private Integer semsetre;
-
-    @NotNull
-    @Column(name = "section", nullable = false)
-    private String section;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "etat", nullable = false)
     private Status etat;
@@ -49,17 +43,18 @@ public class Etudiant implements Serializable {
     @Column(name = "datenaissance")
     private LocalDate datenaissance;
 
-    @NotNull
-    @Column(name = "code_etudiant", nullable = false)
-    private Integer codeEtudiant;
+    @Column(name = "semsetre")
+    private Integer semsetre;
+
+    @Column(name = "section")
+    private String section;
+
+    @Column(name = "promo")
+    private Integer promo;
 
     @ManyToOne
     @JsonIgnoreProperties("etudiants")
     private Etablissement etablissement;
-
-    @ManyToOne
-    @JsonIgnoreProperties("etudiants")
-    private HistoriqueEtudiantModule historiqueEtudiantModule;
 
     @OneToOne
 
@@ -70,6 +65,17 @@ public class Etudiant implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("etudiants")
     private Filiere filiere;
+
+    @OneToMany(mappedBy = "etudiant")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<HistoriqueEtudiantModule> historiqueEtudiantModules = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "etudiant_module",
+               joinColumns = @JoinColumn(name = "etudiant_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "module_id", referencedColumnName = "id"))
+    private Set<Module> modules = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -106,32 +112,6 @@ public class Etudiant implements Serializable {
         this.cin = cin;
     }
 
-    public Integer getSemsetre() {
-        return semsetre;
-    }
-
-    public Etudiant semsetre(Integer semsetre) {
-        this.semsetre = semsetre;
-        return this;
-    }
-
-    public void setSemsetre(Integer semsetre) {
-        this.semsetre = semsetre;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public Etudiant section(String section) {
-        this.section = section;
-        return this;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
-    }
-
     public Status getEtat() {
         return etat;
     }
@@ -158,17 +138,43 @@ public class Etudiant implements Serializable {
         this.datenaissance = datenaissance;
     }
 
-    public Integer getCodeEtudiant() {
-        return codeEtudiant;
+    public Integer getSemsetre() {
+        return semsetre;
     }
 
-    public Etudiant codeEtudiant(Integer codeEtudiant) {
-        this.codeEtudiant = codeEtudiant;
+    public Etudiant semsetre(Integer semsetre) {
+        this.semsetre = semsetre;
         return this;
     }
 
-    public void setCodeEtudiant(Integer codeEtudiant) {
-        this.codeEtudiant = codeEtudiant;
+    public void setSemsetre(Integer semsetre) {
+        this.semsetre = semsetre;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public Etudiant section(String section) {
+        this.section = section;
+        return this;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public Integer getPromo() {
+        return promo;
+    }
+
+    public Etudiant promo(Integer promo) {
+        this.promo = promo;
+        return this;
+    }
+
+    public void setPromo(Integer promo) {
+        this.promo = promo;
     }
 
     public Etablissement getEtablissement() {
@@ -182,19 +188,6 @@ public class Etudiant implements Serializable {
 
     public void setEtablissement(Etablissement etablissement) {
         this.etablissement = etablissement;
-    }
-
-    public HistoriqueEtudiantModule getHistoriqueEtudiantModule() {
-        return historiqueEtudiantModule;
-    }
-
-    public Etudiant historiqueEtudiantModule(HistoriqueEtudiantModule historiqueEtudiantModule) {
-        this.historiqueEtudiantModule = historiqueEtudiantModule;
-        return this;
-    }
-
-    public void setHistoriqueEtudiantModule(HistoriqueEtudiantModule historiqueEtudiantModule) {
-        this.historiqueEtudiantModule = historiqueEtudiantModule;
     }
 
     public User getUser() {
@@ -222,6 +215,56 @@ public class Etudiant implements Serializable {
     public void setFiliere(Filiere filiere) {
         this.filiere = filiere;
     }
+
+    public Set<HistoriqueEtudiantModule> getHistoriqueEtudiantModules() {
+        return historiqueEtudiantModules;
+    }
+
+    public Etudiant historiqueEtudiantModules(Set<HistoriqueEtudiantModule> historiqueEtudiantModules) {
+        this.historiqueEtudiantModules = historiqueEtudiantModules;
+        return this;
+    }
+
+    public Etudiant addHistoriqueEtudiantModule(HistoriqueEtudiantModule historiqueEtudiantModule) {
+        this.historiqueEtudiantModules.add(historiqueEtudiantModule);
+        historiqueEtudiantModule.setEtudiant(this);
+        return this;
+    }
+
+    public Etudiant removeHistoriqueEtudiantModule(HistoriqueEtudiantModule historiqueEtudiantModule) {
+        this.historiqueEtudiantModules.remove(historiqueEtudiantModule);
+        historiqueEtudiantModule.setEtudiant(null);
+        return this;
+    }
+
+    public void setHistoriqueEtudiantModules(Set<HistoriqueEtudiantModule> historiqueEtudiantModules) {
+        this.historiqueEtudiantModules = historiqueEtudiantModules;
+    }
+
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public Etudiant modules(Set<Module> modules) {
+        this.modules = modules;
+        return this;
+    }
+
+    public Etudiant addModule(Module module) {
+        this.modules.add(module);
+        module.getEtudiants().add(this);
+        return this;
+    }
+
+    public Etudiant removeModule(Module module) {
+        this.modules.remove(module);
+        module.getEtudiants().remove(this);
+        return this;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -246,11 +289,11 @@ public class Etudiant implements Serializable {
             "id=" + getId() +
             ", tel=" + getTel() +
             ", cin='" + getCin() + "'" +
-            ", semsetre=" + getSemsetre() +
-            ", section='" + getSection() + "'" +
             ", etat='" + getEtat() + "'" +
             ", datenaissance='" + getDatenaissance() + "'" +
-            ", codeEtudiant=" + getCodeEtudiant() +
+            ", semsetre=" + getSemsetre() +
+            ", section='" + getSection() + "'" +
+            ", promo=" + getPromo() +
             "}";
     }
 }

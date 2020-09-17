@@ -7,14 +7,14 @@ import { Observable } from 'rxjs';
 
 import { IEnseignant, Enseignant } from 'app/shared/model/enseignant.model';
 import { EnseignantService } from './enseignant.service';
-import { IHistoriqueEnseignantModule } from 'app/shared/model/historique-enseignant-module.model';
-import { HistoriqueEnseignantModuleService } from 'app/entities/historique-enseignant-module/historique-enseignant-module.service';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+import { IModule } from 'app/shared/model/module.model';
+import { ModuleService } from 'app/entities/module/module.service';
 
-type SelectableEntity = IHistoriqueEnseignantModule | IDepartement | IUser;
+type SelectableEntity = IDepartement | IUser | IModule;
 
 @Component({
   selector: 'jhi-enseignant-update',
@@ -22,9 +22,9 @@ type SelectableEntity = IHistoriqueEnseignantModule | IDepartement | IUser;
 })
 export class EnseignantUpdateComponent implements OnInit {
   isSaving = false;
-  historiqueenseignantmodules: IHistoriqueEnseignantModule[] = [];
   departements: IDepartement[] = [];
   users: IUser[] = [];
+  modules: IModule[] = [];
   datenaissanceDp: any;
 
   editForm = this.fb.group({
@@ -33,16 +33,16 @@ export class EnseignantUpdateComponent implements OnInit {
     datenaissance: [],
     cin: [null, [Validators.required]],
     grade: [],
-    historiqueEnseignantModule: [],
     departement: [],
-    user: []
+    user: [],
+    modules: []
   });
 
   constructor(
     protected enseignantService: EnseignantService,
-    protected historiqueEnseignantModuleService: HistoriqueEnseignantModuleService,
     protected departementService: DepartementService,
     protected userService: UserService,
+    protected moduleService: ModuleService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -51,13 +51,11 @@ export class EnseignantUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ enseignant }) => {
       this.updateForm(enseignant);
 
-      this.historiqueEnseignantModuleService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEnseignantModule[]>) => (this.historiqueenseignantmodules = res.body || []));
-
       this.departementService.query().subscribe((res: HttpResponse<IDepartement[]>) => (this.departements = res.body || []));
 
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
+
+      this.moduleService.query().subscribe((res: HttpResponse<IModule[]>) => (this.modules = res.body || []));
     });
   }
 
@@ -68,9 +66,9 @@ export class EnseignantUpdateComponent implements OnInit {
       datenaissance: enseignant.datenaissance,
       cin: enseignant.cin,
       grade: enseignant.grade,
-      historiqueEnseignantModule: enseignant.historiqueEnseignantModule,
       departement: enseignant.departement,
-      user: enseignant.user
+      user: enseignant.user,
+      modules: enseignant.modules
     });
   }
 
@@ -96,9 +94,9 @@ export class EnseignantUpdateComponent implements OnInit {
       datenaissance: this.editForm.get(['datenaissance'])!.value,
       cin: this.editForm.get(['cin'])!.value,
       grade: this.editForm.get(['grade'])!.value,
-      historiqueEnseignantModule: this.editForm.get(['historiqueEnseignantModule'])!.value,
       departement: this.editForm.get(['departement'])!.value,
-      user: this.editForm.get(['user'])!.value
+      user: this.editForm.get(['user'])!.value,
+      modules: this.editForm.get(['modules'])!.value
     };
   }
 
@@ -120,5 +118,16 @@ export class EnseignantUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IModule[], option: IModule): IModule {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

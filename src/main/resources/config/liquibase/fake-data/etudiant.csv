@@ -1,2 +1,5 @@
-id;tel;cin;semsetre;section;etat;datenaissance;code_etudiant
-
+id;tel;cin;etat;datenaissance;semsetre;section;promo
+1;40540;Tonga Savings Account Money Market Account;NONDIPLOME;2020-07-03;35105;District Unbranded Steel Chair;80766
+2;61230;Tasty;DIPLOME;2020-07-03;95948;Music;8585
+3;29811;Shirt;NONDIPLOME;2020-07-03;63348;Frozen Garden multi-byte;4880
+4;93490;Analyst Fresh networks;NONDIPLOME;2020-07-03;49678;Village Virginia;49790

@@ -28,9 +28,6 @@
             <column name="grade" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="historique_enseignant_module_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <column name="departement_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -40,6 +37,17 @@
 
     <changeSet id="20200703222740-1-relations" author="jhipster">
 
+        <createTable tableName="enseignant_module">
+            <column name="module_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enseignant_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="enseignant_id, module_id" tableName="enseignant_module"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

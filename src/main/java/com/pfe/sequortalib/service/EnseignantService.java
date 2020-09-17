@@ -29,6 +29,13 @@ public interface EnseignantService {
     Page<Enseignant> findAll(Pageable pageable);
 
     /**
+     * Get all the enseignants with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<Enseignant> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" enseignant.
      *
      * @param id the id of the entity.

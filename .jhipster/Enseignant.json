@@ -3,14 +3,6 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "historiqueEnseignantModule",
-            "otherEntityName": "historiqueEnseignantModule",
-            "relationshipType": "many-to-one",
-            "relationshipValidateRules": [],
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "enseignant"
-        },
-        {
             "relationshipName": "departement",
             "otherEntityName": "departement",
             "relationshipType": "many-to-one",
@@ -31,6 +23,14 @@
             "otherEntityName": "filiere",
             "relationshipType": "many-to-many",
             "ownerSide": false,
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nom",
+            "ownerSide": true,
             "otherEntityRelationshipName": "enseignant"
         }
     ],

@@ -27,6 +27,8 @@
                     <th scope="col"  jhiSortBy="note"><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.note">Note</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="validation"><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.validation">Validation</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="etat"><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.etat">Etat</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="etudiant.id"><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.etudiant">Etudiant</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="module.nom"><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.module">Module</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -36,6 +38,16 @@
                     <td>{{ historiqueEtudiantModule.note }}</td>
                     <td jhiTranslate="{{ 'sequortalibApp.Valider.' + historiqueEtudiantModule.validation }}">{{ historiqueEtudiantModule.validation }}</td>
                     <td jhiTranslate="{{ 'sequortalibApp.Typevalidation.' + historiqueEtudiantModule.etat }}">{{ historiqueEtudiantModule.etat }}</td>
+                    <td>
+                        <div *ngIf="historiqueEtudiantModule.etudiant">
+                            <a [routerLink]="['/etudiant', historiqueEtudiantModule.etudiant?.id, 'view']" >{{ historiqueEtudiantModule.etudiant?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="historiqueEtudiantModule.module">
+                            <a [routerLink]="['/module', historiqueEtudiantModule.module?.id, 'view']" >{{ historiqueEtudiantModule.module?.nom }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
@@ -44,8 +56,6 @@
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
-
-
 
                             <button type="submit" (click)="delete(historiqueEtudiantModule)"
                                     class="btn btn-danger btn-sm">

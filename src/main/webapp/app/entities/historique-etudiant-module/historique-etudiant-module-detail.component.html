@@ -21,6 +21,18 @@
                 <dd>
                     <span jhiTranslate="{{ 'sequortalibApp.Typevalidation.' + historiqueEtudiantModule.etat }}">{{ historiqueEtudiantModule.etat }}</span>
                 </dd>
+                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.etudiant">Etudiant</span></dt>
+                <dd>
+                    <div *ngIf="historiqueEtudiantModule.etudiant">
+                        <a [routerLink]="['/etudiant', historiqueEtudiantModule.etudiant?.id, 'view']">{{ historiqueEtudiantModule.etudiant?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.historiqueEtudiantModule.module">Module</span></dt>
+                <dd>
+                    <div *ngIf="historiqueEtudiantModule.module">
+                        <a [routerLink]="['/module', historiqueEtudiantModule.module?.id, 'view']">{{ historiqueEtudiantModule.module?.nom }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

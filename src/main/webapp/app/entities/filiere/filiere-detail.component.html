@@ -13,12 +13,6 @@
                 <dd>
                     <span>{{ filiere.nom }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.filiere.module">Module</span></dt>
-                <dd>
-                    <span *ngFor="let module of filiere.modules; let last = last">
-                        <a [routerLink]="['/module', module?.id, 'view']">{{ module.nom }}</a>{{ last ? '' : ', ' }}
-                    </span>
-                </dd>
                 <dt><span jhiTranslate="sequortalibApp.filiere.departement">Departement</span></dt>
                 <dd>
                     <div *ngIf="filiere.departement">
@@ -28,7 +22,7 @@
                 <dt><span jhiTranslate="sequortalibApp.filiere.enseignant">Enseignant</span></dt>
                 <dd>
                     <span *ngFor="let enseignant of filiere.enseignants; let last = last">
-                        <a [routerLink]="['/enseignant', enseignant?.id, 'view']">{{ enseignant.user.firstName }} {{ enseignant.user.lastName }}</a>{{ last ? '' : ', ' }}
+                        <a [routerLink]="['/enseignant', enseignant?.id, 'view']">{{ enseignant.id }}</a>{{ last ? '' : ', ' }}
                     </span>
                 </dd>
             </dl>

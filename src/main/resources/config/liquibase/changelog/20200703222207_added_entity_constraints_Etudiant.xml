@@ -14,12 +14,6 @@
                                  referencedColumnNames="id"
                                  referencedTableName="etablissement"/>
 
-        <addForeignKeyConstraint baseColumnNames="historique_etudiant_module_id"
-                                 baseTableName="etudiant"
-                                 constraintName="fk_etudiant_historique_etudiant_module_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="historique_etudiant_module"/>
-
         <addForeignKeyConstraint baseColumnNames="id"
                                  baseTableName="etudiant"
                                  constraintName="fk_etudiant_user_id"
@@ -32,5 +26,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="filiere"/>
 
+        <addForeignKeyConstraint baseColumnNames="etudiant_id"
+                                 baseTableName="etudiant_module"
+                                 constraintName="fk_etudiant_module_etudiant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etudiant"/>
+
+        <addForeignKeyConstraint baseColumnNames="module_id"
+                                 baseTableName="etudiant_module"
+                                 constraintName="fk_etudiant_module_module_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        
     </changeSet>
 </databaseChangeLog>

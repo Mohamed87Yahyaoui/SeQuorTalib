@@ -1,5 +1,6 @@
 package com.pfe.sequortalib.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -7,8 +8,6 @@ import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.pfe.sequortalib.domain.enumeration.Valider;
 
@@ -39,13 +38,13 @@ public class HistoriqueEtudiantModule implements Serializable {
     @Column(name = "etat")
     private Typevalidation etat;
 
-    @OneToMany(mappedBy = "historiqueEtudiantModule")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Module> modules = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("historiqueEtudiantModules")
+    private Etudiant etudiant;
 
-    @OneToMany(mappedBy = "historiqueEtudiantModule")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Etudiant> etudiants = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("historiqueEtudiantModules")
+    private Module module;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -95,54 +94,30 @@ public class HistoriqueEtudiantModule implements Serializable {
         this.etat = etat;
     }
 
-    public Set<Module> getModules() {
-        return modules;
+    public Etudiant getEtudiant() {
+        return etudiant;
     }
 
-    public HistoriqueEtudiantModule modules(Set<Module> modules) {
-        this.modules = modules;
+    public HistoriqueEtudiantModule etudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
         return this;
     }
 
-    public HistoriqueEtudiantModule addModule(Module module) {
-        this.modules.add(module);
-        module.setHistoriqueEtudiantModule(this);
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public HistoriqueEtudiantModule module(Module module) {
+        this.module = module;
         return this;
     }
 
-    public HistoriqueEtudiantModule removeModule(Module module) {
-        this.modules.remove(module);
-        module.setHistoriqueEtudiantModule(null);
-        return this;
-    }
-
-    public void setModules(Set<Module> modules) {
-        this.modules = modules;
-    }
-
-    public Set<Etudiant> getEtudiants() {
-        return etudiants;
-    }
-
-    public HistoriqueEtudiantModule etudiants(Set<Etudiant> etudiants) {
-        this.etudiants = etudiants;
-        return this;
-    }
-
-    public HistoriqueEtudiantModule addEtudiant(Etudiant etudiant) {
-        this.etudiants.add(etudiant);
-        etudiant.setHistoriqueEtudiantModule(this);
-        return this;
-    }
-
-    public HistoriqueEtudiantModule removeEtudiant(Etudiant etudiant) {
-        this.etudiants.remove(etudiant);
-        etudiant.setHistoriqueEtudiantModule(null);
-        return this;
-    }
-
-    public void setEtudiants(Set<Etudiant> etudiants) {
-        this.etudiants = etudiants;
+    public void setModule(Module module) {
+        this.module = module;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

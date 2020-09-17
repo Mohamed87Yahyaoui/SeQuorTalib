@@ -68,6 +68,12 @@ public class CacheConfiguration {
             createCache(cm, com.pfe.sequortalib.domain.Filiere.class.getName() + ".etudiants");
             createCache(cm, com.pfe.sequortalib.domain.Filiere.class.getName() + ".enseignants");
             createCache(cm, com.pfe.sequortalib.domain.Enseignant.class.getName() + ".filieres");
+            createCache(cm, com.pfe.sequortalib.domain.Etudiant.class.getName() + ".historiqueEtudiantModules");
+            createCache(cm, com.pfe.sequortalib.domain.Module.class.getName() + ".etudiants");
+            createCache(cm, com.pfe.sequortalib.domain.Module.class.getName() + ".enseignants");
+            createCache(cm, com.pfe.sequortalib.domain.Module.class.getName() + ".historiqueEtudiantModules");
+            createCache(cm, com.pfe.sequortalib.domain.Etudiant.class.getName() + ".modules");
+            createCache(cm, com.pfe.sequortalib.domain.Enseignant.class.getName() + ".modules");
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -39,7 +39,7 @@ export const moduleRoute: Routes = [
     path: '',
     component: ModuleComponent,
     data: {
-      authorities: [Authority.ADMIN, Authority.ENSEIGNANT, Authority.ETUDIANT],
+      authorities: [Authority.USER],
       pageTitle: 'sequortalibApp.module.home.title'
     },
     canActivate: [UserRouteAccessService]

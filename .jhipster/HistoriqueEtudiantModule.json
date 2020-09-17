@@ -3,15 +3,17 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "module",
-            "otherEntityName": "module",
-            "relationshipType": "one-to-many",
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
             "otherEntityRelationshipName": "historiqueEtudiantModule"
         },
         {
-            "relationshipName": "etudiant",
-            "otherEntityName": "etudiant",
-            "relationshipType": "one-to-many",
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "nom",
             "otherEntityRelationshipName": "historiqueEtudiantModule"
         }
     ],

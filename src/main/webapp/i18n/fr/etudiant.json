@@ -4,7 +4,7 @@
       "home": {
         "title": "Etudiants",
         "createLabel": "Créer un nouveau Etudiant",
-        "createOrEditLabel": "Créer ou Editer un Etudiant",
+        "createOrEditLabel": "Créer ou éditer un Etudiant",
         "notFound": "Aucun Etudiant trouvé"
       },
       "created": "Un nouveau Etudiant a été créé avec l'identifiant {{ param }}",
@@ -18,15 +18,16 @@
       },
       "tel": "Tel",
       "cin": "Cin",
+      "etat": "Etat",
+      "datenaissance": "Datenaissance",
       "semsetre": "Semsetre",
       "section": "Section",
-      "etat": "Etat",
-      "datenaissance": "Date de naissance",
-      "codeEtudiant": "Code Etudiant",
+      "promo": "Promo",
       "etablissement": "Etablissement",
+      "user": "User",
+      "filiere": "Filiere",
       "historiqueEtudiantModule": "Historique Etudiant Module",
-      "user": "Code",
-      "filiere": "Filiere"
+      "module": "Module"
     }
   }
 }

@@ -60,6 +60,15 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
 
     /**
+     * Get all the etudiants with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<Etudiant> findAllWithEagerRelationships(Pageable pageable) {
+        return etudiantRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
      * Get one etudiant by id.
      *
      * @param id the id of the entity.
@@ -69,7 +78,7 @@ public class EtudiantServiceImpl implements EtudiantService {
     @Transactional(readOnly = true)
     public Optional<Etudiant> findOne(Long id) {
         log.debug("Request to get Etudiant : {}", id);
-        return etudiantRepository.findById(id);
+        return etudiantRepository.findOneWithEagerRelationships(id);
     }
 
     /**

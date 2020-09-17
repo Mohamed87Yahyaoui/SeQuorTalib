@@ -3,24 +3,31 @@
     "clientRootFolder": "",
     "relationships": [
         {
-            "relationshipName": "filiere",
-            "otherEntityName": "filiere",
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
             "relationshipType": "many-to-many",
             "ownerSide": false,
             "otherEntityRelationshipName": "module"
         },
         {
-            "relationshipName": "historiqueEnseignantModule",
-            "otherEntityName": "historiqueEnseignantModule",
+            "relationshipName": "filiere",
+            "otherEntityName": "filiere",
             "relationshipType": "many-to-one",
-            "otherEntityField": "datedebut",
+            "otherEntityField": "nom",
             "otherEntityRelationshipName": "module"
         },
         {
             "relationshipName": "historiqueEtudiantModule",
             "otherEntityName": "historiqueEtudiantModule",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "datedebut",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "module"
+        },
+        {
+            "relationshipName": "enseignant",
+            "otherEntityName": "enseignant",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
             "otherEntityRelationshipName": "module"
         }
     ],

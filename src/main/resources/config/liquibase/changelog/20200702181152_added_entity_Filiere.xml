@@ -28,17 +28,6 @@
 
     <changeSet id="20200702181152-1-relations" author="jhipster">
 
-        <createTable tableName="filiere_module">
-            <column name="module_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="filiere_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="filiere_id, module_id" tableName="filiere_module"/>
-        
         <createTable tableName="filiere_enseignant">
             <column name="enseignant_id" type="bigint">
                 <constraints nullable="false"/>

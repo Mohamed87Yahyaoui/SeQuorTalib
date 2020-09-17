@@ -22,10 +22,7 @@
             <column name="semester" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="historique_enseignant_module_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="historique_etudiant_module_id" type="bigint">
+            <column name="filiere_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
@@ -34,6 +31,17 @@
 
     <changeSet id="20200702180224-1-relations" author="jhipster">
 
+        <createTable tableName="module_enseignant">
+            <column name="enseignant_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="module_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="module_id, enseignant_id" tableName="module_enseignant"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 

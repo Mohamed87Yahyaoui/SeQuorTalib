@@ -29,6 +29,13 @@ public interface ModuleService {
     Page<Module> findAll(Pageable pageable);
 
     /**
+     * Get all the modules with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    Page<Module> findAllWithEagerRelationships(Pageable pageable);
+
+    /**
      * Get the "id" module.
      *
      * @param id the id of the entity.

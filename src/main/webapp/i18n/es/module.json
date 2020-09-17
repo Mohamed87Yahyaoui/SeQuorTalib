@@ -18,9 +18,10 @@
       },
       "nom": "Nom",
       "semester": "Semester",
+      "etudiant": "Etudiant",
       "filiere": "Filiere",
-      "historiqueEnseignantModule": "Historique Enseignant Module",
-      "historiqueEtudiantModule": "Historique Etudiant Module"
+      "historiqueEtudiantModule": "Historique Etudiant Module",
+      "enseignant": "Enseignant"
     }
   }
 }

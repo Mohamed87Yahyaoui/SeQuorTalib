@@ -1,4 +1,4 @@
-<!--<div class="row justify-content-center">
+<div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="enseignant">
             <h2><span jhiTranslate="sequortalibApp.enseignant.detail.title">Enseignant</span> {{ enseignant.id }}</h2>
@@ -24,12 +24,6 @@
                 <dd>
                     <span>{{ enseignant.grade }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.enseignant.historiqueEnseignantModule">Historique Enseignant Module</span></dt>
-                <dd>
-                    <div *ngIf="enseignant.historiqueEnseignantModule">
-                        <a [routerLink]="['/historique-enseignant-module', enseignant.historiqueEnseignantModule?.id, 'view']">{{ enseignant.historiqueEnseignantModule?.id }}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="sequortalibApp.enseignant.departement">Departement</span></dt>
                 <dd>
                     <div *ngIf="enseignant.departement">
@@ -39,6 +33,12 @@
                 <dt><span jhiTranslate="sequortalibApp.enseignant.user">User</span></dt>
                 <dd>
                     {{ enseignant.user?.login }}
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.enseignant.module">Module</span></dt>
+                <dd>
+                    <span *ngFor="let module of enseignant.modules; let last = last">
+                        <a [routerLink]="['/module', module?.id, 'view']">{{ module.nom }}</a>{{ last ? '' : ', ' }}
+                    </span>
                 </dd>
             </dl>
 
@@ -54,90 +54,5 @@
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
         </div>
-    </div>
-</div>
--->
-
-
-
-<div class="card jh-card">
-    <div class="row justify-content-center mt-4" *ngIf="enseignant">
-        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="javascript:void(0)">
-                                <img src="../../../content/images/jhipster_family_member_0_head-192.png" class="rounded-circle">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-
-                    <button type="submit"
-                            (click)="previousState()"
-                            class="btn btn-info">
-                        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-                    </button>
-
-                    <button type="button"
-                            [routerLink]="['/enseignant', enseignant.id, 'edit']"
-                            class="btn btn-primary">
-                        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
-                </div>
-
-                <div class="card-body pt-0 pt-md-4">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                <div>
-                                    <span class="description">Nom</span>
-                                    <span class="heading">{{enseignant.user?.firstName}} {{enseignant.user?.lastName}}</span>
-                                </div>
-                                <div>
-                                    <span class="description">Login</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ enseignant.user?.login }}</span>
-                                </div>
-                                <div>
-                                    <span class="description">Email</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ enseignant.user?.email }}</span>
-                                </div>
-                                <div>
-                                    <span class="description">CIN</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ enseignant.cin }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-
-                        <div class="h5 font-weight-300">
-                            <span class="description">Tel:</span>
-                            <span class="heading">{{ enseignant.tel }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Dt naissance:</span>
-                            <span class="heading">{{ enseignant.datenaissance }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Grade:</span>
-                            <span class="heading">{{ enseignant.grade }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Departement:</span>
-                            <span class="heading">{{ enseignant.departement }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Filieres:</span>
-                            <span class="heading">{{ enseignant.filieres }}</span>
-                        </div>
-                        <hr class="my-4" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>

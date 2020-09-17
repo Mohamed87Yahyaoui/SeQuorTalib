@@ -54,6 +54,15 @@ public class ModuleServiceImpl implements ModuleService {
     }
 
     /**
+     * Get all the modules with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<Module> findAllWithEagerRelationships(Pageable pageable) {
+        return moduleRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
      * Get one module by id.
      *
      * @param id the id of the entity.
@@ -63,7 +72,7 @@ public class ModuleServiceImpl implements ModuleService {
     @Transactional(readOnly = true)
     public Optional<Module> findOne(Long id) {
         log.debug("Request to get Module : {}", id);
-        return moduleRepository.findById(id);
+        return moduleRepository.findOneWithEagerRelationships(id);
     }
 
     /**

@@ -7,16 +7,12 @@ import { Observable } from 'rxjs';
 
 import { IFiliere, Filiere } from 'app/shared/model/filiere.model';
 import { FiliereService } from './filiere.service';
-import { IModule } from 'app/shared/model/module.model';
-import { ModuleService } from 'app/entities/module/module.service';
 import { IDepartement } from 'app/shared/model/departement.model';
 import { DepartementService } from 'app/entities/departement/departement.service';
 import { IEnseignant } from 'app/shared/model/enseignant.model';
 import { EnseignantService } from 'app/entities/enseignant/enseignant.service';
 
-type SelectableEntity = IModule | IDepartement | IEnseignant;
-
-type SelectableManyToManyEntity = IModule | IEnseignant;
+type SelectableEntity = IDepartement | IEnseignant;
 
 @Component({
   selector: 'jhi-filiere-update',
@@ -24,21 +20,18 @@ type SelectableManyToManyEntity = IModule | IEnseignant;
 })
 export class FiliereUpdateComponent implements OnInit {
   isSaving = false;
-  modules: IModule[] = [];
   departements: IDepartement[] = [];
   enseignants: IEnseignant[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [null, [Validators.required]],
-    modules: [],
     departement: [],
     enseignants: []
   });
 
   constructor(
     protected filiereService: FiliereService,
-    protected moduleService: ModuleService,
     protected departementService: DepartementService,
     protected enseignantService: EnseignantService,
     protected activatedRoute: ActivatedRoute,
@@ -48,8 +41,6 @@ export class FiliereUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ filiere }) => {
       this.updateForm(filiere);
-
-      this.moduleService.query().subscribe((res: HttpResponse<IModule[]>) => (this.modules = res.body || []));
 
       this.departementService.query().subscribe((res: HttpResponse<IDepartement[]>) => (this.departements = res.body || []));
 
@@ -61,7 +52,6 @@ export class FiliereUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: filiere.id,
       nom: filiere.nom,
-      modules: filiere.modules,
       departement: filiere.departement,
       enseignants: filiere.enseignants
     });
@@ -86,7 +76,6 @@ export class FiliereUpdateComponent implements OnInit {
       ...new Filiere(),
       id: this.editForm.get(['id'])!.value,
       nom: this.editForm.get(['nom'])!.value,
-      modules: this.editForm.get(['modules'])!.value,
       departement: this.editForm.get(['departement'])!.value,
       enseignants: this.editForm.get(['enseignants'])!.value
     };
@@ -112,7 +101,7 @@ export class FiliereUpdateComponent implements OnInit {
     return item.id;
   }
 
-  getSelected(selectedVals: SelectableManyToManyEntity[], option: SelectableManyToManyEntity): SelectableManyToManyEntity {
+  getSelected(selectedVals: IEnseignant[], option: IEnseignant): IEnseignant {
     if (selectedVals) {
       for (let i = 0; i < selectedVals.length; i++) {
         if (option.id === selectedVals[i].id) {

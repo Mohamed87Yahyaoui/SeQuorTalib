@@ -18,15 +18,16 @@
       },
       "tel": "Tel",
       "cin": "Cin",
-      "semsetre": "Semsetre",
-      "section": "Section",
       "etat": "Etat",
       "datenaissance": "Datenaissance",
-      "codeEtudiant": "Code Etudiant",
+      "semsetre": "Semsetre",
+      "section": "Section",
+      "promo": "Promo",
       "etablissement": "Etablissement",
+      "user": "User",
+      "filiere": "Filiere",
       "historiqueEtudiantModule": "Historique Etudiant Module",
-      "user": "Code",
-      "filiere": "Filiere"
+      "module": "Module"
     }
   }
 }

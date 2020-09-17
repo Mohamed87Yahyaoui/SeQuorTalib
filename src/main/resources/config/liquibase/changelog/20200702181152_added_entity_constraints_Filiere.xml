@@ -8,18 +8,6 @@
     -->
     <changeSet id="20200702181152-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="filiere_id"
-                                 baseTableName="filiere_module"
-                                 constraintName="fk_filiere_module_filiere_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="filiere"/>
-
-        <addForeignKeyConstraint baseColumnNames="module_id"
-                                 baseTableName="filiere_module"
-                                 constraintName="fk_filiere_module_module_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="module"/>
-        
         <addForeignKeyConstraint baseColumnNames="departement_id"
                                  baseTableName="filiere"
                                  constraintName="fk_filiere_departement_id"

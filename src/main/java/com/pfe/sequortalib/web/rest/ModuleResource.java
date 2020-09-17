@@ -88,12 +88,18 @@ public class ModuleResource {
      * {@code GET  /modules} : get all the modules.
      *
      * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of modules in body.
      */
     @GetMapping("/modules")
-    public ResponseEntity<List<Module>> getAllModules(Pageable pageable) {
+    public ResponseEntity<List<Module>> getAllModules(Pageable pageable, @RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get a page of Modules");
-        Page<Module> page = moduleService.findAll(pageable);
+        Page<Module> page;
+        if (eagerload) {
+            page = moduleService.findAllWithEagerRelationships(pageable);
+        } else {
+            page = moduleService.findAll(pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

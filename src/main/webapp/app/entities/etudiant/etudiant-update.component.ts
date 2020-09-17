@@ -9,16 +9,14 @@ import { IEtudiant, Etudiant } from 'app/shared/model/etudiant.model';
 import { EtudiantService } from './etudiant.service';
 import { IEtablissement } from 'app/shared/model/etablissement.model';
 import { EtablissementService } from 'app/entities/etablissement/etablissement.service';
-import { IHistoriqueEtudiantModule } from 'app/shared/model/historique-etudiant-module.model';
-import { HistoriqueEtudiantModuleService } from 'app/entities/historique-etudiant-module/historique-etudiant-module.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IFiliere } from 'app/shared/model/filiere.model';
 import { FiliereService } from 'app/entities/filiere/filiere.service';
+import { IModule } from 'app/shared/model/module.model';
+import { ModuleService } from 'app/entities/module/module.service';
 
-import { JhiLanguageService } from 'ng-jhipster';
-
-type SelectableEntity = IEtablissement | IHistoriqueEtudiantModule | IUser | IFiliere;
+type SelectableEntity = IEtablissement | IUser | IFiliere | IModule;
 
 @Component({
   selector: 'jhi-etudiant-update',
@@ -27,35 +25,34 @@ type SelectableEntity = IEtablissement | IHistoriqueEtudiantModule | IUser | IFi
 export class EtudiantUpdateComponent implements OnInit {
   isSaving = false;
   etablissements: IEtablissement[] = [];
-  historiqueetudiantmodules: IHistoriqueEtudiantModule[] = [];
   users: IUser[] = [];
   filieres: IFiliere[] = [];
+  modules: IModule[] = [];
   datenaissanceDp: any;
 
   editForm = this.fb.group({
     id: [],
     tel: [],
     cin: [null, [Validators.required]],
-    semsetre: [null, [Validators.required]],
-    section: [null, [Validators.required]],
     etat: [null, [Validators.required]],
     datenaissance: [],
-    codeEtudiant: [null, [Validators.required]],
+    semsetre: [],
+    section: [],
+    promo: [],
     etablissement: [],
-    historiqueEtudiantModule: [],
     user: [],
-    filiere: []
+    filiere: [],
+    modules: []
   });
 
   constructor(
     protected etudiantService: EtudiantService,
     protected etablissementService: EtablissementService,
-    protected historiqueEtudiantModuleService: HistoriqueEtudiantModuleService,
     protected userService: UserService,
     protected filiereService: FiliereService,
+    protected moduleService: ModuleService,
     protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
-    private languageService: JhiLanguageService
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -64,13 +61,11 @@ export class EtudiantUpdateComponent implements OnInit {
 
       this.etablissementService.query().subscribe((res: HttpResponse<IEtablissement[]>) => (this.etablissements = res.body || []));
 
-      this.historiqueEtudiantModuleService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEtudiantModule[]>) => (this.historiqueetudiantmodules = res.body || []));
-
       this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
 
       this.filiereService.query().subscribe((res: HttpResponse<IFiliere[]>) => (this.filieres = res.body || []));
+
+      this.moduleService.query().subscribe((res: HttpResponse<IModule[]>) => (this.modules = res.body || []));
     });
   }
 
@@ -79,15 +74,15 @@ export class EtudiantUpdateComponent implements OnInit {
       id: etudiant.id,
       tel: etudiant.tel,
       cin: etudiant.cin,
-      semsetre: etudiant.semsetre,
-      section: etudiant.section,
       etat: etudiant.etat,
       datenaissance: etudiant.datenaissance,
-      codeEtudiant: etudiant.codeEtudiant,
+      semsetre: etudiant.semsetre,
+      section: etudiant.section,
+      promo: etudiant.promo,
       etablissement: etudiant.etablissement,
-      historiqueEtudiantModule: etudiant.historiqueEtudiantModule,
       user: etudiant.user,
-      filiere: etudiant.filiere
+      filiere: etudiant.filiere,
+      modules: etudiant.modules
     });
   }
 
@@ -111,15 +106,15 @@ export class EtudiantUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       tel: this.editForm.get(['tel'])!.value,
       cin: this.editForm.get(['cin'])!.value,
-      semsetre: this.editForm.get(['semsetre'])!.value,
-      section: this.editForm.get(['section'])!.value,
       etat: this.editForm.get(['etat'])!.value,
       datenaissance: this.editForm.get(['datenaissance'])!.value,
-      codeEtudiant: this.editForm.get(['codeEtudiant'])!.value,
+      semsetre: this.editForm.get(['semsetre'])!.value,
+      section: this.editForm.get(['section'])!.value,
+      promo: this.editForm.get(['promo'])!.value,
       etablissement: this.editForm.get(['etablissement'])!.value,
-      historiqueEtudiantModule: this.editForm.get(['historiqueEtudiantModule'])!.value,
       user: this.editForm.get(['user'])!.value,
-      filiere: this.editForm.get(['filiere'])!.value
+      filiere: this.editForm.get(['filiere'])!.value,
+      modules: this.editForm.get(['modules'])!.value
     };
   }
 
@@ -141,5 +136,16 @@ export class EtudiantUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IModule[], option: IModule): IModule {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

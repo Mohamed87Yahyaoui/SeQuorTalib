@@ -8,17 +8,23 @@
     -->
     <changeSet id="20200702180224-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="historique_enseignant_module_id"
+        <addForeignKeyConstraint baseColumnNames="filiere_id"
                                  baseTableName="module"
-                                 constraintName="fk_module_historique_enseignant_module_id"
+                                 constraintName="fk_module_filiere_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="historique_enseignant_module"/>
+                                 referencedTableName="filiere"/>
 
-        <addForeignKeyConstraint baseColumnNames="historique_etudiant_module_id"
-                                 baseTableName="module"
-                                 constraintName="fk_module_historique_etudiant_module_id"
+        <addForeignKeyConstraint baseColumnNames="module_id"
+                                 baseTableName="module_enseignant"
+                                 constraintName="fk_module_enseignant_module_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="historique_etudiant_module"/>
+                                 referencedTableName="module"/>
 
+        <addForeignKeyConstraint baseColumnNames="enseignant_id"
+                                 baseTableName="module_enseignant"
+                                 constraintName="fk_module_enseignant_enseignant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enseignant"/>
+        
     </changeSet>
 </databaseChangeLog>

@@ -1,5 +1,5 @@
-import { IModule } from 'app/shared/model/module.model';
 import { IEtudiant } from 'app/shared/model/etudiant.model';
+import { IModule } from 'app/shared/model/module.model';
 import { Valider } from 'app/shared/model/enumerations/valider.model';
 import { Typevalidation } from 'app/shared/model/enumerations/typevalidation.model';
 
@@ -8,8 +8,8 @@ export interface IHistoriqueEtudiantModule {
   note?: number;
   validation?: Valider;
   etat?: Typevalidation;
-  modules?: IModule[];
-  etudiants?: IEtudiant[];
+  etudiant?: IEtudiant;
+  module?: IModule;
 }
 
 export class HistoriqueEtudiantModule implements IHistoriqueEtudiantModule {
@@ -18,7 +18,7 @@ export class HistoriqueEtudiantModule implements IHistoriqueEtudiantModule {
     public note?: number,
     public validation?: Valider,
     public etat?: Typevalidation,
-    public modules?: IModule[],
-    public etudiants?: IEtudiant[]
+    public etudiant?: IEtudiant,
+    public module?: IModule
   ) {}
 }

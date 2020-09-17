@@ -60,6 +60,15 @@ public class EnseignantServiceImpl implements EnseignantService {
     }
 
     /**
+     * Get all the enseignants with eager load of many-to-many relationships.
+     *
+     * @return the list of entities.
+     */
+    public Page<Enseignant> findAllWithEagerRelationships(Pageable pageable) {
+        return enseignantRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
      * Get one enseignant by id.
      *
      * @param id the id of the entity.
@@ -69,7 +78,7 @@ public class EnseignantServiceImpl implements EnseignantService {
     @Transactional(readOnly = true)
     public Optional<Enseignant> findOne(Long id) {
         log.debug("Request to get Enseignant : {}", id);
-        return enseignantRepository.findById(id);
+        return enseignantRepository.findOneWithEagerRelationships(id);
     }
 
     /**

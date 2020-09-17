@@ -20,10 +20,10 @@
       "datenaissance": "Datenaissance",
       "cin": "Cin",
       "grade": "Grade",
-      "historiqueEnseignantModule": "Historique Enseignant Module",
       "departement": "Departement",
       "user": "User",
-      "filiere": "Filiere"
+      "filiere": "Filiere",
+      "module": "Module"
     }
   }
 }

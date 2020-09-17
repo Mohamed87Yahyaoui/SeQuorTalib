@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { JhiEventManager, JhiParseLinks } from 'ng-jhipster';
+import { JhiEventManager, JhiLanguageService, JhiParseLinks } from 'ng-jhipster';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IEtudiant } from 'app/shared/model/etudiant.model';
@@ -10,8 +10,6 @@ import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { EtudiantService } from './etudiant.service';
 import { EtudiantDeleteDialogComponent } from './etudiant-delete-dialog.component';
 import { Router } from '@angular/router';
-
-import { JhiLanguageService } from 'ng-jhipster';
 
 @Component({
   selector: 'jhi-etudiant',
@@ -45,8 +43,8 @@ export class EtudiantComponent implements OnInit, OnDestroy {
     protected eventManager: JhiEventManager,
     protected modalService: NgbModal,
     protected parseLinks: JhiParseLinks,
-    private router: Router,
-    private languageService: JhiLanguageService
+    private languageService: JhiLanguageService,
+    private router: Router
   ) {
     this.etudiants = [];
     this.itemsPerPage = ITEMS_PER_PAGE;

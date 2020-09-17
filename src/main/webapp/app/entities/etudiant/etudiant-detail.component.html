@@ -1,4 +1,5 @@
-<!--<div class="row justify-content-center">
+<div class="card jh-card">
+<div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="etudiant">
             <h2><span jhiTranslate="sequortalibApp.etudiant.detail.title">Etudiant</span> {{ etudiant.id }}</h2>
@@ -16,14 +17,6 @@
                 <dd>
                     <span>{{ etudiant.cin }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.etudiant.semsetre">Semsetre</span></dt>
-                <dd>
-                    <span>{{ etudiant.semsetre }}</span>
-                </dd>
-                <dt><span jhiTranslate="sequortalibApp.etudiant.section">Section</span></dt>
-                <dd>
-                    <span>{{ etudiant.section }}</span>
-                </dd>
                 <dt><span jhiTranslate="sequortalibApp.etudiant.etat">Etat</span></dt>
                 <dd>
                     <span jhiTranslate="{{ 'sequortalibApp.Status.' + etudiant.etat }}">{{ etudiant.etat }}</span>
@@ -32,20 +25,22 @@
                 <dd>
                     <span>{{ etudiant.datenaissance }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.etudiant.codeEtudiant">Code Etudiant</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.semsetre">Semsetre</span></dt>
                 <dd>
-                    <span>{{ etudiant.codeEtudiant }}</span>
+                    <span>{{ etudiant.semsetre }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.section">Section</span></dt>
+                <dd>
+                    <span>{{ etudiant.section }}</span>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.promo">Promo</span></dt>
+                <dd>
+                    <span>{{ etudiant.promo }}</span>
                 </dd>
                 <dt><span jhiTranslate="sequortalibApp.etudiant.etablissement">Etablissement</span></dt>
                 <dd>
                     <div *ngIf="etudiant.etablissement">
                         <a [routerLink]="['/etablissement', etudiant.etablissement?.id, 'view']">{{ etudiant.etablissement?.nom }}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="sequortalibApp.etudiant.historiqueEtudiantModule">Historique Etudiant Module</span></dt>
-                <dd>
-                    <div *ngIf="etudiant.historiqueEtudiantModule">
-                        <a [routerLink]="['/historique-etudiant-module', etudiant.historiqueEtudiantModule?.id, 'view']">{{ etudiant.historiqueEtudiantModule?.id }}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="sequortalibApp.etudiant.user">User</span></dt>
@@ -57,6 +52,12 @@
                     <div *ngIf="etudiant.filiere">
                         <a [routerLink]="['/filiere', etudiant.filiere?.id, 'view']">{{ etudiant.filiere?.nom }}</a>
                     </div>
+                </dd>
+                <dt><span jhiTranslate="sequortalibApp.etudiant.module">Module</span></dt>
+                <dd>
+                    <span *ngFor="let module of etudiant.modules; let last = last">
+                        <a [routerLink]="['/module', module?.id, 'view']">{{ module.nom }}</a>{{ last ? '' : ', ' }}
+                    </span>
                 </dd>
             </dl>
 
@@ -71,91 +72,7 @@
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
-            <button type="submit" (click)="delete(etudiant)"
-                    class="btn btn-danger btn-sm">
-                <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-            </button>
         </div>
     </div>
 </div>
--->
-
-<div class="card jh-card">
-    <div class="row justify-content-center mt-4" *ngIf="etudiant">
-        <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 order-lg-2">
-                        <div class="card-profile-image">
-                            <a href="javascript:void(0)">
-                                <img src="../../../content/images/jhipster_family_member_0_head-192.png" class="rounded-circle">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between">
-
-                <button type="submit"
-                        (click)="previousState()"
-                        class="btn btn-info">
-                    <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
-                </button>
-
-                    <button type="button"
-                            [routerLink]="['/etudiant', etudiant.id, 'edit']"
-                            class="btn btn-primary">
-                        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
-                </div>
-
-                <div class="card-body pt-0 pt-md-4">
-                    <div class="row">
-                        <div class="col">
-                            <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                                <div>
-                                    <span class="description">Nom</span>
-                                    <span class="heading">{{etudiant.user?.firstName}} {{etudiant.user?.lastName}}</span>
-                                </div>
-                                <div>
-                                    <span class="description">Login</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ etudiant.user?.login }}</span>
-                                </div>
-                                <div>
-                                    <span class="description">Email</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ etudiant.user?.email }}</span>
-                                </div>
-                                <div>
-                                    <span class="description">CIN</span>
-                                    <span class="heading"><i class="ni location_pin mr-2"></i>{{ etudiant.cin }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center">
-
-                        <div class="h5 font-weight-300">
-                            <span class="description">Tel:</span>
-                            <span class="heading">{{ etudiant.tel }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Dt naissance:</span>
-                            <span class="heading">{{ etudiant.datenaissance }}</span>
-                        </div>
-                        <div class="h5 font-weight-300">
-                            <span class="description">Etat:</span>
-                            <span class="heading">{{ etudiant.etat }}</span>
-                        </div>
-                        <hr class="my-4" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
-
-
-
-
-

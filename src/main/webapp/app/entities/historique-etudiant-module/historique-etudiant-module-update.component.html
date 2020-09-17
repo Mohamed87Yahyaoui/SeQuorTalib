@@ -35,6 +35,22 @@
                         <option value="VAP">{{ 'sequortalibApp.Typevalidation.VAP' | translate }}</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.etudiant" for="field_etudiant">Etudiant</label>
+                    <select class="form-control" id="field_etudiant" name="etudiant" formControlName="etudiant">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="etudiantOption.id === editForm.get('etudiant')!.value?.id ? editForm.get('etudiant')!.value : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackById">{{ etudiantOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="sequortalibApp.historiqueEtudiantModule.module" for="field_module">Module</label>
+                    <select class="form-control" id="field_module" name="module" formControlName="module">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="moduleOption.id === editForm.get('module')!.value?.id ? editForm.get('module')!.value : moduleOption" *ngFor="let moduleOption of modules; trackBy: trackById">{{ moduleOption.nom }}</option>
+                    </select>
+                </div>
             </div>
 
             <div>

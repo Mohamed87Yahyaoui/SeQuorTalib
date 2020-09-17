@@ -30,13 +30,6 @@ public class Filiere implements Serializable {
     @Column(name = "nom", nullable = false)
     private String nom;
 
-    @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @JoinTable(name = "filiere_module",
-               joinColumns = @JoinColumn(name = "filiere_id", referencedColumnName = "id"),
-               inverseJoinColumns = @JoinColumn(name = "module_id", referencedColumnName = "id"))
-    private Set<Module> modules = new HashSet<>();
-
     @ManyToOne
     @JsonIgnoreProperties("filieres")
     private Departement departement;
@@ -47,6 +40,14 @@ public class Filiere implements Serializable {
                joinColumns = @JoinColumn(name = "filiere_id", referencedColumnName = "id"),
                inverseJoinColumns = @JoinColumn(name = "enseignant_id", referencedColumnName = "id"))
     private Set<Enseignant> enseignants = new HashSet<>();
+
+    @OneToMany(mappedBy = "filiere")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Module> modules = new HashSet<>();
+
+    @OneToMany(mappedBy = "filiere")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Etudiant> etudiants = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -68,31 +69,6 @@ public class Filiere implements Serializable {
 
     public void setNom(String nom) {
         this.nom = nom;
-    }
-
-    public Set<Module> getModules() {
-        return modules;
-    }
-
-    public Filiere modules(Set<Module> modules) {
-        this.modules = modules;
-        return this;
-    }
-
-    public Filiere addModule(Module module) {
-        this.modules.add(module);
-        module.getFilieres().add(this);
-        return this;
-    }
-
-    public Filiere removeModule(Module module) {
-        this.modules.remove(module);
-        module.getFilieres().remove(this);
-        return this;
-    }
-
-    public void setModules(Set<Module> modules) {
-        this.modules = modules;
     }
 
     public Departement getDepartement() {
@@ -131,6 +107,56 @@ public class Filiere implements Serializable {
 
     public void setEnseignants(Set<Enseignant> enseignants) {
         this.enseignants = enseignants;
+    }
+
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public Filiere modules(Set<Module> modules) {
+        this.modules = modules;
+        return this;
+    }
+
+    public Filiere addModule(Module module) {
+        this.modules.add(module);
+        module.setFiliere(this);
+        return this;
+    }
+
+    public Filiere removeModule(Module module) {
+        this.modules.remove(module);
+        module.setFiliere(null);
+        return this;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
+    }
+
+    public Set<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public Filiere etudiants(Set<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+        return this;
+    }
+
+    public Filiere addEtudiant(Etudiant etudiant) {
+        this.etudiants.add(etudiant);
+        etudiant.setFiliere(this);
+        return this;
+    }
+
+    public Filiere removeEtudiant(Etudiant etudiant) {
+        this.etudiants.remove(etudiant);
+        etudiant.setFiliere(null);
+        return this;
+    }
+
+    public void setEtudiants(Set<Etudiant> etudiants) {
+        this.etudiants = etudiants;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

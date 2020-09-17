@@ -19,8 +19,8 @@
       "note": "Note",
       "validation": "Validation",
       "etat": "Etat",
-      "module": "Module",
-      "etudiant": "Etudiant"
+      "etudiant": "Etudiant",
+      "module": "Module"
     }
   }
 }

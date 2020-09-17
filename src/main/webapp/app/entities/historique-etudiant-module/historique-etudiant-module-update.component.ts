@@ -7,6 +7,12 @@ import { Observable } from 'rxjs';
 
 import { IHistoriqueEtudiantModule, HistoriqueEtudiantModule } from 'app/shared/model/historique-etudiant-module.model';
 import { HistoriqueEtudiantModuleService } from './historique-etudiant-module.service';
+import { IEtudiant } from 'app/shared/model/etudiant.model';
+import { EtudiantService } from 'app/entities/etudiant/etudiant.service';
+import { IModule } from 'app/shared/model/module.model';
+import { ModuleService } from 'app/entities/module/module.service';
+
+type SelectableEntity = IEtudiant | IModule;
 
 @Component({
   selector: 'jhi-historique-etudiant-module-update',
@@ -14,16 +20,22 @@ import { HistoriqueEtudiantModuleService } from './historique-etudiant-module.se
 })
 export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
   isSaving = false;
+  etudiants: IEtudiant[] = [];
+  modules: IModule[] = [];
 
   editForm = this.fb.group({
     id: [],
     note: [],
     validation: [],
-    etat: []
+    etat: [],
+    etudiant: [],
+    module: []
   });
 
   constructor(
     protected historiqueEtudiantModuleService: HistoriqueEtudiantModuleService,
+    protected etudiantService: EtudiantService,
+    protected moduleService: ModuleService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -31,6 +43,10 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ historiqueEtudiantModule }) => {
       this.updateForm(historiqueEtudiantModule);
+
+      this.etudiantService.query().subscribe((res: HttpResponse<IEtudiant[]>) => (this.etudiants = res.body || []));
+
+      this.moduleService.query().subscribe((res: HttpResponse<IModule[]>) => (this.modules = res.body || []));
     });
   }
 
@@ -39,7 +55,9 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
       id: historiqueEtudiantModule.id,
       note: historiqueEtudiantModule.note,
       validation: historiqueEtudiantModule.validation,
-      etat: historiqueEtudiantModule.etat
+      etat: historiqueEtudiantModule.etat,
+      etudiant: historiqueEtudiantModule.etudiant,
+      module: historiqueEtudiantModule.module
     });
   }
 
@@ -63,7 +81,9 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       note: this.editForm.get(['note'])!.value,
       validation: this.editForm.get(['validation'])!.value,
-      etat: this.editForm.get(['etat'])!.value
+      etat: this.editForm.get(['etat'])!.value,
+      etudiant: this.editForm.get(['etudiant'])!.value,
+      module: this.editForm.get(['module'])!.value
     };
   }
 
@@ -81,5 +101,9 @@ export class HistoriqueEtudiantModuleUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: SelectableEntity): any {
+    return item.id;
   }
 }

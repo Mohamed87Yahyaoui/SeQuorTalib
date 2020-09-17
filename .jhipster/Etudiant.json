@@ -10,13 +10,6 @@
             "otherEntityRelationshipName": "etudiant"
         },
         {
-            "relationshipName": "historiqueEtudiantModule",
-            "otherEntityName": "historiqueEtudiantModule",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "etudiant"
-        },
-        {
             "relationshipName": "user",
             "otherEntityName": "user",
             "relationshipType": "one-to-one",
@@ -31,6 +24,20 @@
             "relationshipType": "many-to-one",
             "otherEntityField": "nom",
             "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "historiqueEtudiantModule",
+            "otherEntityName": "historiqueEtudiantModule",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "nom",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "etudiant"
         }
     ],
     "fields": [
@@ -40,20 +47,6 @@
         },
         {
             "fieldName": "cin",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "semsetre",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "section",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -72,11 +65,16 @@
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "codeEtudiant",
-            "fieldType": "Integer",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "semsetre",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "section",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "promo",
+            "fieldType": "Integer"
         }
     ],
     "changelogDate": "20200703222207",

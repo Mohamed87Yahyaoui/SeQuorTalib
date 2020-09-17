@@ -8,9 +8,14 @@ import com.pfe.sequortalib.service.EtudiantService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,10 +23,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -30,7 +37,7 @@ import com.pfe.sequortalib.domain.enumeration.Status;
  * Integration tests for the {@link EtudiantResource} REST controller.
  */
 @SpringBootTest(classes = SequortalibApp.class)
-
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 public class EtudiantResourceIT {
@@ -41,23 +48,29 @@ public class EtudiantResourceIT {
     private static final String DEFAULT_CIN = "AAAAAAAAAA";
     private static final String UPDATED_CIN = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_SEMSETRE = 1;
-    private static final Integer UPDATED_SEMSETRE = 2;
-
-    private static final String DEFAULT_SECTION = "AAAAAAAAAA";
-    private static final String UPDATED_SECTION = "BBBBBBBBBB";
-
     private static final Status DEFAULT_ETAT = Status.DIPLOME;
     private static final Status UPDATED_ETAT = Status.NONDIPLOME;
 
     private static final LocalDate DEFAULT_DATENAISSANCE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATENAISSANCE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Integer DEFAULT_CODE_ETUDIANT = 1;
-    private static final Integer UPDATED_CODE_ETUDIANT = 2;
+    private static final Integer DEFAULT_SEMSETRE = 1;
+    private static final Integer UPDATED_SEMSETRE = 2;
+
+    private static final String DEFAULT_SECTION = "AAAAAAAAAA";
+    private static final String UPDATED_SECTION = "BBBBBBBBBB";
+
+    private static final Integer DEFAULT_PROMO = 1;
+    private static final Integer UPDATED_PROMO = 2;
 
     @Autowired
     private EtudiantRepository etudiantRepository;
+
+    @Mock
+    private EtudiantRepository etudiantRepositoryMock;
+
+    @Mock
+    private EtudiantService etudiantServiceMock;
 
     @Autowired
     private EtudiantService etudiantService;
@@ -80,11 +93,11 @@ public class EtudiantResourceIT {
         Etudiant etudiant = new Etudiant()
             .tel(DEFAULT_TEL)
             .cin(DEFAULT_CIN)
-            .semsetre(DEFAULT_SEMSETRE)
-            .section(DEFAULT_SECTION)
             .etat(DEFAULT_ETAT)
             .datenaissance(DEFAULT_DATENAISSANCE)
-            .codeEtudiant(DEFAULT_CODE_ETUDIANT);
+            .semsetre(DEFAULT_SEMSETRE)
+            .section(DEFAULT_SECTION)
+            .promo(DEFAULT_PROMO);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -102,11 +115,11 @@ public class EtudiantResourceIT {
         Etudiant etudiant = new Etudiant()
             .tel(UPDATED_TEL)
             .cin(UPDATED_CIN)
-            .semsetre(UPDATED_SEMSETRE)
-            .section(UPDATED_SECTION)
             .etat(UPDATED_ETAT)
             .datenaissance(UPDATED_DATENAISSANCE)
-            .codeEtudiant(UPDATED_CODE_ETUDIANT);
+            .semsetre(UPDATED_SEMSETRE)
+            .section(UPDATED_SECTION)
+            .promo(UPDATED_PROMO);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -137,11 +150,11 @@ public class EtudiantResourceIT {
         Etudiant testEtudiant = etudiantList.get(etudiantList.size() - 1);
         assertThat(testEtudiant.getTel()).isEqualTo(DEFAULT_TEL);
         assertThat(testEtudiant.getCin()).isEqualTo(DEFAULT_CIN);
-        assertThat(testEtudiant.getSemsetre()).isEqualTo(DEFAULT_SEMSETRE);
-        assertThat(testEtudiant.getSection()).isEqualTo(DEFAULT_SECTION);
         assertThat(testEtudiant.getEtat()).isEqualTo(DEFAULT_ETAT);
         assertThat(testEtudiant.getDatenaissance()).isEqualTo(DEFAULT_DATENAISSANCE);
-        assertThat(testEtudiant.getCodeEtudiant()).isEqualTo(DEFAULT_CODE_ETUDIANT);
+        assertThat(testEtudiant.getSemsetre()).isEqualTo(DEFAULT_SEMSETRE);
+        assertThat(testEtudiant.getSection()).isEqualTo(DEFAULT_SECTION);
+        assertThat(testEtudiant.getPromo()).isEqualTo(DEFAULT_PROMO);
 
         // Validate the id for MapsId, the ids must be same
         assertThat(testEtudiant.getId()).isEqualTo(testEtudiant.getUser().getId());
@@ -219,64 +232,10 @@ public class EtudiantResourceIT {
 
     @Test
     @Transactional
-    public void checkSemsetreIsRequired() throws Exception {
-        int databaseSizeBeforeTest = etudiantRepository.findAll().size();
-        // set the field null
-        etudiant.setSemsetre(null);
-
-        // Create the Etudiant, which fails.
-
-        restEtudiantMockMvc.perform(post("/api/etudiants")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(etudiant)))
-            .andExpect(status().isBadRequest());
-
-        List<Etudiant> etudiantList = etudiantRepository.findAll();
-        assertThat(etudiantList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkSectionIsRequired() throws Exception {
-        int databaseSizeBeforeTest = etudiantRepository.findAll().size();
-        // set the field null
-        etudiant.setSection(null);
-
-        // Create the Etudiant, which fails.
-
-        restEtudiantMockMvc.perform(post("/api/etudiants")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(etudiant)))
-            .andExpect(status().isBadRequest());
-
-        List<Etudiant> etudiantList = etudiantRepository.findAll();
-        assertThat(etudiantList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkEtatIsRequired() throws Exception {
         int databaseSizeBeforeTest = etudiantRepository.findAll().size();
         // set the field null
         etudiant.setEtat(null);
-
-        // Create the Etudiant, which fails.
-
-        restEtudiantMockMvc.perform(post("/api/etudiants")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(etudiant)))
-            .andExpect(status().isBadRequest());
-
-        List<Etudiant> etudiantList = etudiantRepository.findAll();
-        assertThat(etudiantList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCodeEtudiantIsRequired() throws Exception {
-        int databaseSizeBeforeTest = etudiantRepository.findAll().size();
-        // set the field null
-        etudiant.setCodeEtudiant(null);
 
         // Create the Etudiant, which fails.
 
@@ -302,11 +261,31 @@ public class EtudiantResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(etudiant.getId().intValue())))
             .andExpect(jsonPath("$.[*].tel").value(hasItem(DEFAULT_TEL)))
             .andExpect(jsonPath("$.[*].cin").value(hasItem(DEFAULT_CIN)))
-            .andExpect(jsonPath("$.[*].semsetre").value(hasItem(DEFAULT_SEMSETRE)))
-            .andExpect(jsonPath("$.[*].section").value(hasItem(DEFAULT_SECTION)))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.toString())))
             .andExpect(jsonPath("$.[*].datenaissance").value(hasItem(DEFAULT_DATENAISSANCE.toString())))
-            .andExpect(jsonPath("$.[*].codeEtudiant").value(hasItem(DEFAULT_CODE_ETUDIANT)));
+            .andExpect(jsonPath("$.[*].semsetre").value(hasItem(DEFAULT_SEMSETRE)))
+            .andExpect(jsonPath("$.[*].section").value(hasItem(DEFAULT_SECTION)))
+            .andExpect(jsonPath("$.[*].promo").value(hasItem(DEFAULT_PROMO)));
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllEtudiantsWithEagerRelationshipsIsEnabled() throws Exception {
+        when(etudiantServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restEtudiantMockMvc.perform(get("/api/etudiants?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(etudiantServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllEtudiantsWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(etudiantServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restEtudiantMockMvc.perform(get("/api/etudiants?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(etudiantServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test
@@ -322,11 +301,11 @@ public class EtudiantResourceIT {
             .andExpect(jsonPath("$.id").value(etudiant.getId().intValue()))
             .andExpect(jsonPath("$.tel").value(DEFAULT_TEL))
             .andExpect(jsonPath("$.cin").value(DEFAULT_CIN))
-            .andExpect(jsonPath("$.semsetre").value(DEFAULT_SEMSETRE))
-            .andExpect(jsonPath("$.section").value(DEFAULT_SECTION))
             .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.toString()))
             .andExpect(jsonPath("$.datenaissance").value(DEFAULT_DATENAISSANCE.toString()))
-            .andExpect(jsonPath("$.codeEtudiant").value(DEFAULT_CODE_ETUDIANT));
+            .andExpect(jsonPath("$.semsetre").value(DEFAULT_SEMSETRE))
+            .andExpect(jsonPath("$.section").value(DEFAULT_SECTION))
+            .andExpect(jsonPath("$.promo").value(DEFAULT_PROMO));
     }
 
     @Test
@@ -352,11 +331,11 @@ public class EtudiantResourceIT {
         updatedEtudiant
             .tel(UPDATED_TEL)
             .cin(UPDATED_CIN)
-            .semsetre(UPDATED_SEMSETRE)
-            .section(UPDATED_SECTION)
             .etat(UPDATED_ETAT)
             .datenaissance(UPDATED_DATENAISSANCE)
-            .codeEtudiant(UPDATED_CODE_ETUDIANT);
+            .semsetre(UPDATED_SEMSETRE)
+            .section(UPDATED_SECTION)
+            .promo(UPDATED_PROMO);
 
         restEtudiantMockMvc.perform(put("/api/etudiants")
             .contentType(MediaType.APPLICATION_JSON)
@@ -369,11 +348,11 @@ public class EtudiantResourceIT {
         Etudiant testEtudiant = etudiantList.get(etudiantList.size() - 1);
         assertThat(testEtudiant.getTel()).isEqualTo(UPDATED_TEL);
         assertThat(testEtudiant.getCin()).isEqualTo(UPDATED_CIN);
-        assertThat(testEtudiant.getSemsetre()).isEqualTo(UPDATED_SEMSETRE);
-        assertThat(testEtudiant.getSection()).isEqualTo(UPDATED_SECTION);
         assertThat(testEtudiant.getEtat()).isEqualTo(UPDATED_ETAT);
         assertThat(testEtudiant.getDatenaissance()).isEqualTo(UPDATED_DATENAISSANCE);
-        assertThat(testEtudiant.getCodeEtudiant()).isEqualTo(UPDATED_CODE_ETUDIANT);
+        assertThat(testEtudiant.getSemsetre()).isEqualTo(UPDATED_SEMSETRE);
+        assertThat(testEtudiant.getSection()).isEqualTo(UPDATED_SECTION);
+        assertThat(testEtudiant.getPromo()).isEqualTo(UPDATED_PROMO);
     }
 
     @Test

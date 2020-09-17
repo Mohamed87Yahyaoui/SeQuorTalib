@@ -17,17 +17,17 @@
                 <dd>
                     <span>{{ module.semester }}</span>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.module.historiqueEnseignantModule">Historique Enseignant Module</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.module.filiere">Filiere</span></dt>
                 <dd>
-                    <div *ngIf="module.historiqueEnseignantModule">
-                        <a [routerLink]="['/historique-enseignant-module', module.historiqueEnseignantModule?.id, 'view']">{{ module.historiqueEnseignantModule?.datedebut }}</a>
+                    <div *ngIf="module.filiere">
+                        <a [routerLink]="['/filiere', module.filiere?.id, 'view']">{{ module.filiere?.nom }}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="sequortalibApp.module.historiqueEtudiantModule">Historique Etudiant Module</span></dt>
+                <dt><span jhiTranslate="sequortalibApp.module.enseignant">Enseignant</span></dt>
                 <dd>
-                    <div *ngIf="module.historiqueEtudiantModule">
-                       <!-- <a [routerLink]="['/historique-etudiant-module', module.historiqueEtudiantModule?.id, 'view']">{{ module.historiqueEtudiantModule?.datedebut }}</a>-->
-                    </div>
+                    <span *ngFor="let enseignant of module.enseignants; let last = last">
+                        <a [routerLink]="['/enseignant', enseignant?.id, 'view']">{{ enseignant.id }}</a>{{ last ? '' : ', ' }}
+                    </span>
                 </dd>
             </dl>
 

@@ -8,12 +8,6 @@
     -->
     <changeSet id="20200703222740-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="historique_enseignant_module_id"
-                                 baseTableName="enseignant"
-                                 constraintName="fk_enseignant_historique_enseignant_module_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="historique_enseignant_module"/>
-
         <addForeignKeyConstraint baseColumnNames="departement_id"
                                  baseTableName="enseignant"
                                  constraintName="fk_enseignant_departement_id"
@@ -26,5 +20,17 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="enseignant_id"
+                                 baseTableName="enseignant_module"
+                                 constraintName="fk_enseignant_module_enseignant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="enseignant"/>
+
+        <addForeignKeyConstraint baseColumnNames="module_id"
+                                 baseTableName="enseignant_module"
+                                 constraintName="fk_enseignant_module_module_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="module"/>
+        
     </changeSet>
 </databaseChangeLog>

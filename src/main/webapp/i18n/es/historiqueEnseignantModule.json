@@ -17,9 +17,7 @@
         "title": "Historique Enseignant Module"
       },
       "datedebut": "Datedebut",
-      "datefin": "Datefin",
-      "module": "Module",
-      "enseignant": "Enseignant"
+      "datefin": "Datefin"
     }
   }
 }

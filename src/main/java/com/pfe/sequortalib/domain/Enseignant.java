@@ -42,10 +42,6 @@ public class Enseignant implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("enseignants")
-    private HistoriqueEnseignantModule historiqueEnseignantModule;
-
-    @ManyToOne
-    @JsonIgnoreProperties("enseignants")
     private Departement departement;
 
     @OneToOne
@@ -58,6 +54,13 @@ public class Enseignant implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JsonIgnore
     private Set<Filiere> filieres = new HashSet<>();
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "enseignant_module",
+               joinColumns = @JoinColumn(name = "enseignant_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "module_id", referencedColumnName = "id"))
+    private Set<Module> modules = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -120,19 +123,6 @@ public class Enseignant implements Serializable {
         this.grade = grade;
     }
 
-    public HistoriqueEnseignantModule getHistoriqueEnseignantModule() {
-        return historiqueEnseignantModule;
-    }
-
-    public Enseignant historiqueEnseignantModule(HistoriqueEnseignantModule historiqueEnseignantModule) {
-        this.historiqueEnseignantModule = historiqueEnseignantModule;
-        return this;
-    }
-
-    public void setHistoriqueEnseignantModule(HistoriqueEnseignantModule historiqueEnseignantModule) {
-        this.historiqueEnseignantModule = historiqueEnseignantModule;
-    }
-
     public Departement getDepartement() {
         return departement;
     }
@@ -182,6 +172,31 @@ public class Enseignant implements Serializable {
 
     public void setFilieres(Set<Filiere> filieres) {
         this.filieres = filieres;
+    }
+
+    public Set<Module> getModules() {
+        return modules;
+    }
+
+    public Enseignant modules(Set<Module> modules) {
+        this.modules = modules;
+        return this;
+    }
+
+    public Enseignant addModule(Module module) {
+        this.modules.add(module);
+        module.getEnseignants().add(this);
+        return this;
+    }
+
+    public Enseignant removeModule(Module module) {
+        this.modules.remove(module);
+        module.getEnseignants().remove(this);
+        return this;
+    }
+
+    public void setModules(Set<Module> modules) {
+        this.modules = modules;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

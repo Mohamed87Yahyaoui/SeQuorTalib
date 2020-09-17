@@ -17,9 +17,10 @@
         "title": "Filiere"
       },
       "nom": "Nom",
-      "module": "Module",
       "departement": "Departement",
-      "enseignant": "Enseignant"
+      "enseignant": "Enseignant",
+      "module": "Module",
+      "etudiant": "Etudiant"
     }
   }
 }

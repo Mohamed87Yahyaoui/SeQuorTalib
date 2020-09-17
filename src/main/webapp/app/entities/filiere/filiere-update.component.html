@@ -25,13 +25,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label jhiTranslate="sequortalibApp.filiere.module" for="field_modules">Module</label>
-                    <select class="form-control" id="field_modules" multiple name="modules" formControlName="modules">
-                        <option [ngValue]="getSelected(editForm.get('modules')!.value, moduleOption)" *ngFor="let moduleOption of modules; trackBy: trackById">{{ moduleOption.nom }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="sequortalibApp.filiere.departement" for="field_departement">Departement</label>
                     <select class="form-control" id="field_departement" name="departement" formControlName="departement">
                         <option [ngValue]="null"></option>

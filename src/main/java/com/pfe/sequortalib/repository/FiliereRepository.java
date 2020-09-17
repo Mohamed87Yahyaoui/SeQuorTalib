@@ -17,13 +17,13 @@ import java.util.Optional;
 @Repository
 public interface FiliereRepository extends JpaRepository<Filiere, Long> {
 
-    @Query(value = "select distinct filiere from Filiere filiere left join fetch filiere.modules left join fetch filiere.enseignants",
+    @Query(value = "select distinct filiere from Filiere filiere left join fetch filiere.enseignants",
         countQuery = "select count(distinct filiere) from Filiere filiere")
     Page<Filiere> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct filiere from Filiere filiere left join fetch filiere.modules left join fetch filiere.enseignants")
+    @Query("select distinct filiere from Filiere filiere left join fetch filiere.enseignants")
     List<Filiere> findAllWithEagerRelationships();
 
-    @Query("select filiere from Filiere filiere left join fetch filiere.modules left join fetch filiere.enseignants where filiere.id =:id")
+    @Query("select filiere from Filiere filiere left join fetch filiere.enseignants where filiere.id =:id")
     Optional<Filiere> findOneWithEagerRelationships(@Param("id") Long id);
 }

@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 
 import { IModule, Module } from 'app/shared/model/module.model';
 import { ModuleService } from './module.service';
-import { IHistoriqueEnseignantModule } from 'app/shared/model/historique-enseignant-module.model';
-import { HistoriqueEnseignantModuleService } from 'app/entities/historique-enseignant-module/historique-enseignant-module.service';
-import { IHistoriqueEtudiantModule } from 'app/shared/model/historique-etudiant-module.model';
-import { HistoriqueEtudiantModuleService } from 'app/entities/historique-etudiant-module/historique-etudiant-module.service';
+import { IFiliere } from 'app/shared/model/filiere.model';
+import { FiliereService } from 'app/entities/filiere/filiere.service';
+import { IEnseignant } from 'app/shared/model/enseignant.model';
+import { EnseignantService } from 'app/entities/enseignant/enseignant.service';
 
-type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEtudiantModule;
+type SelectableEntity = IFiliere | IEnseignant;
 
 @Component({
   selector: 'jhi-module-update',
@@ -20,21 +20,21 @@ type SelectableEntity = IHistoriqueEnseignantModule | IHistoriqueEtudiantModule;
 })
 export class ModuleUpdateComponent implements OnInit {
   isSaving = false;
-  historiqueenseignantmodules: IHistoriqueEnseignantModule[] = [];
-  historiqueetudiantmodules: IHistoriqueEtudiantModule[] = [];
+  filieres: IFiliere[] = [];
+  enseignants: IEnseignant[] = [];
 
   editForm = this.fb.group({
     id: [],
     nom: [null, [Validators.required]],
     semester: [],
-    historiqueEnseignantModule: [],
-    historiqueEtudiantModule: []
+    filiere: [],
+    enseignants: []
   });
 
   constructor(
     protected moduleService: ModuleService,
-    protected historiqueEnseignantModuleService: HistoriqueEnseignantModuleService,
-    protected historiqueEtudiantModuleService: HistoriqueEtudiantModuleService,
+    protected filiereService: FiliereService,
+    protected enseignantService: EnseignantService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -43,13 +43,9 @@ export class ModuleUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ module }) => {
       this.updateForm(module);
 
-      this.historiqueEnseignantModuleService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEnseignantModule[]>) => (this.historiqueenseignantmodules = res.body || []));
+      this.filiereService.query().subscribe((res: HttpResponse<IFiliere[]>) => (this.filieres = res.body || []));
 
-      this.historiqueEtudiantModuleService
-        .query()
-        .subscribe((res: HttpResponse<IHistoriqueEtudiantModule[]>) => (this.historiqueetudiantmodules = res.body || []));
+      this.enseignantService.query().subscribe((res: HttpResponse<IEnseignant[]>) => (this.enseignants = res.body || []));
     });
   }
 
@@ -58,8 +54,8 @@ export class ModuleUpdateComponent implements OnInit {
       id: module.id,
       nom: module.nom,
       semester: module.semester,
-      historiqueEnseignantModule: module.historiqueEnseignantModule,
-      historiqueEtudiantModule: module.historiqueEtudiantModule
+      filiere: module.filiere,
+      enseignants: module.enseignants
     });
   }
 
@@ -83,8 +79,8 @@ export class ModuleUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       nom: this.editForm.get(['nom'])!.value,
       semester: this.editForm.get(['semester'])!.value,
-      historiqueEnseignantModule: this.editForm.get(['historiqueEnseignantModule'])!.value,
-      historiqueEtudiantModule: this.editForm.get(['historiqueEtudiantModule'])!.value
+      filiere: this.editForm.get(['filiere'])!.value,
+      enseignants: this.editForm.get(['enseignants'])!.value
     };
   }
 
@@ -106,5 +102,16 @@ export class ModuleUpdateComponent implements OnInit {
 
   trackById(index: number, item: SelectableEntity): any {
     return item.id;
+  }
+
+  getSelected(selectedVals: IEnseignant[], option: IEnseignant): IEnseignant {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }
